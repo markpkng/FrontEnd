@@ -9,6 +9,7 @@ export const initialState = {
     loggedIn: false,
     drivers: [
         {
+            id: 1,
             username: 'testdriver1',
             name: 'Test Driver 1',
             location: 'Test City',
@@ -17,6 +18,7 @@ export const initialState = {
             available: true
         },
         {
+            id: 2,
             username: 'testdriver2',
             name: 'Test Driver 2',
             location: 'Test Town',
@@ -25,6 +27,7 @@ export const initialState = {
             available: true
         },
         {
+            id: 3,
             username: 'testdriver3',
             name: 'Test Driver 3',
             location: 'Test Land',
@@ -32,7 +35,51 @@ export const initialState = {
             bio: 'Hi my name is Test Driver 3 and I am a driver.',
             available: false
         }
-    ]
+    ],
+    reviews: [
+        {
+            stars: 5,
+            comment: 'This driver is awesome',
+            date: '10-18-2019',
+            driver_id: 1,
+            reviewer: 'rider1'
+        },
+        {
+            stars: 4,
+            comment: 'This driver is great',
+            date: '10-17-2019',
+            driver_id: 1,
+            reviewer: 'rider1'
+        },
+        {
+            stars: 2,
+            comment: 'This driver is not the best',
+            date: '10-18-2019',
+            driver_id: 2,
+            reviewer: 'rider2'
+        },
+        {
+            stars: 5,
+            comment: 'This driver is awesome',
+            date: '10-18-2019',
+            driver_id: 2,
+            reviewer: 'rider1'
+        },
+        {
+            stars: 4,
+            comment: 'This driver is great',
+            date: '10-17-2019',
+            driver_id: 3,
+            reviewer: 'rider1'
+        },
+        {
+            stars: 2,
+            comment: 'This driver is not the best',
+            date: '10-18-2019',
+            driver_id: 3,
+            reviewer: 'rider2'
+        }
+    ],
 };
 
 export const reducer = (state = initialState, action) => {
