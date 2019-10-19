@@ -39,6 +39,7 @@ export const initialState = {
     ],
     reviews: [
         {
+            id: 1,
             stars: 5,
             comment: 'This driver is awesome',
             date: '10-18-2019',
@@ -46,6 +47,7 @@ export const initialState = {
             reviewer: 'rider1'
         },
         {
+            id: 2,
             stars: 4,
             comment: 'This driver is great',
             date: '10-17-2019',
@@ -53,6 +55,7 @@ export const initialState = {
             reviewer: 'rider1'
         },
         {
+            id: 3,
             stars: 2,
             comment: 'This driver is not the best',
             date: '10-18-2019',
@@ -60,6 +63,7 @@ export const initialState = {
             reviewer: 'rider2'
         },
         {
+            id: 4,
             stars: 5,
             comment: 'This driver is awesome',
             date: '10-18-2019',
@@ -67,6 +71,7 @@ export const initialState = {
             reviewer: 'rider1'
         },
         {
+            id: 5,
             stars: 4,
             comment: 'This driver is great',
             date: '10-17-2019',
@@ -74,6 +79,7 @@ export const initialState = {
             reviewer: 'rider1'
         },
         {
+            id: 6,
             stars: 2,
             comment: 'This driver is not the best',
             date: '10-18-2019',

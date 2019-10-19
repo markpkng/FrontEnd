@@ -22,6 +22,7 @@ const Header = () => {
             <Link to='/'><h1>Logo Goes Here</h1></Link>
             <div>
                 {loggedIn && <StyledLink to='/drivers'>Drivers</StyledLink>}
+                {loggedIn && <StyledLink to='/reviews'>Reviews</StyledLink>}
                 {loggedIn && <StyledLink onClick={() => dispatch(logout())} to='/'>Logout</StyledLink>}
                 {!loggedIn && <StyledLink to='/register/type'>Register</StyledLink>}
                 {!loggedIn && <StyledLink to='/login'>Login</StyledLink>}

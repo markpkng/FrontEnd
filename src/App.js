@@ -6,6 +6,8 @@ import Login from './components/login';
 import Register from './components/register';
 import DriverList from './components/dirverList';
 import DriverProfile from './components/driverProfile';
+import Reviews from './components/reviews';
+import ReviewPage from './components/reviewPage';
 import {useDispatch} from 'react-redux';
 import {LOGIN} from './actions/actions';
 
@@ -25,6 +27,8 @@ function App() {
       <Route path='/register' component={Register}/>
       <PrivateRoute exact path='/drivers' component={DriverList}/>
       <PrivateRoute exact path='/drivers/:username' component={DriverProfile}/>
+      <PrivateRoute exact path='/reviews' component={Reviews}/>
+      <PrivateRoute exact path='/reviews/:id' component={ReviewPage}/>
     </div>
   );
 }
