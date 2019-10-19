@@ -8,7 +8,7 @@ const Reviews = () => {
     return (
         <div>
             <Header/>
-            {reviews.map(review => <Review review={review}/>)}
+            {reviews.map(review => <Review key={review.id} review={review}/>)}
         </div>
     );
 }

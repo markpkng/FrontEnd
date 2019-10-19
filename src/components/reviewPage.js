@@ -4,7 +4,7 @@ import Review from './review';
 import Header from './header';
 
 const ReviewPage = props => {
-    const review = useSelector(state => state.reviews.filter(review => review.id = props.match.params.id)[0]);
+    const review = useSelector(state => state.reviews.filter(review => review.id === parseInt(props.match.params.id))[0]);
 
     return (
         <div>
