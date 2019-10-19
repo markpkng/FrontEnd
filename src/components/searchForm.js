@@ -1,10 +1,13 @@
 import React from 'react';
 
-const SearchForm = ({search, handleSearch}) => {
+const SearchForm = ({input, handleInput, handleSubmit}) => {
     return (
         <div>
-            <span>Search by location: </span>
-            <input type='text' value={search} placeholder='Location' onChange={e => handleSearch(e.target.value)}/>
+            <form onSubmit={handleSubmit}>
+                <span>Search by location: </span>
+                <input type='text' value={input} placeholder='Location' onChange={e => handleInput(e.target.value)}/>
+                <button type='submit'>Submit</button>
+            </form>
         </div>
     );
 }
