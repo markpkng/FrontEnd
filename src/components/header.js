@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
+import {useSelector, useDispatch} from 'react-redux';
+import {LOGOUT} from '../actions/actions';
 
 const HeaderContainer = styled.div `
     display: flex;
@@ -8,13 +10,21 @@ const HeaderContainer = styled.div `
     margin: 2rem;
 `
 
+const StyledLink = styled(Link) `
+    margin: 0.5rem;
+`
+
 const Header = () => {
+    const dispatch = useDispatch();
+    const loggedIn = useSelector(state => state.loggedIn);
     return (
         <HeaderContainer>
             <Link to='/'><h1>Logo Goes Here</h1></Link>
             <div>
-                <Link to='/register'>Register</Link>
-                <Link to='/login'>Login</Link>
+                {loggedIn && <StyledLink to='/drivers'>Drivers</StyledLink>}
+                {loggedIn && <StyledLink onClick={() => dispatch({type: LOGOUT})} to='/'>Logout</StyledLink>}
+                {!loggedIn && <StyledLink to='/register/type'>Register</StyledLink>}
+                {!loggedIn && <StyledLink to='/login'>Login</StyledLink>}
             </div>
         </HeaderContainer>
 
