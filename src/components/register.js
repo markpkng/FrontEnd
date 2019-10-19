@@ -14,6 +14,7 @@ const Register = () => {
 
     return (
         <div>
+            <Redirect from='/register' to='/register/type'/>
             <Header/>
             <form onSubmit={handleSubmit}>
                 <Route path='/register/type' render={props => <RegisterType {...props} setType={setType}/>}/>

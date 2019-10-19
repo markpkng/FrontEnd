@@ -2,7 +2,7 @@ import React from 'react';
 import {useInput} from '../hooks/useInput';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {LOGIN} from '../actions/actions';
+import {login} from '../actions/actions';
 
 const LoginForm = (props) => {
     const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const LoginForm = (props) => {
         e.preventDefault();
         setUsername('');
         setPassword('');
-        dispatch({type: LOGIN});
+        dispatch(login({username, password}));
         props.history.push('/');
     }
 
@@ -23,7 +23,7 @@ const LoginForm = (props) => {
                 <input type='text' value={username} placeholder='Username' onChange={e => handleUsername(e.target.value)} required/>
                 <input type='password' value={password} placeholder='Password' onChange={e => handlePassword(e.target.value)} required/>
                 <button type='submit'>Login</button>
-                <p>Need to create an account? Click <Link to='/register'>here</Link> to register.</p>
+                <p>Need to create an account? Click <Link to='/register/type'>here</Link> to register.</p>
             </form>
         </div>
     );

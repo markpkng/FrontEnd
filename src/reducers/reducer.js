@@ -7,6 +7,7 @@ import {
 export const initialState = {
     loading: false,
     loggedIn: false,
+    error: '',
     drivers: [
         {
             id: 1,
