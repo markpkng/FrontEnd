@@ -13,10 +13,10 @@ const Type = styled.div `
     }
 `
 
-const RegisterType = (props) => {
-    const handleClick = type => {
-        props.setType(type);
-        props.history.push(`/register/${type}`)
+const RegisterType = ({setRole, history}) => {
+    const handleClick = role => {
+        setRole(role);
+        history.push(`/register/${role}`)
     }
 
     return (

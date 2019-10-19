@@ -1,13 +1,14 @@
 import {
     START_REQUEST,
     LOGIN,
-    LOGOUT
+    LOGOUT,
 } from '../actions/actions';
 
 export const initialState = {
     loading: false,
     loggedIn: false,
     error: '',
+    role: '',
     drivers: [
         {
             id: 1,
@@ -99,6 +100,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
+                role: action.payload,
                 loggedIn: true
             }
         }

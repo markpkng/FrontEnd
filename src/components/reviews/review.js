@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 
 const Review = ({review}) => {
     const {stars, comment, date, reviewer, id} = review;
-    console.log(id);
     return (
         <div>
             <Link to={`/reviews/${id}`}>

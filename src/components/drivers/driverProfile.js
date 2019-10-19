@@ -1,7 +1,8 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import Header from './header';
-import Review from './review';
+import Header from '../header';
+import Review from '../reviews/review';
+import ReviewForm from '../reviews/reviewForm';
 
 const DriverProfile = (props) => {
     const driver = useSelector(state => state.drivers.filter(driver => driver.username === props.match.params.username)[0]);
@@ -17,8 +18,9 @@ const DriverProfile = (props) => {
             <p>Price: {price}</p>
             <p>Bio: {bio}</p>
             <p>Available: {available ? 'Yes!' : 'No'}</p>
+            <ReviewForm/>
             {reviews.length > 0 && <h3>Reviews:</h3>}
-            {reviews.map(review => <Review review={review}/>)}
+            {reviews.map(review => <Review key={review.id} review={review}/>)}
         </div>
     );
 }

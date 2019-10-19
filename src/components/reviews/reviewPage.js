@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import Review from './review';
-import Header from './header';
+import Header from '../header';
 
 const ReviewPage = props => {
     const review = useSelector(state => state.reviews.filter(review => review.id === parseInt(props.match.params.id))[0]);

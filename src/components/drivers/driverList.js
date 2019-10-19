@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
-import Header from './header';
+import Header from '../header';
 import DriverCard from './driverCard';
-import {useInput} from '../hooks/useInput';
-import SearchForm from './searchForm';
+import {useInput} from '../../hooks/useInput';
+import SearchForm from '../searchForm';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTimesCircle} from '@fortawesome/free-regular-svg-icons';
 
@@ -15,6 +15,7 @@ const DriverList = () => {
     const handleSubmit = e => {
         e.preventDefault();
         setSearch(input);
+        setInput('');
     }
 
     return (
