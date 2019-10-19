@@ -16,12 +16,12 @@ const StyledLink = styled(Link) `
 
 const Header = () => {
     const dispatch = useDispatch();
-    const loggedIn = useSelector(state => state.loggedIn);
+    const [loggedIn, role] = useSelector(state => [state.loggedIn, state.role]);
     return (
         <HeaderContainer>
             <Link to='/'><h1>Logo Goes Here</h1></Link>
             <div>
-                {loggedIn && <StyledLink to='/drivers'>Drivers</StyledLink>}
+                {loggedIn && (role === 'rider' ? <StyledLink to='/drivers'>Drivers</StyledLink> : <StyledLink to='/riders'>Riders</StyledLink>)}
                 {loggedIn && <StyledLink to='/reviews'>Reviews</StyledLink>}
                 {loggedIn && <StyledLink onClick={() => dispatch(logout())} to='/'>Logout</StyledLink>}
                 {!loggedIn && <StyledLink to='/register/role'>Register</StyledLink>}

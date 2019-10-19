@@ -38,6 +38,29 @@ export const initialState = {
             available: false
         }
     ],
+    riders: [
+        {
+            id: 1,
+            username: 'testrider1',
+            name: 'Test Driver 1',
+            location: 'Test City',
+            searching: true
+        },
+        {
+            id: 2,
+            username: 'testrider2',
+            name: 'Test Driver 2',
+            location: 'Test Town',
+            searching: true
+        },
+        {
+            id: 3,
+            username: 'testrider3',
+            name: 'Test Driver 3',
+            location: 'Test Land',
+            searching: false
+        }
+    ],
     reviews: [
         {
             id: 1,
@@ -107,7 +130,8 @@ export const reducer = (state = initialState, action) => {
         case LOGOUT: return {
             ...state,
             loading: false,
-            loggedIn: false
+            loggedIn: false,
+            role: ''
         }
         default:
             return {
