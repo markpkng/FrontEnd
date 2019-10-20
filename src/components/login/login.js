@@ -10,6 +10,7 @@ const Login = (props) => {
     const testLogin = role => {
         dispatch({type: LOGIN, payload: role})
         localStorage.setItem('token', 'test');
+        localStorage.setItem('role', role);
         props.history.push('/');
     }
     return (

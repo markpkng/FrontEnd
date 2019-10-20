@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import Header from '../header';
-import Review from '../reviews/review';
+import ReviewCard from '../reviews/reviewCard';
 import ReviewForm from '../reviews/reviewForm';
 
 const DriverProfile = (props) => {
@@ -20,7 +20,7 @@ const DriverProfile = (props) => {
             <p>Available: {available ? 'Yes!' : 'No'}</p>
             <ReviewForm/>
             {reviews.length > 0 && <h3>Reviews:</h3>}
-            {reviews.map(review => <Review key={review.id} review={review}/>)}
+            {reviews.map(review => <ReviewCard key={review.id} review={review}/>)}
         </div>
     );
 }

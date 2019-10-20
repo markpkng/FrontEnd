@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import Review from './review';
+import ReviewCard from './reviewCard';
 import Header from '../header';
 
 const Reviews = () => {
@@ -8,7 +8,7 @@ const Reviews = () => {
     return (
         <div>
             <Header/>
-            {reviews.map(review => <Review key={review.id} review={review}/>)}
+            {reviews.map(review => <ReviewCard key={review.id} review={review}/>)}
         </div>
     );
 }

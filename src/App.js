@@ -8,20 +8,21 @@ import DriverList from './components/drivers/driverList';
 import DriverProfile from './components/drivers/driverProfile';
 import RiderList from './components/riders/riderList';
 import RiderProfile from './components/riders/riderProfile';
-import Reviews from './components/reviews/reviews';
-import ReviewPage from './components/reviews/reviewPage';
 import {useDispatch} from 'react-redux';
 import {LOGIN} from './actions/actions';
 
 import './App.css';
+import MyAccount from './components/myAccount';
 
 function App() {
   const dispatch = useDispatch();
+  const role = '';
   useEffect(() => {
     if(localStorage.getItem('token')){
       dispatch({type: LOGIN});
     }
   }, [dispatch])
+  console.log(role === 'driver');
   return (
     <div className="App">
       <Route exact path='/' component={Welcome}/>
@@ -31,8 +32,7 @@ function App() {
       <PrivateRoute exact path='/drivers/:username' component={DriverProfile}/>
       <PrivateRoute exact path='/riders' component={RiderList}/>
       <PrivateRoute exact path='/riders/:username' component={RiderProfile}/>
-      <PrivateRoute exact path='/reviews' component={Reviews}/>
-      <PrivateRoute exact path='/reviews/:id' component={ReviewPage}/>
+      <PrivateRoute exact path='/account' component={MyAccount}/>
     </div>
   );
 }

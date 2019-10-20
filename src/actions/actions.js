@@ -19,10 +19,12 @@ export const login = credentials => dispatch => {
     //     dispatch({type: ERROR, payload: err});
     // });
     localStorage.setItem('token', 'test');
+    localStorage.setItem('role', 'rider');
 };
 
 export const logout = () => {
     localStorage.setItem('token', '');
+    localStorage.setItem('role', '');
     return {
         type: LOGOUT
     };
