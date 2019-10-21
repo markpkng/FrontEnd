@@ -22,8 +22,8 @@ const UpdateRiderForm = ({rider}) => {
     const handleSubmit = e => {
         e.preventDefault();
         const id = localStorage.getItem('bfl-id');
-        const rider = {password, name, location, newPassword, searching: searching.toString()};
-        dispatch(updateRider(id, rider));
+        const rider = {password, name, location, searching: searching.toString()};
+        dispatch(updateRider(id, newPassword ? {...rider, newPassword} : rider));
     }
 
     return (

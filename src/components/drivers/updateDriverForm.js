@@ -24,8 +24,8 @@ const UpdateDriverForm = ({driver}) => {
     const handleSubmit = e => {
         e.preventDefault();
         const id = localStorage.getItem('bfl-id');
-        const driver = {password, name, location, newPassword, available: available.toString(), price, bio};
-        dispatch(updateDriver(id, driver));
+        const driver = {password, name, location, available: available.toString(), price, bio};
+        dispatch(updateDriver(id, newPassword ? {...driver, newPassword} : driver));
     }
 
     return (

@@ -43,7 +43,7 @@ const DriverAccount = ({history}) => {
         <div>
             <Header/>
             {user && <div>
-                <h1>Rider Account Page</h1>
+                <h1>Driver Account Page</h1>
                 <p>Username: {user.username}</p>
                 <p>Name: {user.name}</p>
                 {user.location && <p>Location: {user.location}</p>}
