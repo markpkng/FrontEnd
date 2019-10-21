@@ -10,14 +10,20 @@ import RiderList from './components/riders/riderList';
 import RiderProfile from './components/riders/riderProfile';
 import RiderAccount from './components/riders/riderAccount';
 import DriverAccount from './components/drivers/driverAccount';
-import {useDispatch} from 'react-redux';
+import LoadingOverlay from 'react-loading-overlay';
+import styled from 'styled-components';
+import {useDispatch, useSelector} from 'react-redux';
 import {LOGIN} from './actions/types';
-
-import './App.css';
 import MyAccount from './components/myAccount';
+import './App.css';
+
+const StyledLoader = styled(LoadingOverlay) `
+    height: 100vh;
+`
 
 function App() {
   const dispatch = useDispatch();
+  const loading = useSelector(state => state.loading);
 
   useEffect(() => {
     if(localStorage.getItem('bfl-token') && localStorage.getItem('bfl-role')){
@@ -27,14 +33,16 @@ function App() {
   
   return (
     <div className="App">
-      <Route exact path='/' component={Welcome}/>
-      <Route path='/login' component={Login}/>
-      <Route path='/register' component={Register}/>
-      <PrivateRoute exact path='/drivers' component={DriverList}/>
-      <PrivateRoute exact path='/drivers/:id' component={DriverProfile}/>
-      <PrivateRoute exact path='/riders' component={RiderList}/>
-      <PrivateRoute exact path='/riders/:id' component={RiderProfile}/>
-      <PrivateRoute exact path='/account' component={localStorage.getItem('bfl-role') === 'rider' ? RiderAccount : DriverAccount}/>
+      <StyledLoader active={loading} spinner text='Loading...'>
+        <Route exact path='/' component={Welcome}/>
+        <Route path='/login' component={Login}/>
+        <Route path='/register' component={Register}/>
+        <PrivateRoute exact path='/drivers' component={DriverList}/>
+        <PrivateRoute exact path='/drivers/:id' component={DriverProfile}/>
+        <PrivateRoute exact path='/riders' component={RiderList}/>
+        <PrivateRoute exact path='/riders/:id' component={RiderProfile}/>
+        <PrivateRoute exact path='/account' component={localStorage.getItem('bfl-role') === 'rider' ? RiderAccount : DriverAccount}/>
+      </StyledLoader>
     </div>
   );
 }
