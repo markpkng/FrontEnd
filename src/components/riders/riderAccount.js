@@ -4,13 +4,14 @@ import {useDispatch} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
 import {deleteRider} from '../../actions/actions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import UpdateRiderForm from './updateRiderForm';
 import {
     START_REQUEST,
     GET_RIDER_SUCCESS,
     GET_RIDER_FAIL
 } from '../../actions/types';
 
-const RiderAccount = ({history}) => {
+const RiderAccount = (props) => {
     const dispatch = useDispatch();
     const [user, setUser] = useState(null);
     const [modal, setModal] = useState(false);
@@ -20,7 +21,7 @@ const RiderAccount = ({history}) => {
     const deleteAction = () => {
         dispatch(deleteRider(localStorage.getItem('bfl-id')));
         setModal(!modal);
-        history.push('/');
+        props.history.push('/');
     }
 
     useEffect(() => {
@@ -48,6 +49,7 @@ const RiderAccount = ({history}) => {
                 {user.location && <p>Location: {user.location}</p>}
                 <p>Searching: {user.searching.toString()}</p>
             </div>}
+            {user && <UpdateRiderForm {...props} rider={user}/>}
             <div>
                 <Button color="danger" onClick={toggle}>Delete Account</Button>
                 <Modal isOpen={modal} toggle={toggle}>

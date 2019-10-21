@@ -13,9 +13,10 @@ export const login = credentials => dispatch => {
         localStorage.setItem('bfl-token', res.data.token);
         localStorage.setItem('bfl-id', id);
         localStorage.setItem('bfl-role', res.data.role);
-        dispatch({type: t.LOGIN, payload: res.data.role})
+        dispatch({type: t.LOGIN_SUCCESS, payload: res.data.role})
     })
     .catch(err => {
+
         console.log(err);
     });
 };
@@ -116,5 +117,34 @@ export const deleteDriver = id => dispatch => {
     .catch(err => {
         dispatch({type: t.DELETE_DRIVER_FAIL});
         console.log(err);
+    })
+}
+
+export const updateDriver = (id, driver) => dispatch => {
+    console.log(driver);
+    dispatch({type: t.START_REQUEST});
+    axiosWithAuth()
+    .put(`/drivers/${id}`, driver)
+    .then(res => {
+        console.log(res);
+        dispatch({type: t.UPDATE_DRIVER_SUCCESS});
+    })
+    .catch(err => {
+        console.log(err);
+        dispatch({type: t.UPDATE_DRIVER_FAIL});
+    })
+}
+
+export const updateRider = (id, rider) => dispatch => {
+    dispatch({type: t.START_REQUEST});
+    axiosWithAuth()
+    .put(`/riders/${id}`, rider)
+    .then(res => {
+        console.log(res);
+        dispatch({type: t.UPDATE_RIDER_SUCCESS});
+    })
+    .catch(err => {
+        console.log(err);
+        dispatch({type: t.UPDATE_RIDER_FAIL});
     })
 }

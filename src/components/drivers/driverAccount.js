@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Header from '../header';
+import UpdateDriverForm from './updateDriverForm';
 import {useDispatch} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
 import {deleteDriver} from '../../actions/actions';
@@ -50,6 +51,7 @@ const DriverAccount = ({history}) => {
                 <p> Bio: {user.bio}</p>
                 <p>Available: {user.available.toString()}</p>
             </div>}
+            {user && <UpdateDriverForm driver={user}/>}
             <div>
                 <Button color="danger" onClick={toggle}>Delete Account</Button>
                 <Modal isOpen={modal} toggle={toggle}>

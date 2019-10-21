@@ -13,8 +13,7 @@ import DriverAccount from './components/drivers/driverAccount';
 import LoadingOverlay from 'react-loading-overlay';
 import styled from 'styled-components';
 import {useDispatch, useSelector} from 'react-redux';
-import {LOGIN} from './actions/types';
-import MyAccount from './components/myAccount';
+import {LOGIN_SUCCESS} from './actions/types';
 import './App.css';
 
 const StyledLoader = styled(LoadingOverlay) `
@@ -27,7 +26,7 @@ function App() {
 
   useEffect(() => {
     if(localStorage.getItem('bfl-token') && localStorage.getItem('bfl-role')){
-      dispatch({type: LOGIN, payload: localStorage.getItem('bfl-role')});
+      dispatch({type: LOGIN_SUCCESS, payload: localStorage.getItem('bfl-role')});
     }
   }, [dispatch])
   

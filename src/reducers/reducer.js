@@ -9,11 +9,12 @@ export const initialState = {
 export const reducer = (state = initialState, action) => {
     switch(action.type){
         case t.START_REQUEST: return {...state, loading: true}
-        case t.LOGIN: return {
+        case t.LOGIN_SUCCESS: return {
             ...state,
             loading: false,
             loggedIn: true
         }
+        case t.LOGIN_FAIL: return {...state, loading: false}
         case t.LOGOUT: return {
             ...state,
             loading: false,
@@ -28,6 +29,8 @@ export const reducer = (state = initialState, action) => {
         case t.GET_DRIVER_FAIL: return {...state, loading: false}
         case t.DELETE_DRIVER_SUCCESS: return {...state, loading: false}
         case t.DELETE_DRIVER_FAIL: return {...state, loading: false}
+        case t.UPDATE_DRIVER_SUCCESS: return {...state, loading: false}
+        case t.UPDATE_DRIVER_FAIL: return {...state, loading: false}
         case t.GET_REVIEWS_SUCCESS: return {...state, loading: false}
         case t.GET_REVIEWS_FAIL: return {...state, loading: false}
         case t.ADD_REVIEW_SUCCESS: return {...state, loading: false}
@@ -42,6 +45,8 @@ export const reducer = (state = initialState, action) => {
         case t.GET_RIDER_FAIL: return {...state, loading: false}
         case t.DELETE_RIDER_SUCCESS: return {...state, loading: false}
         case t.DELETE_RIDER_FAIL: return {...state, loading: false}
+        case t.UPDATE_RIDER_SUCCESS: return {...state, loading: false}
+        case t.UPDATE_RIDER_FAIL: return {...state, loading: false}
         default: return {
             ...state
         }
