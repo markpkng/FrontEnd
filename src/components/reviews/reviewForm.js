@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import styled from 'styled-components';
-import {addReview} from '../../actions/actions';
+import {addReview, editReview} from '../../actions/actions';
 import ReactStars from 'react-rating-stars-component';
 
 const FlexColumn = styled.div `
@@ -12,7 +12,7 @@ const FlexColumn = styled.div `
     margin: 0 auto;
 `
 
-const ReviewForm = ({match}) => {
+const ReviewForm = ({match, edit}) => {
     const dispatch = useDispatch();
     const [comment, setComment, handleComment] = useInput('');
     const [anonymous, setAnonymous] = useState(false);

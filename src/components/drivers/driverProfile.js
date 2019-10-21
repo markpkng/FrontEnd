@@ -58,7 +58,7 @@ const DriverProfile = (props) => {
             <p>Available: {available ? 'Yes!' : 'No'}</p>
             <ReviewForm {...props}/>
             {reviews.length > 0 && <h3>Reviews:</h3>}
-            {reviews.map(review => <ReviewCard key={review.review_id} review={review}/>)}
+            {reviews.map(review => <ReviewCard {...props} key={review.review_id} review={review}/>)}
         </div>
     );
 }

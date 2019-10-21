@@ -60,6 +60,22 @@ export const addReview = review => dispatch => {
     console.log(review);
 }
 
+export const editReview = (id, review) => dispatch => {
+    dispatch({type: t.START_REQUEST});
+    axiosWithAuth()
+    .put(`/reviews/${id}`, review)
+    .then(res => {
+        dispatch({type: t.EDIT_REVIEW_SUCCESS});
+        console.log(res);
+    })
+    .catch(err => {
+        dispatch({type: t.EDIT_REVIEW_FAIL});
+        console.log(err);
+    })
+
+    console.log(review);
+}
+
 export const deleteReview = id => dispatch => {
     console.log(id);
     dispatch({type: t.START_REQUEST});
