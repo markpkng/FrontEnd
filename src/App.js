@@ -26,9 +26,9 @@ function App() {
   const loading = useSelector(state => state.loading);
 
   useEffect(() => {
-    if(localStorage.getItem('bfl-token') && localStorage.getItem('bfl-role')){
+    if(localStorage.getItem('bfl-token')){
       console.log('decoded:', decode(localStorage.getItem('bfl-token')));
-      dispatch({type: LOGIN_SUCCESS, payload: localStorage.getItem('bfl-role')});
+      dispatch({type: LOGIN_SUCCESS, payload: decode(localStorage.getItem('bfl-token')).role});
     }
   }, [dispatch])
   
@@ -42,7 +42,7 @@ function App() {
         <PrivateRoute exact path='/drivers/:id' component={DriverProfile}/>
         <PrivateRoute exact path='/riders' component={RiderList}/>
         <PrivateRoute exact path='/riders/:id' component={RiderProfile}/>
-        <PrivateRoute exact path='/account' component={localStorage.getItem('bfl-role') === 'rider' ? RiderAccount : DriverAccount}/>
+        <PrivateRoute exact path='/account' component={localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? RiderAccount : DriverAccount}/>
       </StyledLoader>
     </div>
   );

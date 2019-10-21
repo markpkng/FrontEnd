@@ -9,7 +9,6 @@ export const login = credentials => dispatch => {
     .then(res => {
         console.log(res);
         localStorage.setItem('bfl-token', res.data.token);
-        localStorage.setItem('bfl-role', res.data.role);
         dispatch({type: t.LOGIN_SUCCESS, payload: res.data.role})
     })
     .catch(err => {
@@ -20,7 +19,6 @@ export const login = credentials => dispatch => {
 
 export const logout = () => {
     localStorage.removeItem('bfl-token');
-    localStorage.removeItem('bfl-role');
     return {
         type: t.LOGOUT
     };

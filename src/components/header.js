@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {useSelector, useDispatch} from 'react-redux';
 import {logout} from '../actions/actions';
+import {decode} from './decode';
 
 const HeaderContainer = styled.div `
     display: flex;
@@ -21,7 +22,7 @@ const Header = () => {
         <HeaderContainer>
             <Link to='/'><h1>Logo Goes Here</h1></Link>
             <div>
-                {loggedIn && (localStorage.getItem('bfl-role') === 'rider' ? <StyledLink to='/drivers'>Drivers</StyledLink> : <StyledLink to='/riders'>Riders</StyledLink>)}
+                {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <StyledLink to='/drivers'>Drivers</StyledLink> : <StyledLink to='/riders'>Riders</StyledLink>)}
                 {loggedIn && <StyledLink to='/account'>My Account</StyledLink>}
                 {loggedIn && <StyledLink onClick={() => dispatch(logout())} to='/'>Logout</StyledLink>}
                 {!loggedIn && <StyledLink to='/register/role'>Register</StyledLink>}
