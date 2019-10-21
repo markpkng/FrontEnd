@@ -22,7 +22,7 @@ const RiderList = () => {
     useEffect(() => {
         dispatch({type: START_REQUEST});
         axiosWithAuth()
-        .get('/api/riders')
+        .get('/riders')
         .then(res => {
             dispatch({type: GET_RIDERS_SUCCESS});
             setRiders(res.data);

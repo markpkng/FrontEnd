@@ -17,7 +17,6 @@ export const login = credentials => dispatch => {
     })
     .catch(err => {
         console.log(err);
-        dispatch({type: t.ERROR, payload: err});
     });
 };
 

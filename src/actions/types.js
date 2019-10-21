@@ -4,7 +4,6 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
-export const ERROR = 'ERROR';
 
 //driver
 export const GET_DRIVERS_SUCCESS = 'GET_DRIVERS_SUCCESS';

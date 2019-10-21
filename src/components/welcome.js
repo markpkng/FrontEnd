@@ -1,10 +1,8 @@
 import React from 'react';
 import Header from './header';
-import {useSelector} from 'react-redux';
-import ModalExample from './modals/modal';
 
 const Welcome = () => {
-    const role = useSelector(state => state.role);
+    const role = localStorage.getItem('bfl-role');
     return(
         <div>
             <Header/>
