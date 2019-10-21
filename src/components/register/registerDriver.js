@@ -17,6 +17,7 @@ const RegisterDriver = ({role, input}) => {
         name, handleName,
         location, handleLocation,
         price, handlePrice,
+        bio, handleBio
     } = input;
 
     return (
@@ -30,6 +31,7 @@ const RegisterDriver = ({role, input}) => {
             <input type='text' placeholder='Name' value={name} onChange={e => handleName(e.target.value)}/>
             <input type='text' placeholder='Location' value={location} onChange={e => handleLocation(e.target.value)}/>
             <input type='text' placeholder='Price' value={price} onChange={e => handlePrice(e.target.value)}/>
+            <input type='text' placeholder='Bio' value={bio} onChange={e => handleBio(e.target.value)}/>
             <button type='submit'>Sign Up</button>
         </FlexColumn>
     );

@@ -1,17 +1,34 @@
-import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import Header from '../header';
 import DriverCard from './driverCard';
 import {useInput} from '../../hooks/useInput';
 import SearchForm from '../searchForm';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTimesCircle} from '@fortawesome/free-regular-svg-icons';
+import {START_REQUEST, GET_DRIVERS_SUCCESS, GET_DRIVERS_FAIL} from '../../actions/types';
+import { axiosWithAuth } from '../axiosWithAuth';
 
 const DriverList = () => {
+    const dispatch = useDispatch();
     const [input, setInput, handleInput] = useInput('');
-    const [nonAvailable,, handleNonAvailable] = useInput(false);
+    const [nonAvailable,, handleNonAvailable] = useInput(true);
     const [search, setSearch] = useState('');
-    const drivers = useSelector(state => state.drivers);
+    const [drivers, setDrivers] = useState([]);
+
+    useEffect(() => {
+        dispatch({type: START_REQUEST});
+        axiosWithAuth()
+        .get('https://rideforlife-backend.herokuapp.com/api/drivers')
+        .then(res => {
+            dispatch({type: GET_DRIVERS_SUCCESS});
+            setDrivers(res.data);
+            console.log(res.data);
+        })
+        .catch(err => {
+            dispatch({type: GET_DRIVERS_FAIL});
+            console.log(err)});
+    },[dispatch])
 
     const handleSubmit = e => {
         e.preventDefault();

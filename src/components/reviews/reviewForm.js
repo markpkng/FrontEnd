@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {useInput} from '../../hooks/useInput';
 import styled from 'styled-components';
+import {addReview} from '../../actions/actions';
 import ReactStars from 'react-rating-stars-component';
 
 const FlexColumn = styled.div `
@@ -9,16 +12,30 @@ const FlexColumn = styled.div `
     margin: 0 auto;
 `
 
-const ReviewForm = () => {
-    const [rating, setRating] = useState(5);
+const ReviewForm = ({match}) => {
+    const dispatch = useDispatch();
+    const [comment, setComment, handleComment] = useInput('');
+    const [anonymous, setAnonymous] = useState(false);
+    const [stars, setStars] = useState(5);
+    const driver_id = match.params.id;
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        const date = new Date().toISOString();
+        const rider_id = parseInt(localStorage.getItem('bfl-id'));
+        const driver_id = parseInt(match.params.id);
+        const review = {comment, stars, date, rider_id, anonymous: anonymous.toString(), driver_id};
+        dispatch(addReview(review));
+    }
+
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <FlexColumn>
                     <h2>Write A Review:</h2>
-                    <ReactStars count={5} value={rating} onChange={value => setRating(value)} size={50} color2={'#ffd700'}/>
-                    <input type='text' placeholder='Comment'/>
-                    <label>Post as anonymous? <input type='checkbox'/></label>
+                    <ReactStars half={false} count={5} value={stars} onChange={value => setStars(value)} size={50} color2={'#ffd700'}/>
+                    <input type='text' value={comment} onChange={e => handleComment(e.target.value)} placeholder='Comment'/>
+                    <label>Post as anonymous? <input type='checkbox' onChange={() => setAnonymous(!anonymous)} checked={anonymous}/></label>
                     <button type='submit'>Submit</button>
                 </FlexColumn>
             </form>

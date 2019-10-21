@@ -5,9 +5,11 @@ import RegisterType from './registerType';
 import RegisterRider from './registerRider';
 import RegisterDriver from './registerDriver';
 import {useInput} from '../../hooks/useInput';
-import axios from 'axios';
+import {useDispatch} from 'react-redux';
+import {register} from '../../actions/actions';
 
 const Register = ({history}) => {
+    const dispatch = useDispatch();
     const [role, setRole] = useState('');
     const [username, setUsername, handleUsername] = useInput('');
     const [password, setPassword, handlePassword] = useInput('');
@@ -15,6 +17,7 @@ const Register = ({history}) => {
     const [name, setName, handleName] = useInput('');
     const [location, setLocation, handleLocation] = useInput('');
     const [price, setPrice, handlePrice] = useInput('');
+    const [bio, setBio, handleBio] = useInput('');
 
     const input = {
         username, handleUsername,
@@ -23,26 +26,17 @@ const Register = ({history}) => {
         name, handleName,
         location, handleLocation,
         price, handlePrice,
+        bio, handleBio
     }
     
-
     const handleSubmit = e => {
-        const user = {
-            username,
-            password,
-            name,
-            location,
-            role
-        }
+        const user = role === 'rider' ? ({
+            username, password, role, name, location
+        }) : ({
+            username, password, role, name, location, price, bio
+        });
 
-        // axios
-        // .post('/api/auth/register', role === 'rider' ? user : {...user, price})
-        // .then(res => {
-
-        // })
-        // .catch(err => {
-
-        // })
+        dispatch(register(user));
 
         e.preventDefault();
         setUsername('');
@@ -50,6 +44,8 @@ const Register = ({history}) => {
         setName('');
         setLocation('');
         setPrice('');
+        setBio('');
+        setRole('');
         history.push('/');
     }
 

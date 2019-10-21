@@ -2,7 +2,9 @@ import {
     START_REQUEST,
     LOGIN,
     LOGOUT,
-} from '../actions/actions';
+    GET_DRIVERS_SUCCESS,
+    GET_DRIVERS_FAIL
+} from '../actions/types';
 
 export const initialState = {
     loading: false,
@@ -119,13 +121,11 @@ export const reducer = (state = initialState, action) => {
             ...state,
             loading: true
         }
-        case LOGIN: {
-            return {
-                ...state,
-                loading: false,
-                role: action.payload,
-                loggedIn: true
-            }
+        case LOGIN: return {
+            ...state,
+            loading: false,
+            role: action.payload,
+            loggedIn: true
         }
         case LOGOUT: return {
             ...state,
@@ -133,9 +133,16 @@ export const reducer = (state = initialState, action) => {
             loggedIn: false,
             role: ''
         }
-        default:
-            return {
-                ...state
-            }
+        case GET_DRIVERS_SUCCESS: return {
+            ...state,
+            loading: false
+        }
+        case GET_DRIVERS_FAIL: return {
+            ...state,
+            loading: false
+        }
+        default: return {
+            ...state
+        }
     }
 }
