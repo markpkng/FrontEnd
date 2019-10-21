@@ -5,6 +5,7 @@ import {useInput} from '../../hooks/useInput';
 import ReactStars from 'react-rating-stars-component';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import {deleteReview, editReview} from '../../actions/actions';
+import {decode} from '../decode';
 import styled from 'styled-components';
 import {
     START_REQUEST,
@@ -81,7 +82,7 @@ const ReviewCard = ({review, match, history}) => {
             {comment && <p>Comment: {comment}</p>}
             
             {/* Delete Review Modal */}
-            {rider_id === parseInt(localStorage.getItem('bfl-id')) &&
+            {rider_id === parseInt(decode(localStorage.getItem('bfl-token')).subject) &&
             <div>
                 <Button color="danger" onClick={toggleDeleteModal}>Delete Review</Button>
                 <Modal isOpen={deleteModal} toggle={toggleDeleteModal}>
@@ -95,7 +96,7 @@ const ReviewCard = ({review, match, history}) => {
             </div>}
             
             {/* Edit Review Modal */}
-            {rider_id === parseInt(localStorage.getItem('bfl-id')) &&
+            {rider_id === parseInt(decode(localStorage.getItem('bfl-token')).subject) &&
             <div>
                 <Button color="warning" onClick={toggleEditModal}>Edit Review</Button>
                     <Modal isOpen={editModal} toggle={toggleEditModal}>

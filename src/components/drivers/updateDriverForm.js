@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import { updateDriver } from '../../actions/actions';
+import {decode} from '../decode';
 import styled from 'styled-components';
 
 const FlexColumn = styled.div `
@@ -23,7 +24,7 @@ const UpdateDriverForm = ({driver}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        const id = localStorage.getItem('bfl-id');
+        const id = decode(localStorage.getItem('bfl-token')).subject;
         const driver = {password, name, location, available: available.toString(), price, bio};
         dispatch(updateDriver(id, newPassword ? {...driver, newPassword} : driver));
     }

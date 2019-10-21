@@ -14,6 +14,7 @@ import LoadingOverlay from 'react-loading-overlay';
 import styled from 'styled-components';
 import {useDispatch, useSelector} from 'react-redux';
 import {LOGIN_SUCCESS} from './actions/types';
+import {decode} from './components/decode';
 import './App.css';
 
 const StyledLoader = styled(LoadingOverlay) `
@@ -26,6 +27,7 @@ function App() {
 
   useEffect(() => {
     if(localStorage.getItem('bfl-token') && localStorage.getItem('bfl-role')){
+      console.log('decoded:', decode(localStorage.getItem('bfl-token')));
       dispatch({type: LOGIN_SUCCESS, payload: localStorage.getItem('bfl-role')});
     }
   }, [dispatch])

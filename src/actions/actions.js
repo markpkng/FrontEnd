@@ -4,14 +4,11 @@ import * as t from './types';
 
 export const login = credentials => dispatch => {
     dispatch({type: t.START_REQUEST});
-    console.log(credentials);
     axios
     .post('https://rideforlife-backend.herokuapp.com/api/auth/login', credentials)
     .then(res => {
         console.log(res);
-        const id = res.data.rider_id ? res.data.rider_id : res.data.driver_id;
         localStorage.setItem('bfl-token', res.data.token);
-        localStorage.setItem('bfl-id', id);
         localStorage.setItem('bfl-role', res.data.role);
         dispatch({type: t.LOGIN_SUCCESS, payload: res.data.role})
     })
@@ -23,7 +20,6 @@ export const login = credentials => dispatch => {
 
 export const logout = () => {
     localStorage.removeItem('bfl-token');
-    localStorage.removeItem('bfl-id');
     localStorage.removeItem('bfl-role');
     return {
         type: t.LOGOUT

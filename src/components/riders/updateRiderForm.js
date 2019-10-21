@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import { updateRider } from '../../actions/actions';
+import {decode} from '../decode';
 import styled from 'styled-components';
 
 const FlexColumn = styled.div `
@@ -21,7 +22,7 @@ const UpdateRiderForm = ({rider}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        const id = localStorage.getItem('bfl-id');
+        const id = decode(localStorage.getItem('bfl-token')).subject;
         const rider = {password, name, location, searching: searching.toString()};
         dispatch(updateRider(id, newPassword ? {...rider, newPassword} : rider));
     }

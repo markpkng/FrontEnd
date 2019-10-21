@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import styled from 'styled-components';
-import {addReview, editReview} from '../../actions/actions';
+import {addReview} from '../../actions/actions';
+import {decode} from '../decode';
 import ReactStars from 'react-rating-stars-component';
 
 const FlexColumn = styled.div `
@@ -22,7 +23,7 @@ const ReviewForm = ({match, edit}) => {
     const handleSubmit = e => {
         e.preventDefault();
         const date = new Date().toISOString();
-        const rider_id = parseInt(localStorage.getItem('bfl-id'));
+        const rider_id = parseInt(decode(localStorage.getItem('bfl-token')).subject);
         const driver_id = parseInt(match.params.id);
         const review = {comment, stars, date, rider_id, anonymous: anonymous.toString(), driver_id};
         dispatch(addReview(review));

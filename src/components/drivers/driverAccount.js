@@ -4,6 +4,7 @@ import UpdateDriverForm from './updateDriverForm';
 import {useDispatch} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
 import {deleteDriver} from '../../actions/actions';
+import {decode} from '../decode';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import {
     START_REQUEST,
@@ -19,7 +20,7 @@ const DriverAccount = ({history}) => {
     const toggle = () => setModal(!modal);
 
     const deleteAction = () => {
-        dispatch(deleteDriver(localStorage.getItem('bfl-id')));
+        dispatch(deleteDriver(decode(localStorage.getItem('bfl-token')).subject));
         setModal(!modal);
         history.push('/');
     }
@@ -27,7 +28,7 @@ const DriverAccount = ({history}) => {
     useEffect(() => {
         dispatch({type: START_REQUEST});
         axiosWithAuth()
-        .get(`/drivers/${localStorage.getItem('bfl-id')}`)
+        .get(`/drivers/${decode(localStorage.getItem('bfl-token')).subject}`)
         .then(res => {
             console.log(res.data);
             dispatch({type: GET_DRIVER_SUCCESS});

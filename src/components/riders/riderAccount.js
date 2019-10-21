@@ -3,6 +3,7 @@ import Header from '../header';
 import {useDispatch} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
 import {deleteRider} from '../../actions/actions';
+import {decode} from '../decode';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import UpdateRiderForm from './updateRiderForm';
 import {
@@ -19,7 +20,7 @@ const RiderAccount = (props) => {
     const toggle = () => setModal(!modal);
 
     const deleteAction = () => {
-        dispatch(deleteRider(localStorage.getItem('bfl-id')));
+        dispatch(deleteRider(decode(localStorage.getItem('bfl-token')).subject));
         setModal(!modal);
         props.history.push('/');
     }
@@ -27,7 +28,7 @@ const RiderAccount = (props) => {
     useEffect(() => {
         dispatch({type: START_REQUEST});
         axiosWithAuth()
-        .get(`/riders/${localStorage.getItem('bfl-id')}`)
+        .get(`/riders/${decode(localStorage.getItem('bfl-token')).subject}`)
         .then(res => {
             console.log(res.data);
             dispatch({type: GET_RIDER_SUCCESS});
