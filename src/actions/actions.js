@@ -16,7 +16,7 @@ export const login = credentials => dispatch => {
         dispatch({type: t.LOGIN_SUCCESS, payload: res.data.role})
     })
     .catch(err => {
-
+        dispatch({type: t.LOGIN_FAIL})
         console.log(err);
     });
 };
