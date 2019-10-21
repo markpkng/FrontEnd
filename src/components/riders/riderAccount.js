@@ -6,11 +6,21 @@ import {deleteRider} from '../../actions/actions';
 import {decode} from '../decode';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import UpdateRiderForm from './updateRiderForm';
+import styled from 'styled-components';
 import {
     START_REQUEST,
     GET_RIDER_SUCCESS,
     GET_RIDER_FAIL
 } from '../../actions/types';
+
+const OuterDiv = styled.div `
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+`
+
+
 
 const RiderAccount = (props) => {
     const dispatch = useDispatch();
@@ -36,13 +46,13 @@ const RiderAccount = (props) => {
         })
         .catch(err => {
             console.log(err);
-            dispatch({type: GET_RIDER_FAIL});
+            dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message});
         })
     },[]);
 
     return (
+        <OuterDiv>
         <div>
-            <Header/>
             {user && <div>
                 <h1>Rider Account Page</h1>
                 <p>Username: {user.username}</p>
@@ -63,6 +73,7 @@ const RiderAccount = (props) => {
                 </Modal>
             </div>
         </div>
+        </OuterDiv>
     );
 }
 

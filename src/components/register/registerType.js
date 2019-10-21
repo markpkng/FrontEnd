@@ -13,6 +13,12 @@ const Type = styled.div `
     }
 `
 
+const Container = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+`
+
 const RegisterType = ({setRole, history}) => {
     const handleClick = role => {
         setRole(role);
@@ -20,11 +26,11 @@ const RegisterType = ({setRole, history}) => {
     }
 
     return (
-        <div>
+        <Container>
             <h1>Are you a:</h1>
             <Type onClick={() => handleClick('driver')}>Driver</Type>
             <Type onClick={() => handleClick('rider')}>Rider in need of driver</Type>
-        </div>
+        </Container>
     );
 }
 

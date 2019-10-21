@@ -48,7 +48,6 @@ const DriverProfile = (props) => {
 
     return (
         <div>
-            <Header/>
             <h1>Driver Profile</h1>
             <p>Username: {username}</p>
             <p>Name: {name}</p>

@@ -36,13 +36,12 @@ const DriverAccount = ({history}) => {
         })
         .catch(err => {
             console.log(err);
-            dispatch({type: GET_DRIVER_FAIL});
+            dispatch({type: GET_DRIVER_FAIL, payload: err.response.data.message});
         })
     },[]);
 
     return (
         <div>
-            <Header/>
             {user && <div>
                 <h1>Driver Account Page</h1>
                 <p>Username: {user.username}</p>

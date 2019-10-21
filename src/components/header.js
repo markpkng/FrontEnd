@@ -8,11 +8,33 @@ import {decode} from './decode';
 const HeaderContainer = styled.div `
     display: flex;
     justify-content: space-between;
-    margin: 2rem;
+    align-items: center;
+    min-height: 12vh;
+    padding: 2rem;
+    background: #46351D;
 `
 
 const StyledLink = styled(Link) `
+    font-family: Audiowide;
+    font-size: 1.5rem;
     margin: 0.5rem;
+    color: #3CDBD3;
+
+    &:hover {
+        color: #9FE09F;
+        text-decoration: none;
+    }
+`
+
+const Logo = styled(Link) `
+    font-size: 3rem; 
+    font-family: Audiowide;
+    color: #3CDBD3;
+
+    &:hover {
+        color: #9FE09F;
+        text-decoration: none;
+    }
 `
 
 const Header = () => {
@@ -20,7 +42,7 @@ const Header = () => {
     const loggedIn = useSelector(state => state.loggedIn);
     return (
         <HeaderContainer>
-            <Link to='/'><h1>Logo Goes Here</h1></Link>
+            <Logo to='/'>Ride For Life</Logo>
             <div>
                 {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <StyledLink to='/drivers'>Drivers</StyledLink> : <StyledLink to='/riders'>Riders</StyledLink>)}
                 {loggedIn && <StyledLink to='/account'>My Account</StyledLink>}

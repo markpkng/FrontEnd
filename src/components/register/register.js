@@ -5,8 +5,10 @@ import RegisterType from './registerType';
 import RegisterRider from './registerRider';
 import RegisterDriver from './registerDriver';
 import {useInput} from '../../hooks/useInput';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {register} from '../../actions/actions';
+import {toggleRegisterModal} from '../../actions/actions';
+import Modal from '../modals/modal';
 
 const Register = ({history}) => {
     const dispatch = useDispatch();
@@ -18,6 +20,7 @@ const Register = ({history}) => {
     const [location, setLocation, handleLocation] = useInput('');
     const [price, setPrice, handlePrice] = useInput('');
     const [bio, setBio, handleBio] = useInput('');
+    const modal = useSelector(state => state.registerModal);
 
     const input = {
         username, handleUsername,
@@ -27,6 +30,11 @@ const Register = ({history}) => {
         location, handleLocation,
         price, handlePrice,
         bio, handleBio
+    }
+    
+    const modalAction = () => {
+        dispatch(toggleRegisterModal());
+        console.log('bam');
     }
     
     const handleSubmit = e => {
@@ -46,13 +54,12 @@ const Register = ({history}) => {
         setPrice('');
         setBio('');
         setRole('');
-        history.push('/');
     }
 
     return (
         <div>
             <Redirect from='/register' to='/register/role'/>
-            <Header/>
+            <Modal open={modal} message={'You have been registered.'} title={'Success'} action={modalAction}/>
             <form onSubmit={handleSubmit}>
                 <Route path='/register/role' render={props => <RegisterType {...props} setRole={setRole}/>}/>
                 <Route path='/register/rider' render={() => <RegisterRider role={role} input={input}/>}/>

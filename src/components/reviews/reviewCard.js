@@ -3,7 +3,7 @@ import {axiosWithAuth} from '../axiosWithAuth';
 import {useDispatch} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import ReactStars from 'react-rating-stars-component';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, } from 'reactstrap';
 import {deleteReview, editReview} from '../../actions/actions';
 import {decode} from '../decode';
 import styled from 'styled-components';
@@ -17,6 +17,14 @@ const ReviewDiv = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .modalButtons {
+        display: flex;
+
+        .modalButton {
+            margin: 0.5rem;
+        }
+    }
 `
 const FlexColumn = styled.div `
     display: flex;
@@ -59,7 +67,7 @@ const ReviewCard = ({review, match, history}) => {
                 setReviewerName(res.data.name);
             })
             .catch(err => {
-                dispatch({type: GET_RIDER_FAIL});
+                dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message});
                 console.log(err);
             })
         }
@@ -81,10 +89,11 @@ const ReviewCard = ({review, match, history}) => {
             <ReactStars count={5} value={stars} edit={false} size={50} color2={'#ffd700'}/>
             {comment && <p>Comment: {comment}</p>}
             
+            <div className={!deleteModal && !editModal && 'modalButtons'}>
             {/* Delete Review Modal */}
             {rider_id === parseInt(decode(localStorage.getItem('bfl-token')).subject) &&
             <div>
-                <Button color="danger" onClick={toggleDeleteModal}>Delete Review</Button>
+                <Button color="danger" className='modalButton' onClick={toggleDeleteModal}>Delete Review</Button>
                 <Modal isOpen={deleteModal} toggle={toggleDeleteModal}>
                     <ModalHeader toggle={toggleDeleteModal}>Modal title</ModalHeader>
                     <ModalBody>Are you sure you want to delete this review?</ModalBody>
@@ -98,14 +107,14 @@ const ReviewCard = ({review, match, history}) => {
             {/* Edit Review Modal */}
             {rider_id === parseInt(decode(localStorage.getItem('bfl-token')).subject) &&
             <div>
-                <Button color="warning" onClick={toggleEditModal}>Edit Review</Button>
+                <Button color="warning" className='modalButton' onClick={toggleEditModal}>Edit Review</Button>
                     <Modal isOpen={editModal} toggle={toggleEditModal}>
                         <ModalHeader toggle={toggleEditModal}>Modal title</ModalHeader>
                         <ModalBody>
                             <FlexColumn>
                                 <h2>Edit Review:</h2>
                                 <ReactStars half={false} count={5} value={starsInput} onChange={value => setStarsInput(value)} size={50} color2={'#ffd700'}/>
-                                <input type='text' value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
+                                <Input type='textarea' value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
                                 <label>Post as anonymous? <input type='checkbox' onChange={() => setAnonymousInput(!anonymousInput)} checked={anonymousInput}/></label>
                             </FlexColumn>
                         </ModalBody>
@@ -115,6 +124,7 @@ const ReviewCard = ({review, match, history}) => {
                         </ModalFooter>
                     </Modal>
             </div>}
+            </div>
         </ReviewDiv>
     );
 }

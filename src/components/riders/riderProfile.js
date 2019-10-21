@@ -23,13 +23,12 @@ const RiderProfile = ({match}) => {
             setRider(res.data);
         })
         .catch(err => {
-            dispatch({type: GET_RIDER_FAIL});
+            dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message});
         });
     }, [dispatch, id])
 
     return(
         <div>
-            <Header/>
             <h1>Rider Profile:</h1>
             <p>Username: {username}</p>
             <p>Name: {name}</p>

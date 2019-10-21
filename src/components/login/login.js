@@ -5,7 +5,6 @@ import LoginForm from './loginForm';
 const Login = (props) => {
     return (
         <div>
-            <Header/>
             <h1>Login Page</h1>
             <LoginForm {...props}/>
         </div>

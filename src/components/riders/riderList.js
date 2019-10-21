@@ -13,6 +13,12 @@ import {
     GET_RIDERS_FAIL
 } from '../../actions/types';
 
+const layout = {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center'
+}
+
 const RiderList = () => {
     const dispatch = useDispatch();
     const [input, setInput, handleInput] = useInput('');
@@ -28,7 +34,7 @@ const RiderList = () => {
             setRiders(res.data);
         })
         .catch(err => {
-            dispatch({type: GET_RIDERS_FAIL});
+            dispatch({type: GET_RIDERS_FAIL, payload: err.response.data.message});
             console.log(err);
         })
 
@@ -42,11 +48,10 @@ const RiderList = () => {
 
     return(
         <div>
-            <Header/>
             <h1>Riders currently in need:</h1>
             {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
             <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
-            {riders.filter(rider => rider.searching && rider.location.toLowerCase().includes(search.toLowerCase())).map(rider => <RiderCard key={rider.username} rider={rider}/>)}
+            <span style={layout}>{riders.filter(rider => rider.searching && rider.location.toLowerCase().includes(search.toLowerCase())).map(rider => <RiderCard key={rider.username} rider={rider}/>)}</span>
         </div>
     );
 }

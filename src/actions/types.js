@@ -5,6 +5,7 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const TOGGLE_REGISTER_MODAL = 'TOGGLE_REGISTER_MODAL';
 
 //driver
 export const GET_DRIVERS_SUCCESS = 'GET_DRIVERS_SUCCESS';
