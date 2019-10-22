@@ -35,7 +35,6 @@ const DriverProfile = (props) => {
     const {username, name, location, price, bio, available} = driver;
 
     useEffect(() => {
-        console.log(id);
         dispatch({type: START_REQUEST});
         //get driver info
         axiosWithAuth()

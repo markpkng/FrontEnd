@@ -42,7 +42,9 @@ const Header = () => {
     const loggedIn = useSelector(state => state.loggedIn);
     return (
         <HeaderContainer>
-            <Logo to='/'>Ride For Life</Logo>
+            <div>
+                <Logo to='/'>Ride For Life</Logo>
+            </div>
             <div>
                 {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <StyledLink to='/drivers'>Drivers</StyledLink> : <StyledLink to='/riders'>Riders</StyledLink>)}
                 {loggedIn && <StyledLink to='/account'>My Account</StyledLink>}

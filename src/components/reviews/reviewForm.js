@@ -35,7 +35,7 @@ const ReviewForm = ({match, edit}) => {
             <Form onSubmit={handleSubmit}>
                 <FlexColumn>
                     <h2>Write A Review:</h2>
-                    <ReactStars half={false} count={5} value={stars} onChange={value => setStars(value)} size={50} color2={'#ffd700'}/>
+                    <ReactStars half={false} count={5} value={stars} onChange={value => setStars(value)} size={50} color2={'#E1BE11'}/>
                     <FormGroup>
                     <Input type='text' value={comment} onChange={e => handleComment(e.target.value)} placeholder='Comment'/>
                     </FormGroup>

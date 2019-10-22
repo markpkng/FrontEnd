@@ -113,7 +113,7 @@ const ReviewCard = ({review, match, history}) => {
                         <ModalBody>
                             <FlexColumn>
                                 <h2>Edit Review:</h2>
-                                <ReactStars half={false} count={5} value={starsInput} onChange={value => setStarsInput(value)} size={50} color2={'#ffd700'}/>
+                                <ReactStars half={false} count={5} value={starsInput} onChange={value => setStarsInput(value)} size={50} color2={'#E1BE11'}/>
                                 <Input type='textarea' value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
                                 <label>Post as anonymous? <input type='checkbox' onChange={() => setAnonymousInput(!anonymousInput)} checked={anonymousInput}/></label>
                             </FlexColumn>
