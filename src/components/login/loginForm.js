@@ -57,7 +57,7 @@ const LoginForm = (props) => {
                         <Input type='password' value={password} placeholder='Password' onChange={e => handlePassword(e.target.value)} required/>
                         </FormGroup>
                         <Button style={Submit} type='submit'>Login</Button>
-                        <p>Need to create an account? Click <Link class='here' to='/register/role'>here</Link> to register.</p>
+                        <p>Need to create an account? Click <Link className='here' to='/register/role'>here</Link> to register.</p>
                     </FlexColumn>
                 </Form>
             </div>
