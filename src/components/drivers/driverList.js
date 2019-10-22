@@ -44,7 +44,6 @@ const DriverList = () => {
         .get('/reviews')
         .then(res => {
             dispatch({type: GET_REVIEWS_SUCCESS});
-            console.log(res.data);
             setReviews(res.data);
         })
         .catch(err => {dispatch({type: GET_REVIEWS_FAIL, payload: err});}) 

@@ -7,15 +7,14 @@ import {useSelector} from 'react-redux';
 const FlexColumn = styled.div `
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 90%;
     margin: 0 auto;
 `
 const Warning = {
     fontSize: '20px',
 }
 
-const RegisterDriver = ({role, input}) => {
-    const error = useSelector(state => state.error);
+const RegisterDriver = ({role, input, errorHandling}) => {
     const {
         username, handleUsername,
         password, handlePassword,
@@ -26,37 +25,39 @@ const RegisterDriver = ({role, input}) => {
         bio, handleBio
     } = input;
 
+    const {
+        matchPass, setMatchPass
+    } = errorHandling;
+
     return (
-        <Form>
             <FlexColumn>
                 {!role && <Redirect to='/register/role'/>}
                 {role && role === 'rider' && <Redirect to='/register/driver'/>}
-                {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
                 <h2>Driver Registration</h2>
                 <FormGroup>
-                <Input type='text' placeholder='Username' value={username} onChange={e => handleUsername(e.target.value)}/>
+                <Input type='text' placeholder='Username *' value={username} onChange={e => handleUsername(e.target.value)} required/>
                 </FormGroup>
                 <FormGroup>
-                <Input type='password' placeholder='Password' value={password} onChange={e => handlePassword(e.target.value)}/>
+                <Input type='password' placeholder='Password *' value={password} onChange={e => handlePassword(e.target.value)} required/>
                 </FormGroup>
                 <FormGroup>
-                <Input type='password' placeholder='Confirm Password' value={confirmPassword} onChange={e => handleConfirmPassword(e.target.value)}/>
+                {!matchPass && <Alert color='warning'>Passwords do not match.</Alert>}
+                <Input type='password' placeholder='Confirm Password *' value={confirmPassword} onChange={e => handleConfirmPassword(e.target.value)} required/>
                 </FormGroup>
                 <FormGroup>
-                <Input type='text' placeholder='Name' value={name} onChange={e => handleName(e.target.value)}/>
+                <Input type='text' placeholder='Name *' value={name} onChange={e => handleName(e.target.value)} required/>
                 </FormGroup>
                 <FormGroup>
-                <Input type='text' placeholder='Location' value={location} onChange={e => handleLocation(e.target.value)}/>
+                <Input type='text' placeholder='Location *' value={location} onChange={e => handleLocation(e.target.value)} required/>
                 </FormGroup>
                 <FormGroup>
-                <Input type='text' placeholder='Price' value={price} onChange={e => handlePrice(e.target.value)}/>
+                <Input type='text' placeholder='Price *' value={price} onChange={e => handlePrice(e.target.value)} required/>
                 </FormGroup>
                 <FormGroup>
-                <Input type='text' placeholder='Bio' value={bio} onChange={e => handleBio(e.target.value)}/>
+                <Input type='text' placeholder='Bio *' value={bio} onChange={e => handleBio(e.target.value)} required/>
                 </FormGroup>
                 <Button type='submit'>Sign Up</Button>
             </FlexColumn>
-        </Form>
     );
 }
 

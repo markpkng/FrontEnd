@@ -1,5 +1,7 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import styled from 'styled-components';
+import {Alert} from 'reactstrap';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAmbulance, faFemale} from "@fortawesome/free-solid-svg-icons";
 
@@ -38,6 +40,7 @@ const Container = styled.div`
 `
 
 const RegisterType = ({setRole, history}) => {
+    const error = useSelector(state => state.error);
     const handleClick = role => {
         setRole(role);
         history.push(`/register/${role}`)
@@ -45,6 +48,7 @@ const RegisterType = ({setRole, history}) => {
 
     return (
         <Container>
+            {error && <Alert color="warning"><h2>{error}</h2></Alert>}
             <h1>Are you a:</h1>
             <div className='types'>
                 <Type onClick={() => handleClick('driver')}>

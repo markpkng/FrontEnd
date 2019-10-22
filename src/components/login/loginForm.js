@@ -12,6 +12,15 @@ const FlexColumn = styled.div `
     align-items: center;
     margin: 0 auto;
     max-width: 400px;
+
+    .here {
+        color: #9FE09F;
+
+        &:hover {
+            color: #3CDBD3;
+            text-decoration: none;
+        }
+    }
 `
 
 const Submit = {
@@ -48,7 +57,7 @@ const LoginForm = (props) => {
                         <Input type='password' value={password} placeholder='Password' onChange={e => handlePassword(e.target.value)} required/>
                         </FormGroup>
                         <Button style={Submit} type='submit'>Login</Button>
-                        <p>Need to create an account? Click <Link to='/register/role'>here</Link> to register.</p>
+                        <p>Need to create an account? Click <Link class='here' to='/register/role'>here</Link> to register.</p>
                     </FlexColumn>
                 </Form>
             </div>
