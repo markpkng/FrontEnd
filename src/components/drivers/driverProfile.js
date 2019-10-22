@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
-import Header from '../header';
 import ReviewCard from '../reviews/reviewCard';
 import ReviewForm from '../reviews/reviewForm';
+import styled from 'styled-components';
 import {
     START_REQUEST, 
     GET_DRIVER_SUCCESS, 
@@ -11,6 +11,21 @@ import {
     GET_REVIEWS_SUCCESS,
     GET_REVIEWS_FAIL
 } from '../../actions/types'; 
+
+const OuterDiv = styled.div `
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #E6E8e5;
+    width: 100%;
+    border-radius: 5px;
+    max-width: 700px;
+    padding: 4rem 0;
+
+    .area {
+        width: 80%;
+    }
+`
 
 const DriverProfile = (props) => {
     const {id} = props.match.params;
@@ -47,18 +62,20 @@ const DriverProfile = (props) => {
     }, [dispatch, id]);
 
     return (
-        <div>
-            <h1>Driver Profile</h1>
-            <p>Username: {username}</p>
-            <p>Name: {name}</p>
-            <p>Location: {location}</p>
-            <p>Price: {price}</p>
-            <p>Bio: {bio}</p>
-            <p>Available: {available ? 'Yes!' : 'No'}</p>
-            <ReviewForm {...props}/>
-            {reviews.length > 0 && <h3>Reviews:</h3>}
-            {reviews.map(review => <ReviewCard {...props} key={review.review_id} review={review}/>)}
-        </div>
+        <OuterDiv>
+            <div>
+                <h1>Driver Profile</h1>
+                <p>Username: {username}</p>
+                <p>Name: {name}</p>
+                <p>Location: {location}</p>
+                <p>Price: {price}</p>
+                <p>Bio: {bio}</p>
+                <p>Available: {available ? 'Yes!' : 'No'}</p>
+                <ReviewForm {...props}/>
+                {reviews.length > 0 && <h3>Reviews:</h3>}
+                {reviews.map(review => <ReviewCard {...props} key={review.review_id} review={review}/>)}
+            </div>
+        </OuterDiv>
     );
 }
 

@@ -24,11 +24,13 @@ const StyledLoader = styled(LoadingOverlay) `
 `
 
 const OuterDiv = styled.div `
-  min-height: 82vh; 
+  min-height: 88vh; 
   background: #9FE09F;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 100%;
 `
 
 function App() {

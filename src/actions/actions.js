@@ -2,7 +2,7 @@ import axios from 'axios';
 import {axiosWithAuth} from '../components/axiosWithAuth';
 import * as t from './types';
 
-export const login = credentials => dispatch => {
+export const login = (credentials, history) => dispatch => {
     dispatch({type: t.START_REQUEST});
     axios
     .post('https://rideforlife-backend.herokuapp.com/api/auth/login', credentials)
@@ -10,6 +10,7 @@ export const login = credentials => dispatch => {
         console.log(res);
         localStorage.setItem('bfl-token', res.data.token);
         dispatch({type: t.LOGIN_SUCCESS, payload: res.data.role})
+        history.push('/');
     })
     .catch(err => {
         dispatch({type: t.LOGIN_FAIL, payload: err.response.data.message})

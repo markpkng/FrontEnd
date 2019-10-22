@@ -9,30 +9,30 @@ const HeaderContainer = styled.div `
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 12vh;
+    min-height: 6vh;
     padding: 2rem;
     background: #46351D;
 `
 
 const StyledLink = styled(Link) `
-    font-family: Audiowide;
-    font-size: 1.5rem;
+    font-family: Passion One;
+    font-size: 2rem;
     margin: 0.5rem;
-    color: #3CDBD3;
+    color: #9FE09F;
 
     &:hover {
-        color: #9FE09F;
+        color: #3CDBD3;
         text-decoration: none;
     }
 `
 
 const Logo = styled(Link) `
     font-size: 3rem; 
-    font-family: Audiowide;
-    color: #3CDBD3;
+    font-family: Passion One;
+    color: #9FE09F;
 
     &:hover {
-        color: #9FE09F;
+        color: #3CDBD3;
         text-decoration: none;
     }
 `

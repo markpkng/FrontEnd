@@ -11,8 +11,9 @@ const FlexColumn = styled.div `
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    max-width: 300px;
+    max-width: 400px;
 `
+
 const Submit = {
     margin: '2%',
 }
@@ -31,24 +32,26 @@ const LoginForm = (props) => {
         e.preventDefault();
         setUsername('');
         setPassword('');
-        dispatch(login({username, password}));
+        dispatch(login({username, password}, props.history));
     }
 
     return (
         <div>
-            <Form onSubmit={handleSubmit}>
-                <FlexColumn>
-                {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
-                <FormGroup>
-                <Input type='text' value={username} placeholder='Username' onChange={e => handleUsername(e.target.value)} required/>
-                </FormGroup>
-                <FormGroup>
-                <Input type='password' value={password} placeholder='Password' onChange={e => handlePassword(e.target.value)} required/>
-                </FormGroup>
-                <Button style={Submit} type='submit'>Login</Button>
-                <p>Need to create an account? Click <Link to='/register/role'>here</Link> to register.</p>
-                </FlexColumn>
-            </Form>
+            <div>
+                <Form onSubmit={handleSubmit}>
+                    <FlexColumn>
+                        {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
+                        <FormGroup>
+                        <Input type='text' value={username} placeholder='Username' onChange={e => handleUsername(e.target.value)} required/>
+                        </FormGroup>
+                        <FormGroup>
+                        <Input type='password' value={password} placeholder='Password' onChange={e => handlePassword(e.target.value)} required/>
+                        </FormGroup>
+                        <Button style={Submit} type='submit'>Login</Button>
+                        <p>Need to create an account? Click <Link to='/register/role'>here</Link> to register.</p>
+                    </FlexColumn>
+                </Form>
+            </div>
         </div>
     );
 }

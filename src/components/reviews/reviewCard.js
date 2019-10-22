@@ -87,7 +87,7 @@ const ReviewCard = ({review, match, history}) => {
             <p>Posted by: {anonymous ? 'Anonymous' : reviewerName}</p>
             <p>on {new Date(date).toISOString().substring(0, 10)}</p>
             <ReactStars count={5} value={stars} edit={false} size={50} color2={'#ffd700'}/>
-            {comment && <p>Comment: {comment}</p>}
+            {comment && <p>{comment}</p>}
             
             <div className={!deleteModal && !editModal && 'modalButtons'}>
             {/* Delete Review Modal */}

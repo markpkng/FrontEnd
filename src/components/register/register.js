@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Header from '../header';
 import {Redirect, Route} from 'react-router-dom';
 import RegisterType from './registerType';
 import RegisterRider from './registerRider';
@@ -9,6 +8,21 @@ import {useDispatch, useSelector} from 'react-redux';
 import {register} from '../../actions/actions';
 import {toggleRegisterModal} from '../../actions/actions';
 import Modal from '../modals/modal';
+import styled from 'styled-components';
+
+const OuterDiv = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .form {
+        width: 50%;
+        background: #E6E8e5;
+        padding: 3rem;
+        border-radius: 5px;
+    }
+`
 
 const Register = ({history}) => {
     const dispatch = useDispatch();
@@ -57,15 +71,15 @@ const Register = ({history}) => {
     }
 
     return (
-        <div>
+        <OuterDiv>
             <Redirect from='/register' to='/register/role'/>
             <Modal open={modal} message={'You have been registered.'} title={'Success'} action={modalAction}/>
-            <form onSubmit={handleSubmit}>
+            <form className='form' onSubmit={handleSubmit}>
                 <Route path='/register/role' render={props => <RegisterType {...props} setRole={setRole}/>}/>
                 <Route path='/register/rider' render={() => <RegisterRider role={role} input={input}/>}/>
                 <Route path='/register/driver' render={() => <RegisterDriver role={role} input={input}/>}/>
             </form>
-        </div>
+        </OuterDiv>
     );
 }
 

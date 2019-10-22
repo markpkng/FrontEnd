@@ -17,7 +17,11 @@ const OuterDiv = styled.div `
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    background: #E6E8e5;
+    width: 100%;
+    border-radius: 5px;
+    max-width: 400px;
+    padding: 4rem 0;
 `
 
 
@@ -53,13 +57,6 @@ const RiderAccount = (props) => {
     return (
         <OuterDiv>
         <div>
-            {user && <div>
-                <h1>Rider Account Page</h1>
-                <p>Username: {user.username}</p>
-                <p>Name: {user.name}</p>
-                {user.location && <p>Location: {user.location}</p>}
-                <p>Searching: {user.searching.toString()}</p>
-            </div>}
             {user && <UpdateRiderForm {...props} rider={user}/>}
             <div>
                 <Button color="danger" onClick={toggle}>Delete Account</Button>
