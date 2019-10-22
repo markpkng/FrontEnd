@@ -12,7 +12,7 @@ const OuterDiv = styled.div `
     align-items: center;
     width: 100%;
     background: #46351D;
-    min-height: 6vh;
+    height: 6vh;
 
     .copy {
         width: 50%;
