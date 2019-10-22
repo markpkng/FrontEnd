@@ -15,7 +15,7 @@ const FlexColumn = styled.div `
     margin: 0 auto;
 
     .bio {
-        min-width: 300px;
+        min-width: 80%;
         min-height: 100px;
     }
 
@@ -54,35 +54,32 @@ const UpdateDriverForm = ({driver}) => {
 
     return (
         <div>
-            <Form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <FlexColumn>
                     {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
                     <h2>Your Account Details</h2>
                     {!edit && <h4 className='edit' onClick={() => setEdit(true)}>Edit <FontAwesomeIcon icon={faPencilAlt} className='fa-1x'/></h4>}
-                    <FormGroup>
-                    <Input disabled={!edit} type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>
-                    </FormGroup>
-                    <FormGroup>
-                    <Input disabled={!edit} type='text' value={location} placeholder='Location' onChange={e => handleLocation(e.target.value)} required/>
-                    </FormGroup>
-                    <FormGroup>
-                    <Input disabled={!edit} className='bio' type='textarea' value={bio} placeholder='Bio' onChange={e => handleBio(e.target.value)} required/>
-                    </FormGroup>
-                    <FormGroup>
-                    <Input disabled={!edit} type='text' value={price} placeholder='Price' onChange={e => handlePrice(e.target.value)} required/>
-                    </FormGroup>
-                    <FormGroup>
+                    
+                    <input disabled={!edit} type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>
+                    
+                    
+                    <input disabled={!edit} type='text' value={location} placeholder='Location' onChange={e => handleLocation(e.target.value)} required/>
+                  
+                    
+                    <input disabled={!edit} className='bio' type='textarea' value={bio} placeholder='Bio' onChange={e => handleBio(e.target.value)} required/>
+                 
+                    <input disabled={!edit} type='text' value={price} placeholder='Price' onChange={e => handlePrice(e.target.value)} required/>
+               
                     <label>Available: <input disabled={!edit} type='checkbox' checked={available} onChange={() => setAvailable(!available)}/></label>
-                    </FormGroup>
-                    {edit && <><FormGroup>
-                    <Input type='password' placeholder='Current Password' onChange={e => handlePassword(e.target.value)} required/>
-                    </FormGroup>
-                    <FormGroup>
-                    <Input type='password' placeholder='New Password?' onChange={e => handleNewPassword(e.target.value)}/>
-                    </FormGroup>
+              
+                    {edit && <>
+                    <input type='password' placeholder='Current Password' onChange={e => handlePassword(e.target.value)} required/>
+                
+                    <input type='password' placeholder='New Password?' onChange={e => handleNewPassword(e.target.value)}/>
+                   
                     <Button style={Submit} type='submit'>Submit</Button></>}
                 </FlexColumn>
-            </Form>
+            </form>
         </div>
     );
 }

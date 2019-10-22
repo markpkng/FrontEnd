@@ -11,15 +11,15 @@ const OuterDiv = styled.div `
     display: flex;
     align-items: center;
     width: 100%;
-    background: #46351D;
+    background: #E6E8E5;
     height: 6vh;
 
     .copy {
         width: 50%;
         text-align: center;
-        font-family: Patua One;
-        font-size: 1.4rem;
-        color: #9FE09F;
+        font-family: Roboto;
+        font-size: 2rem;
+        color: #46351D;
 
         &:hover {
             color: #3CDBD3;
@@ -34,7 +34,7 @@ const OuterDiv = styled.div `
         justify-content: space-evenly;
 
         .icon {
-            color: #9FE09F;
+            color: #46351D;
 
             &:hover {
                 color: #3CDBD3;
@@ -53,10 +53,10 @@ const Footer = () => {
             </div>
             <div className='social'>
                 <a href="#" target="blank">
-                    <FontAwesomeIcon icon={faTwitter} className="fa-2x icon" />
+                    <FontAwesomeIcon icon={faTwitter} className="fa-4x icon" />
                 </a>
                 <a href="#" target="blank">
-                    <FontAwesomeIcon icon={faFacebook} className="fa-2x icon" />
+                    <FontAwesomeIcon icon={faFacebook} className="fa-4x icon" />
                 </a>
             </div>
         </OuterDiv>

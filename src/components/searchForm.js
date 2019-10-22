@@ -22,14 +22,14 @@ const SearchForm = ({input, handleInput, handleSubmit}) => {
     const error = useSelector(state => state.error);
     return (
         <div>
-            <Form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <FlexColumn>
                 {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
                 <span>Search by location: </span>
-                <Input type='text' value={input} placeholder='Location' onChange={e => handleInput(e.target.value)}/>
+                <input type='text' value={input} placeholder='Location' onChange={e => handleInput(e.target.value)}/>
                 <Button style={Submit} type='submit'>Submit</Button>
                 </FlexColumn>
-            </Form>
+            </form>
         </div>
     );
 }

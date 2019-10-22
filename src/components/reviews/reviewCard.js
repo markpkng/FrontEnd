@@ -3,7 +3,7 @@ import {axiosWithAuth} from '../axiosWithAuth';
 import {useDispatch} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import ReactStars from 'react-rating-stars-component';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import {deleteReview, editReview} from '../../actions/actions';
 import {decode} from '../decode';
 import styled from 'styled-components';
@@ -114,7 +114,7 @@ const ReviewCard = ({review, match, history}) => {
                             <FlexColumn>
                                 <h2>Edit Review:</h2>
                                 <ReactStars half={false} count={5} value={starsInput} onChange={value => setStarsInput(value)} size={50} color2={'#E1BE11'}/>
-                                <Input type='textarea' value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
+                                <input type='textarea' value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
                                 <label>Post as anonymous? <input type='checkbox' onChange={() => setAnonymousInput(!anonymousInput)} checked={anonymousInput}/></label>
                             </FlexColumn>
                         </ModalBody>

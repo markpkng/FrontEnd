@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import Header from '../header';
 import {useDispatch} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
 import {deleteRider} from '../../actions/actions';

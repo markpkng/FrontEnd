@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import DriverCard from './driverCard';
 import {useInput} from '../../hooks/useInput';
 import SearchForm from '../searchForm';
+import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTimesCircle} from '@fortawesome/free-regular-svg-icons';
 import {START_REQUEST, 

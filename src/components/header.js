@@ -15,13 +15,13 @@ const HeaderContainer = styled.div `
 `
 
 const StyledLink = styled(Link) `
-    font-family: Passion One;
+    font-family: Roboto;
     font-size: 2rem;
     margin: 0.5rem;
-    color: #9FE09F;
+    color: white;
 
     &:hover {
-        color: #3CDBD3;
+        color: grey;
         text-decoration: none;
     }
 `
@@ -29,10 +29,10 @@ const StyledLink = styled(Link) `
 const Logo = styled(Link) `
     font-size: 3rem; 
     font-family: Passion One;
-    color: #9FE09F;
+    color: white;
 
     &:hover {
-        color: #3CDBD3;
+        color: grey;
         text-decoration: none;
     }
 `
@@ -43,7 +43,9 @@ const Header = () => {
     return (
         <HeaderContainer>
             <div>
-                <Logo to='/'>Ride For Life</Logo>
+                <Logo to='/'>
+                    <div>Ride For Life</div>
+                </Logo>
             </div>
             <div>
                 {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <StyledLink to='/drivers'>Drivers</StyledLink> : <StyledLink to='/riders'>Riders</StyledLink>)}

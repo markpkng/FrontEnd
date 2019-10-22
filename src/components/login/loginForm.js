@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, FormGroup, Input, Button, Alert} from 'reactstrap';
+import {Button, Alert} from 'reactstrap';
 import {useInput} from '../../hooks/useInput';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
@@ -21,6 +21,9 @@ const FlexColumn = styled.div `
             text-decoration: none;
         }
     }
+`
+const Input = styled.input `
+    width: 100%;
 `
 
 const Submit = {
@@ -47,19 +50,15 @@ const LoginForm = (props) => {
     return (
         <div>
             <div>
-                <Form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <FlexColumn>
                         {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
-                        <FormGroup>
                         <Input type='text' value={username} placeholder='Username' onChange={e => handleUsername(e.target.value)} required/>
-                        </FormGroup>
-                        <FormGroup>
                         <Input type='password' value={password} placeholder='Password' onChange={e => handlePassword(e.target.value)} required/>
-                        </FormGroup>
-                        <Button style={Submit} type='submit'>Login</Button>
+                        <button style={Submit} type='submit'>Login</button>
                         <p>Need to create an account? Click <Link className='here' to='/register/role'>here</Link> to register.</p>
                     </FlexColumn>
-                </Form>
+                </form>
             </div>
         </div>
     );
