@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import styled from 'styled-components';
 
-const ModalComponent = ({open, className, message, title, action}) => {
-  const [modal, setModal] = useState(false);
-
+const ModalComponent = ({open, message, title, action}) => {
   return (
     <div>
-      <Modal isOpen={open} toggle={action} className={className}>
-        <h1 toggle={action}>{title}</h1>
+      <Modal className='mStyles' isOpen={open} toggle={action}>
+        <ModalHeader className='mHeader'>
+          <div toggle={action}>{title}</div>
+        </ModalHeader>
         <ModalBody>
           {message}
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={action}>Ok</Button>
+          <Button className='mButton' color="secondary" onClick={action}>Ok</Button>
         </ModalFooter>
       </Modal>
     </div>

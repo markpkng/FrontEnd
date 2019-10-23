@@ -89,7 +89,7 @@ const Register = ({history}) => {
     return (
         <OuterDiv>
             <Redirect from='/register' to='/register/role'/>
-            <Modal open={modal} message={'You have been registered.'} title={'Success'} action={modalAction}/>
+            <Modal open={modal} message={'You have been registered.'} className='registerModal' title={'Regiser Message'} action={modalAction}/>
             <form className='form' onSubmit={handleSubmit}>
                 <Route path='/register/role' render={props => <RegisterType {...props} setRole={setRole}/>}/>
                 <Route path='/register/rider' render={() => <RegisterRider role={role} input={input} errorHandling={errorHandling}/>}/>

@@ -58,3 +58,20 @@ p {
   .App-link {
     color: #09d3ac;
   }
+
+  /* Reactstrap Modals */
+  .mStyles{
+    font-size: 3rem;
+  }
+
+  h5.modal-title {
+    font-size: 2.5rem;
+  }
+
+  .mButton {
+    font-size: 2rem;
+  }
+
+  .mReviewEdit {
+    font-size: 2rem;
+  }

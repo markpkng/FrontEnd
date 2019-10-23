@@ -34,7 +34,10 @@ const FlexColumn = styled.div `
     flex-direction: column;
     align-items: center;
 `
-
+const Textarea = styled.textarea `
+    width: 90%;
+    min-height: 100px;
+`
 const StyledButton = styled.button `
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
@@ -45,6 +48,12 @@ const StyledButton = styled.button `
 
 const Comment = styled.p `
     font-size: 2rem;
+`
+
+const ModalButton = styled(Button) `
+  && {
+    font-size: 2rem;
+  }
 `
 
 const ReviewCard = ({review, match, history}) => {
@@ -108,12 +117,14 @@ const ReviewCard = ({review, match, history}) => {
             {rider_id === parseInt(decode(localStorage.getItem('bfl-token')).subject) &&
             <div>
                 <StyledButton color="danger" className='modalButton' onClick={toggleDeleteModal}>Delete Review</StyledButton>
-                <Modal size='lg' isOpen={deleteModal} toggle={toggleDeleteModal}>
-                    <ModalHeader toggle={toggleDeleteModal}>Modal title</ModalHeader>
+                <Modal className='mStyles' isOpen={deleteModal} toggle={toggleDeleteModal}>
+                    <ModalHeader className='mHeader'>
+                        <div className='title' toggle={toggleDeleteModal}>Delete Review</div>
+                    </ModalHeader>
                     <ModalBody>Are you sure you want to delete this review?</ModalBody>
                     <ModalFooter>
-                    <Button color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
-                    <Button color="secondary" onClick={toggleDeleteModal}>Cancel</Button>
+                    <ModalButton className='mButton' color="danger" onClick={deleteAction}>Yes I am sure</ModalButton>{' '}
+                    <ModalButton className='mButton' color="secondary" onClick={toggleDeleteModal}>Cancel</ModalButton>
                     </ModalFooter>
                 </Modal>
             </div>}
@@ -122,13 +133,12 @@ const ReviewCard = ({review, match, history}) => {
             {rider_id === parseInt(decode(localStorage.getItem('bfl-token')).subject) &&
             <div>
                 <StyledButton color="warning" className='modalButton' onClick={toggleEditModal}>Edit Review</StyledButton>
-                    <Modal size='lg' isOpen={editModal} toggle={toggleEditModal}>
-                        <ModalHeader toggle={toggleEditModal}>Modal title</ModalHeader>
+                    <Modal className='mStyles' isOpen={editModal} toggle={toggleEditModal}>
+                        <ModalHeader className='mHeader' toggle={toggleEditModal}>Edit Review</ModalHeader>
                         <ModalBody>
-                            <FlexColumn>
-                                <h2>Edit Review:</h2>
+                            <FlexColumn className='mReviewEdit'>
                                 <ReactStars half={false} count={5} value={starsInput} onChange={value => setStarsInput(value)} size={50} color2={'#E1BE11'}/>
-                                <input type='textarea' value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
+                                <Textarea value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
                                 <label>Post as anonymous? <input type='checkbox' onChange={() => setAnonymousInput(!anonymousInput)} checked={anonymousInput}/></label>
                             </FlexColumn>
                         </ModalBody>
