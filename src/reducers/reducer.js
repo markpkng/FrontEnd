@@ -50,8 +50,8 @@ export const reducer = (state = initialState, action) => {
         case t.UPDATE_RIDER_SUCCESS: return {...state, loading: false, error: ''}
         case t.UPDATE_RIDER_FAIL: return {...state, loading: false, error: action.payload}
         case t.TOGGLE_REGISTER_MODAL: return {...state, registerModal: false}
-        case t.UPLOAD_IMAGE_SUCCESS: return {...state, loading: false}
-        case t.UPLOAD_IMAGE_FAIL: return {...state, loading: false}
+        case t.UPDATE_PROFILE_IMAGE_SUCCESS: return {...state, loading: false}
+        case t.UPDATE_PROFILE_IMAGE_FAIL: return {...state, loading: false}
         default: return {
             ...state
         }

@@ -21,11 +21,27 @@ const OuterDiv = styled.div `
     border-radius: 5px;
     max-width: 700px;
     padding: 4rem 0;
+    box-shadow: 10px 10px 10px darkgreen;
 
     .area {
         width: 80%;
     }
+
+    .innerContent{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 `
+const ProfileImg = styled.div`
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+`
+
 const Attribute = styled.span `font-weight: bold`;
 
 const DriverProfile = (props) => {
@@ -63,10 +79,10 @@ const DriverProfile = (props) => {
 
     return (
         <OuterDiv>
-            <div>
-                <h1>Driver Profile</h1>
+            <div className='innerContent'>
+                <h1>{name}</h1>
+                <ProfileImg style={{backgroundImage: `url('${driver.url}')`}}/>
                 <p><Attribute>Username:</Attribute> {username}</p>
-                <p><Attribute>Name:</Attribute> {name}</p>
                 <p><Attribute>Location:</Attribute> {location}</p>
                 <p><Attribute>Price:</Attribute> {price}</p>
                 <p><Attribute>Bio:</Attribute> {bio}</p>

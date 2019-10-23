@@ -8,6 +8,7 @@ const OuterDiv = styled.div `
     padding: 1rem;
     border-radius: 5px;
     max-width: 500px;
+    box-shadow: 10px 10px 10px darkgreen;
 
     h1 {
         font-size: 4rem;

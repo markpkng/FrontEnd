@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Alert} from 'reactstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
@@ -6,7 +6,8 @@ import { updateDriver } from '../../actions/actions';
 import {decode} from '../decode';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPencilAlt} from "@fortawesome/free-solid-svg-icons";
+import {faPencilAlt, faUserCircle} from "@fortawesome/free-solid-svg-icons";
+import {updateProfileImage} from '../../actions/actions';
 
 const FlexColumn = styled.div `
     display: flex;
@@ -30,6 +31,12 @@ const FlexColumn = styled.div `
     .edit {
         font-family: 'Roboto', sans-serif;
         font-size: 2rem;
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+
+    .profileIcon {
         &:hover {
             opacity: 0.5;
         }
@@ -67,8 +74,22 @@ const Available = styled.div `
     }
 
 `
+const ImageInput = styled.input `
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    width: 1px;
+    height: 1px;
+`
 
-
+const ProfileImg = styled.div`
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+`
 
 const Submit = {
     margin: '2%',
@@ -78,8 +99,8 @@ const Warning = {
     fontSize: '20px',
 }
 
-
 const UpdateDriverForm = ({driver}) => {
+    console.log(driver.url);
     const error = useSelector(state => state.error);
     const dispatch = useDispatch();
     const [password, setPassword, handlePassword] = useInput('');
@@ -90,6 +111,7 @@ const UpdateDriverForm = ({driver}) => {
     const [bio, setBio, handleBio] = useInput(driver.bio);
     const [price, setPrice, handlePrice] = useInput(driver.price);
     const [edit, setEdit] = useState(false);
+    const [profilePicture, setProfilePicture] = useState(null);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -98,12 +120,22 @@ const UpdateDriverForm = ({driver}) => {
         dispatch(updateDriver(id, newPassword ? {...driver, newPassword} : driver));
     }
 
+    useEffect(() => {
+        if(profilePicture){
+            const formData = new FormData();
+            formData.append('image', profilePicture);
+            dispatch(updateProfileImage(driver.id, formData));
+        }
+    }, [profilePicture])
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <FlexColumn>
                     {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
                     <h1>Your Account Details</h1>
+                    <ImageInput type='file' onChange={e => setProfilePicture(e.target.files[0])} id='imageInput'/>
+                    <label htmlFor='imageInput'>{driver.url ? <ProfileImg style={{backgroundImage: `url('${driver.url}')`}}/> : <FontAwesomeIcon className='profileIcon' icon={faUserCircle} className='fa-10x'/>}</label>
                     {!edit && <div className='edit' onClick={() => setEdit(true)}>Edit <FontAwesomeIcon icon={faPencilAlt} className='fa-1x'/></div>}
                     
                     <Input disabled={!edit} type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>

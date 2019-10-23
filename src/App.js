@@ -24,7 +24,7 @@ const StyledLoader = styled(LoadingOverlay) `
 `
 
 const OuterDiv = styled.div `
-  min-height: 90vh; 
+  min-height: 88vh; 
   background: #9FE09F;
   display: flex;
   flex-direction: column;

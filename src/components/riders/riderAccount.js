@@ -21,6 +21,7 @@ const OuterDiv = styled.div `
     border-radius: 5px;
     max-width: 400px;
     padding: 4rem 0;
+    box-shadow: 10px 10px 10px darkgreen;
 `
 const Mybutton = {
     fontSize: '20px',

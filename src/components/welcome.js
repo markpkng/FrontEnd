@@ -24,11 +24,9 @@ const Welcome = () => {
     const dispatch = useDispatch();
     const username = localStorage.getItem('bfl-token') ? decode(localStorage.getItem('bfl-token')).username : '';
     const role = localStorage.getItem('bfl-token') ? decode(localStorage.getItem('bfl-token')).role : '';
-    const [image, setImage] = useState(null);
+    
     return(
         <div>
-            <input type='file' onChange={e => setImage(e.target.files[0])}/>
-            <button onClick={() => dispatch(uploadImage(1, image))}>send picture yo</button>
             {username ? <Div>Welcome {username}!</Div> : <Div>Welcome!</Div>}
             <Image src={require('../images/motorcycleride.jpg')}/>
             {role && role === 'driver' ? <Message>Thank you for being a Ride For Life driver!</Message> : (
