@@ -5,6 +5,7 @@ import {deleteRider} from '../../actions/actions';
 import {decode} from '../decode';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import UpdateRiderForm from './updateRiderForm';
+import {updateRider} from '../../actions/actions';
 import styled from 'styled-components';
 import {
     START_REQUEST,
@@ -53,12 +54,12 @@ const RiderAccount = (props) => {
             console.log(err);
             dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message});
         })
-    },[]);
+    },[updateRider]);
 
     return (
         <OuterDiv>
         <div>
-            {user && <UpdateRiderForm {...props} rider={user}/>}
+            {user && <UpdateRiderForm {...props} updateRider={updateRider} rider={user}/>}
             <div>
                 <Button style={Mybutton} color="danger" onClick={toggle}>Delete Account</Button>
                 <Modal isOpen={modal} toggle={toggle}>

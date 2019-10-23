@@ -18,15 +18,10 @@ const OuterDiv = styled.div `
         width: 50%;
         text-align: center;
         font-family: Roboto;
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: #66bf6d;
-
-        &:hover {
-            color: #3CDBD3;
-            text-decoration: none;
-        }
         @media (max-width: 700px) {
-            font-size: 1rem;
+            font-size: 1.5rem;
         }
     }
 
@@ -40,7 +35,7 @@ const OuterDiv = styled.div `
             color: #66bf6d;
 
             &:hover {
-                color: #3CDBD3;
+                color: #46351D;
                 text-decoration: none;
             }
         }

@@ -81,12 +81,17 @@ const ImageInput = styled.input `
 `
 
 const ProfileImg = styled.div`
+    position: absolute;
     border-radius: 50%;
     width: 200px;
     height: 200px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    
+    &:hover {
+        opacity: 0.5;
+    }
 `
 
 const StyledButton = styled.button `
@@ -95,6 +100,23 @@ const StyledButton = styled.button `
     margin: 2rem;
     border-radius: 5px;
     border: 1px solid green;
+`
+const ProfileWrapper = styled.div `
+    width: 200px;
+    height: 200px;
+`
+
+const ProfileFilter = styled.div `
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    font-size: 3.5rem;
+    align-items: center;
+    justify-content: center;
+
 `
 
 const Submit = {
@@ -142,7 +164,13 @@ const UpdateDriverForm = ({driver}) => {
                     {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
                     <h1>Your Account Details</h1>
                     <ImageInput type='file' onChange={e => setProfilePicture(e.target.files[0])} id='imageInput'/>
-                    <label htmlFor='imageInput'>{driver.url ? <ProfileImg style={{backgroundImage: `url('${driver.url}')`}}/> : <FontAwesomeIcon className='profileIcon' icon={faUserCircle} className='fa-10x'/>}</label>
+                        <ProfileWrapper>
+                            <label htmlFor='imageInput'>{driver.url ? (
+                            <ProfileFilter>
+                                Edit<ProfileImg style={{backgroundImage: `url('${driver.url}')`}}/>
+                            </ProfileFilter>) : (
+                            <FontAwesomeIcon className='profileIcon' icon={faUserCircle} className='fa-10x'/>)}</label>
+                        </ProfileWrapper>
                     {!edit && <div className='edit' onClick={() => setEdit(true)}>Edit <FontAwesomeIcon icon={faPencilAlt} className='fa-1x'/></div>}
                     
                     <Input disabled={!edit} type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>

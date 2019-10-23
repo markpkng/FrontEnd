@@ -25,7 +25,7 @@ const HeaderContainer = styled.div `
     }
 
     .safe {
-        font-size: 4rem;
+        font-size: 3.5rem;
         font-family: 'Audiowide', sans-serif;
         margin-left: 2rem;
         @media (max-width: 730px) {
@@ -35,8 +35,9 @@ const HeaderContainer = styled.div `
 
     .for {
         font-family: 'Roboto', sans-serif;
-        margin-left: 2rem;
-        font-size: 3rem;
+        font-style: italic;
+        margin-left: 1.5rem;
+        font-size: 2rem;
         @media (max-width: 730px) {
             display: none;
         }
@@ -46,6 +47,7 @@ const HeaderContainer = styled.div `
         font-family: Roboto;
         font-size: 2rem;
         margin: 0.5rem;
+        padding: 0 10px;
         color: white;
 
         &:hover {
@@ -58,23 +60,6 @@ const HeaderContainer = styled.div `
         }
 
 `
-
-const StyledLink = styled(Link) `
-    font-family: Roboto;
-    font-size: 2rem;
-    margin: 0.5rem;
-    color: white;
-
-    &:hover {
-        color: grey;
-        text-decoration: none;
-    }
-    @media (max-width: 440px) {
-        font-size: 1.5rem;
-    }
-`
-
-
 
 const Logo = styled(Link) `
     color: white;
@@ -96,11 +81,11 @@ const Header = () => {
             </div>
             <div>
                 <a className='link' href='https://saferidefl.netlify.com/'>About</a>
-                {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <StyledLink to='/drivers'>Drivers</StyledLink> : <StyledLink to='/riders'>Riders</StyledLink>)}
+                {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <Link className='link' to='/drivers'>Drivers</Link> : <Link className='link' to='/riders'>Riders</Link>)}
                 {loggedIn && <Link className='link' to='/account'>My Account</Link>}
                 {loggedIn && <Link className='link' onClick={() => dispatch(logout())} to='/'>Logout</Link>}
                 {!loggedIn && <Link className='link' to='/register/role'>Register</Link>}
-                {!loggedIn && <Link className='link' to='/login'>Login</Link>}
+                {!loggedIn && <Link className='link' to='/login'>Log In</Link>}
             </div>
         </HeaderContainer>
 

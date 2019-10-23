@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Alert} from 'reactstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
-import { updateRider } from '../../actions/actions';
 import {decode} from '../decode';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -60,7 +59,7 @@ const Available = styled.div `
     }
 `
 
-const UpdateRiderForm = ({rider}) => {
+const UpdateRiderForm = ({rider, updateRider}) => {
     const error = useSelector(state => state.error);
     const dispatch = useDispatch();
     const [password, setPassword, handlePassword] = useInput('');

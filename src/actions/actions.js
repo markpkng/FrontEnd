@@ -148,7 +148,7 @@ export const toggleRegisterModal = () => ({type: t.TOGGLE_REGISTER_MODAL});
 
 export const updateProfileImage = (id, image) => dispatch => {
     console.log(id);
-    console.log(image);
+    new Response(image).text().then(console.log);
     dispatch({type: t.START_REQUEST});
     axiosWithAuth()
     .put(`/drivers/${id}/image`, image)
