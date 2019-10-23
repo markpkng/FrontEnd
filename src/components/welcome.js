@@ -5,13 +5,19 @@ import {useDispatch} from 'react-redux';
 import {uploadImage} from '../actions/actions';
 
 const Image = styled.img `
-    max-width: 50%;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px darkgreen;
+    width: 50%;
+    // border-radius: 10px;
+    // box-shadow: 10px 10px 10px darkgreen;
 `
 const Div = styled.div `
     font-family: 'Passion One';
     font-size: 5rem;
+`
+const WelcomeWrap = styled.div `
+    width: 100%;
+    min-height: 88vh;
+    /* // background-image: url(../images/motorcycleride.jpg); */
+
 `
 
 const Message = styled.div `
@@ -26,12 +32,12 @@ const Welcome = () => {
     const role = localStorage.getItem('bfl-token') ? decode(localStorage.getItem('bfl-token')).role : '';
     
     return(
-        <div>
+        <WelcomeWrap style={{backgroundImage: 'url('+require('../images/motorcycleride.jpg')+')'}}>
             {username ? <Div>Welcome {username}!</Div> : <Div>Welcome!</Div>}
-            <Image src={require('../images/motorcycleride.jpg')}/>
+            {/* <Image src={require('../images/motorcycleride.jpg')}/> */}
             {role && role === 'driver' ? <Message>Thank you for being a Ride For Life driver!</Message> : (
                 <Message>If you're offered a seat on on a rocket ship, don't ask what seat! Just get on.</Message>)}
-        </div>
+        </WelcomeWrap>
     );
 }
 

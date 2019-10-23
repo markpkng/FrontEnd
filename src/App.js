@@ -49,7 +49,7 @@ function App() {
       <StyledLoader active={loading} spinner text='Loading...'>
         <Header/>
         <div className='App'>
-          <OuterDiv className='driversBg'>  
+          <OuterDiv style={{background: 'url('+require('./images/bggplaypattern.png')+') repeat'}}>  
               <Route exact path='/' component={Welcome}/>
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>
