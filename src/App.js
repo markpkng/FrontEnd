@@ -49,7 +49,7 @@ function App() {
       <StyledLoader active={loading} spinner text='Loading...'>
         <Header/>
         <div className='App'>
-          <OuterDiv>  
+          <OuterDiv className='driversBg'>  
               <Route exact path='/' component={Welcome}/>
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>

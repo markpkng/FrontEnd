@@ -3,7 +3,7 @@ import {axiosWithAuth} from '../axiosWithAuth';
 import {useDispatch} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import ReactStars from 'react-rating-stars-component';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import {deleteReview, editReview} from '../../actions/actions';
 import {decode} from '../decode';
 import styled from 'styled-components';
@@ -17,7 +17,6 @@ const ReviewDiv = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
-
     .modalButtons {
         display: flex;
 
@@ -31,6 +30,10 @@ const FlexColumn = styled.div `
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+`
+
+const Comment = styled.p `
+    padding: 10%;
 `
 
 const ReviewCard = ({review, match, history}) => {
@@ -86,8 +89,8 @@ const ReviewCard = ({review, match, history}) => {
         <ReviewDiv>
             <p>Posted by: {anonymous ? 'Anonymous' : reviewerName}</p>
             <p>on {new Date(date).toISOString().substring(0, 10)}</p>
-            <ReactStars count={5} value={stars} edit={false} size={50} color2={'#ffd700'}/>
-            {comment && <p>{comment}</p>}
+            <ReactStars count={5} value={stars} edit={false} size={50} color2={'#E1BE11'}/>
+            {comment && <Comment>{comment}</Comment>}
             
             <div className={!deleteModal && !editModal && 'modalButtons'}>
             {/* Delete Review Modal */}
@@ -114,7 +117,7 @@ const ReviewCard = ({review, match, history}) => {
                             <FlexColumn>
                                 <h2>Edit Review:</h2>
                                 <ReactStars half={false} count={5} value={starsInput} onChange={value => setStarsInput(value)} size={50} color2={'#E1BE11'}/>
-                                <Input type='textarea' value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
+                                <input type='textarea' value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
                                 <label>Post as anonymous? <input type='checkbox' onChange={() => setAnonymousInput(!anonymousInput)} checked={anonymousInput}/></label>
                             </FlexColumn>
                         </ModalBody>

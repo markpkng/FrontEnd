@@ -145,3 +145,19 @@ export const updateRider = (id, rider) => dispatch => {
 }
 
 export const toggleRegisterModal = () => ({type: t.TOGGLE_REGISTER_MODAL});
+
+export const updateProfileImage = (id, image) => dispatch => {
+    console.log(id);
+    console.log(image);
+    dispatch({type: t.START_REQUEST});
+    axiosWithAuth()
+    .put(`/drivers/${id}/image`, image)
+    .then(res => {
+        dispatch({type: t.UPDATE_PROFILE_IMAGE_SUCCESS});
+        console.log(res);
+    })
+    .catch(err => {
+        dispatch({type: t.UPDATE_PROFILE_IMAGE_FAIL});
+        console.log(err);
+    })
+}

@@ -11,11 +11,12 @@ const Type = styled.div `
     justify-content: space-evenly;
     background: #46351D;
     border-radius: 5px;
-    width: 160px;
+    width: 200px;
     font-family: 'Patua One', serif;
     color: #9FE09F;
     padding: 0.5rem;
     margin: 1rem;
+    font-size: 2.5rem;
 
     .role {
         margin: 1rem;
@@ -26,12 +27,17 @@ const Type = styled.div `
     }
 `
 
-const Container = styled.div`
+const OuterDiv = styled.div`
     display: flex;
+    font-family: 'Passion One', sans-serif;
     align-items: center;
     flex-direction: column;
     width: 100%;
     border-radius: 5px;
+
+    && {
+        font-size: 4rem;
+    }
 
     .types {
         display: flex;
@@ -47,9 +53,9 @@ const RegisterType = ({setRole, history}) => {
     }
 
     return (
-        <Container>
+        <OuterDiv>
             {error && <Alert color="warning"><h2>{error}</h2></Alert>}
-            <h1>Are you a:</h1>
+            <span>Are you a:</span>
             <div className='types'>
                 <Type onClick={() => handleClick('driver')}>
                     <FontAwesomeIcon className="fa-2x icon" icon={faAmbulance}/>
@@ -60,7 +66,7 @@ const RegisterType = ({setRole, history}) => {
                     <span className='role'>Rider</span>
                 </Type>
             </div>
-        </Container>
+        </OuterDiv>
     );
 }
 

@@ -10,29 +10,59 @@ const HeaderContainer = styled.div `
     justify-content: space-between;
     align-items: center;
     height: 6vh;
-    padding: 2rem;
+    padding: 4rem;
     background: #46351D;
+
+    .rfl {
+        font-family: 'Passion One', sans-serif;
+        font-size: 4rem;
+        @media (max-width: 730px) {
+            font-size: 3rem;
+        }
+        @media (max-width: 476px) {
+            font-size: 2rem;
+        }
+    }
+
+    .safe {
+        font-size: 4rem;
+        font-family: 'Audiowide', sans-serif;
+        margin-left: 2rem;
+        @media (max-width: 730px) {
+            display: none;
+        }
+    }
+
+    .for {
+        font-family: 'Roboto', sans-serif;
+        margin-left: 2rem;
+        font-size: 3rem;
+        @media (max-width: 730px) {
+            display: none;
+        }
+    }
+
 `
 
 const StyledLink = styled(Link) `
-    font-family: Passion One;
+    font-family: Roboto;
     font-size: 2rem;
     margin: 0.5rem;
-    color: #9FE09F;
+    color: white;
 
     &:hover {
-        color: #3CDBD3;
+        color: grey;
         text-decoration: none;
+    }
+    @media (max-width: 440px) {
+        font-size: 1.5rem;
     }
 `
 
 const Logo = styled(Link) `
-    font-size: 3rem; 
-    font-family: Passion One;
-    color: #9FE09F;
-
+    color: white;
     &:hover {
-        color: #3CDBD3;
+        color: grey;
         text-decoration: none;
     }
 `
@@ -43,7 +73,9 @@ const Header = () => {
     return (
         <HeaderContainer>
             <div>
-                <Logo to='/'>Ride For Life</Logo>
+                <Logo to='/'>
+                    <div><span className='rfl'>Ride For Life</span><span className='for'>for</span> <span className='safe'>SAFE</span></div>
+                </Logo>
             </div>
             <div>
                 {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <StyledLink to='/drivers'>Drivers</StyledLink> : <StyledLink to='/riders'>Riders</StyledLink>)}

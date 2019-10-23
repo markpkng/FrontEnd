@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import DriverCard from './driverCard';
 import {useInput} from '../../hooks/useInput';
 import SearchForm from '../searchForm';
+import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTimesCircle} from '@fortawesome/free-regular-svg-icons';
 import {START_REQUEST, 
@@ -16,6 +17,10 @@ const layout = {
     display: 'flex',
     flexFlow: 'row wrap',
     justifyContent: 'center'
+}
+
+const Size = {
+    fontSize: '20px',
 }
 
 const DriverList = () => {
@@ -59,7 +64,7 @@ const DriverList = () => {
         <div>
             {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
             <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
-            <label>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></label>
+            <label style={Size}>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></label>
             <span style={layout}>{drivers.filter(driver => driver.location.toLowerCase().includes(search.toLowerCase()) && (nonAvailable || driver.available))
                     .map(driver => <DriverCard
                                         key={driver.username}
