@@ -6,7 +6,7 @@ import { updateDriver } from '../../actions/actions';
 import {decode} from '../decode';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPencilAlt, faUserCircle} from "@fortawesome/free-solid-svg-icons";
+import {faPencilAlt, faUserCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 import {updateProfileImage} from '../../actions/actions';
 
 const FlexColumn = styled.div `
@@ -17,6 +17,12 @@ const FlexColumn = styled.div `
 
     h1 {
         font-size: 4rem;
+    }
+
+    .cancel {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .bio {
@@ -127,6 +133,18 @@ const Warning = {
     fontSize: '20px',
 }
 
+const Attribute = styled.span `font-weight: bold`;
+
+const FA = styled(FontAwesomeIcon) `
+    position: relative;
+    margin-right: 3rem;
+    bottom: 20px;
+    &:hover {
+        opacity: 0.5;
+    }
+    
+`
+
 const UpdateDriverForm = ({driver}) => {
     console.log(driver.url);
     const error = useSelector(state => state.error);
@@ -162,6 +180,9 @@ const UpdateDriverForm = ({driver}) => {
             <form onSubmit={handleSubmit}>
                 <FlexColumn>
                     {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
+                    <div className='cancel'>
+                        {edit && <FA icon={faTimesCircle} onClick={() => setEdit(false)} className='fa-5x'/>}
+                    </div>
                     <h1>Your Account Details</h1>
                     <ImageInput type='file' onChange={e => setProfilePicture(e.target.files[0])} id='imageInput'/>
                         <ProfileWrapper>
@@ -172,16 +193,16 @@ const UpdateDriverForm = ({driver}) => {
                             <FontAwesomeIcon className='profileIcon' icon={faUserCircle} className='fa-10x'/>)}</label>
                         </ProfileWrapper>
                     {!edit && <div className='edit' onClick={() => setEdit(true)}>Edit <FontAwesomeIcon icon={faPencilAlt} className='fa-1x'/></div>}
+                    {!edit && <p><Attribute>Name: </Attribute>{name}</p>}
+                    {edit && <Input disabled={!edit} type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>}
                     
-                    <Input disabled={!edit} type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>
+                    {!edit && <p><Attribute>Location: </Attribute>{location}</p>}
+                    {edit && <Input disabled={!edit} type='text' value={location} placeholder='Location' onChange={e => handleLocation(e.target.value)} required/>}
                     
-                    
-                    <Input disabled={!edit} type='text' value={location} placeholder='Location' onChange={e => handleLocation(e.target.value)} required/>
-                  
-                    
-                    <Textarea disabled={!edit} className='bio' wrap='soft' value={bio} placeholder='Bio' onChange={e => handleBio(e.target.value)} required/>
-                 
-                    <Input disabled={!edit} type='text' value={price} placeholder='Price' onChange={e => handlePrice(e.target.value)} required/>
+                    {!edit && <p><Attribute>About: </Attribute>{bio}</p>}
+                    {edit && <Textarea disabled={!edit} className='bio' wrap='soft' value={bio} placeholder='Bio' onChange={e => handleBio(e.target.value)} required/>}
+                    {!edit && <p><Attribute>Price: </Attribute>{price}</p>}
+                    {edit && <Input disabled={!edit} type='text' value={price} placeholder='Price' onChange={e => handlePrice(e.target.value)} required/>}
                
                     <Available>Available: <input disabled={!edit} type='checkbox' checked={available} onChange={() => setAvailable(!available)}/></Available>
               

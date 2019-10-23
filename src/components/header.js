@@ -12,6 +12,10 @@ const HeaderContainer = styled.div `
     height: 6vh;
     padding: 4rem;
     background-color: rgba(70, 53, 29, 0.7);
+    position: sticky;
+	overflow: hidden;
+	top: 0;
+    z-index: 1;
 
     .rfl {
         font-family: 'Passion One', sans-serif;

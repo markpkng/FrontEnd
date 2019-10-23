@@ -31,6 +31,7 @@ const OuterDiv = styled.div `
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
 `
 
 function App() {
@@ -55,7 +56,7 @@ function App() {
       <StyledLoader active={loading} spinner text='Loading...'>
         <Header/>
         <div className='App'>
-          <OuterDiv>  
+          <OuterDiv style={{background: 'url('+require('./images/bggplaypattern.png')+') repeat'}}>  
               <Route exact path='/' component={Welcome}/>
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>

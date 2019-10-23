@@ -88,7 +88,6 @@ const DriverCard = ({driver, ratings}) => {
                     <p><Attribute>Username:</Attribute> {username}</p>
                     <p><Attribute>Bio:</Attribute> {bio}</p>
                     <p><Attribute>Available:</Attribute> {available ? 'Yes!' : 'No'}</p>
-                    {driver.phonenumber && <p><Attribute>Phone Number:</Attribute> {driver.phonenumber}</p>}
                     {driver.phonenumber && <div onClick={e => e.preventDefault()}>
                         <StyledButton color="danger" className='modalButton' onClick={toggleNotifyModal}>Request Ride</StyledButton>
                         <Modal className='mStyles' isOpen={notifyModal} toggle={toggleNotifyModal}>
