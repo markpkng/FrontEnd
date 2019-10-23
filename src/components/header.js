@@ -11,7 +11,7 @@ const HeaderContainer = styled.div `
     align-items: center;
     height: 6vh;
     padding: 4rem;
-    background: #46351D;
+    background-color: rgba(70, 53, 29, 0.7);
 
     .rfl {
         font-family: 'Passion One', sans-serif;

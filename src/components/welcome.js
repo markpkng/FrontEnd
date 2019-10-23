@@ -16,6 +16,7 @@ const Div = styled.div `
 const WelcomeWrap = styled.div `
     width: 100%;
     min-height: 88vh;
+    background-position: 0 50%;
     /* // background-image: url(../images/motorcycleride.jpg); */
 
 `

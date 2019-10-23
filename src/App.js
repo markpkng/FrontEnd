@@ -25,7 +25,6 @@ const StyledLoader = styled(LoadingOverlay) `
 
 const OuterDiv = styled.div `
   min-height: 88vh; 
-  background: #9FE09F;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,11 +44,11 @@ function App() {
   }, [dispatch])
   
   return (
-    <div>
+    <div style={{background: 'url('+require('./images/bggplaypattern.png')+') repeat'}}>
       <StyledLoader active={loading} spinner text='Loading...'>
         <Header/>
         <div className='App'>
-          <OuterDiv style={{background: 'url('+require('./images/bggplaypattern.png')+') repeat'}}>  
+          <OuterDiv>  
               <Route exact path='/' component={Welcome}/>
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>

@@ -11,7 +11,7 @@ const OuterDiv = styled.div `
     display: flex;
     align-items: center;
     width: 100%;
-    background: #E6E8E5;
+    background: rgba(230, 232, 229, 0.6);
     height: 6vh;
 
     .copy {
@@ -19,7 +19,7 @@ const OuterDiv = styled.div `
         text-align: center;
         font-family: Roboto;
         font-size: 1.5rem;
-        color: #66bf6d;
+        color: white;
         @media (max-width: 700px) {
             font-size: 1.5rem;
         }
@@ -32,7 +32,7 @@ const OuterDiv = styled.div `
         justify-content: space-evenly;
 
         .icon {
-            color: #66bf6d;
+            color: white;
 
             &:hover {
                 color: #46351D;
