@@ -55,10 +55,10 @@ const Footer = () => {
                 <span>© Ride For Life Build Week Team 2019</span>
             </div>
             <div className='social'>
-                <a href="#" target="blank">
+                <a href="https://twitter.com/safemothers" target="blank">
                     <FontAwesomeIcon icon={faTwitter} className="fa-4x icon" />
                 </a>
-                <a href="#" target="blank">
+                <a href="https://www.facebook.com/SafeMothersSafeBabies/" target="blank">
                     <FontAwesomeIcon icon={faFacebook} className="fa-4x icon" />
                 </a>
             </div>

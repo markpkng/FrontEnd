@@ -27,6 +27,7 @@ const FlexColumn = styled.div `
     .edit {
         font-family: 'Roboto', sans-serif;
         font-size: 2rem;
+        cursor: pointer;
         &:hover {
             opacity: 0.5;
         }
@@ -129,6 +130,7 @@ const UpdateDriverForm = ({driver}) => {
         if(profilePicture){
             const formData = new FormData();
             formData.append('image', profilePicture);
+            formData.append('image_id', driver.image_id);
             dispatch(updateProfileImage(driver.id, formData));
         }
     }, [profilePicture])

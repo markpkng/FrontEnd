@@ -42,6 +42,21 @@ const HeaderContainer = styled.div `
         }
     }
 
+    .link {
+        font-family: Roboto;
+        font-size: 2rem;
+        margin: 0.5rem;
+        color: white;
+
+        &:hover {
+            color: grey;
+            text-decoration: none;
+        }
+            @media (max-width: 440px) {
+                font-size: 1.5rem;
+            }
+        }
+
 `
 
 const StyledLink = styled(Link) `
@@ -58,6 +73,8 @@ const StyledLink = styled(Link) `
         font-size: 1.5rem;
     }
 `
+
+
 
 const Logo = styled(Link) `
     color: white;
@@ -78,11 +95,12 @@ const Header = () => {
                 </Logo>
             </div>
             <div>
+                <a className='link' href='https://saferidefl.netlify.com/'>About</a>
                 {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <StyledLink to='/drivers'>Drivers</StyledLink> : <StyledLink to='/riders'>Riders</StyledLink>)}
-                {loggedIn && <StyledLink to='/account'>My Account</StyledLink>}
-                {loggedIn && <StyledLink onClick={() => dispatch(logout())} to='/'>Logout</StyledLink>}
-                {!loggedIn && <StyledLink to='/register/role'>Register</StyledLink>}
-                {!loggedIn && <StyledLink to='/login'>Login</StyledLink>}
+                {loggedIn && <Link className='link' to='/account'>My Account</Link>}
+                {loggedIn && <Link className='link' onClick={() => dispatch(logout())} to='/'>Logout</Link>}
+                {!loggedIn && <Link className='link' to='/register/role'>Register</Link>}
+                {!loggedIn && <Link className='link' to='/login'>Login</Link>}
             </div>
         </HeaderContainer>
 

@@ -21,6 +21,7 @@ const FlexColumn = styled.div `
     .edit {
         font-family: 'Roboto', sans-serif;
         font-size: 2rem;
+        cursor: pointer;
         &:hover {
             opacity: 0.5;
         }
