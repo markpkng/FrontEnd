@@ -2,7 +2,7 @@ import axios from 'axios';
 import {axiosWithAuth} from '../components/axiosWithAuth';
 import * as t from './types';
 
-export const login = credentials => dispatch => {
+export const login = (credentials, history) => dispatch => {
     dispatch({type: t.START_REQUEST});
     axios
     .post('https://rideforlife-backend.herokuapp.com/api/auth/login', credentials)
@@ -10,10 +10,11 @@ export const login = credentials => dispatch => {
         console.log(res);
         localStorage.setItem('bfl-token', res.data.token);
         dispatch({type: t.LOGIN_SUCCESS, payload: res.data.role})
+        history.push('/');
     })
     .catch(err => {
-        dispatch({type: t.LOGIN_FAIL})
-        console.log(err);
+        dispatch({type: t.LOGIN_FAIL, payload: err.response.data.message})
+        console.log(err.response.data.message);
     });
 };
 
@@ -33,7 +34,7 @@ export const register = user => dispatch => {
         console.log(res);
     })
     .catch(err => {
-        dispatch({type: t.REGISTER_FAIL});
+        dispatch({type: t.REGISTER_FAIL, payload: err.response.data.message});
         console.log(err);
     })
 }
@@ -47,7 +48,7 @@ export const addReview = review => dispatch => {
         console.log(res);
     })
     .catch(err => {
-        dispatch({type: t.ADD_REVIEW_FAIL});
+        dispatch({type: t.ADD_REVIEW_FAIL, payload: err.response.data.message});
         console.log(err);
     })
 
@@ -63,7 +64,7 @@ export const editReview = (id, review) => dispatch => {
         console.log(res);
     })
     .catch(err => {
-        dispatch({type: t.EDIT_REVIEW_FAIL});
+        dispatch({type: t.EDIT_REVIEW_FAIL, payload: err.response.data.message});
         console.log(err);
     })
 
@@ -80,7 +81,7 @@ export const deleteReview = id => dispatch => {
         dispatch({type: t.DELETE_REVIEW_SUCCESS});
     })
     .catch(err => {
-        dispatch({type: t.DELETE_REVIEW_FAIL});
+        dispatch({type: t.DELETE_REVIEW_FAIL, payload: err.response.data.message});
     })
 }
 
@@ -94,7 +95,7 @@ export const deleteRider = id => dispatch => {
         logout();
     })
     .catch(err => {
-        dispatch({type: t.DELETE_RIDER_FAIL});
+        dispatch({type: t.DELETE_RIDER_FAIL, payload: err.response.data.message});
         console.log(err);
     })
 }
@@ -109,7 +110,7 @@ export const deleteDriver = id => dispatch => {
         logout();
     })
     .catch(err => {
-        dispatch({type: t.DELETE_DRIVER_FAIL});
+        dispatch({type: t.DELETE_DRIVER_FAIL, payload: err.response.data.message});
         console.log(err);
     })
 }
@@ -125,7 +126,7 @@ export const updateDriver = (id, driver) => dispatch => {
     })
     .catch(err => {
         console.log(err);
-        dispatch({type: t.UPDATE_DRIVER_FAIL});
+        dispatch({type: t.UPDATE_DRIVER_FAIL, payload: err.response.data.message});
     })
 }
 
@@ -139,6 +140,24 @@ export const updateRider = (id, rider) => dispatch => {
     })
     .catch(err => {
         console.log(err);
-        dispatch({type: t.UPDATE_RIDER_FAIL});
+        dispatch({type: t.UPDATE_RIDER_FAIL, payload: err.response.data.message});
+    })
+}
+
+export const toggleRegisterModal = () => ({type: t.TOGGLE_REGISTER_MODAL});
+
+export const updateProfileImage = (id, image) => dispatch => {
+    console.log(id);
+    console.log(image);
+    dispatch({type: t.START_REQUEST});
+    axiosWithAuth()
+    .put(`/drivers/${id}/image`, image)
+    .then(res => {
+        dispatch({type: t.UPDATE_PROFILE_IMAGE_SUCCESS});
+        console.log(res);
+    })
+    .catch(err => {
+        dispatch({type: t.UPDATE_PROFILE_IMAGE_FAIL});
+        console.log(err);
     })
 }

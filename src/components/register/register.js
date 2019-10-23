@@ -1,12 +1,28 @@
-import React, {useState} from 'react';
-import Header from '../header';
+import React, {useState, useEffect} from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import RegisterType from './registerType';
 import RegisterRider from './registerRider';
 import RegisterDriver from './registerDriver';
 import {useInput} from '../../hooks/useInput';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {register} from '../../actions/actions';
+import {toggleRegisterModal} from '../../actions/actions';
+import Modal from '../modals/modal';
+import styled from 'styled-components';
+
+const OuterDiv = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .form {
+        width: 50%;
+        background: #E6E8e5;
+        padding: 3rem;
+        border-radius: 5px;
+    }
+`
 
 const Register = ({history}) => {
     const dispatch = useDispatch();
@@ -18,6 +34,8 @@ const Register = ({history}) => {
     const [location, setLocation, handleLocation] = useInput('');
     const [price, setPrice, handlePrice] = useInput('');
     const [bio, setBio, handleBio] = useInput('');
+    const [matchPass, setMatchPass] = useState(true);
+    const modal = useSelector(state => state.registerModal);
 
     const input = {
         username, handleUsername,
@@ -28,37 +46,56 @@ const Register = ({history}) => {
         price, handlePrice,
         bio, handleBio
     }
+
+    const errorHandling = {
+        matchPass, setMatchPass
+    }
+    
+    const modalAction = () => {
+        dispatch(toggleRegisterModal());
+        console.log('bam');
+    }
     
     const handleSubmit = e => {
+        e.preventDefault();
+
         const user = role === 'rider' ? ({
             username, password, role, name, location
         }) : ({
             username, password, role, name, location, price, bio
         });
 
-        dispatch(register(user));
-
-        e.preventDefault();
-        setUsername('');
-        setPassword('');
-        setName('');
-        setLocation('');
-        setPrice('');
-        setBio('');
-        setRole('');
-        history.push('/');
+        if(password === confirmPassword){
+            dispatch(register(user));
+            setUsername('');
+            setPassword('');
+            setConfirmPassword('');
+            setName('');
+            setLocation('');
+            setPrice('');
+            setBio('');
+            setRole('');
+        }
     }
 
+    useEffect(() => {
+        if(confirmPassword !== password){
+            setMatchPass(false);
+        }else{
+            setMatchPass(true);
+        }
+    }, [confirmPassword, password])
+
     return (
-        <div>
+        <OuterDiv>
             <Redirect from='/register' to='/register/role'/>
-            <Header/>
-            <form onSubmit={handleSubmit}>
+            <Modal open={modal} message={'You have been registered.'} title={'Success'} action={modalAction}/>
+            <form className='form' onSubmit={handleSubmit}>
                 <Route path='/register/role' render={props => <RegisterType {...props} setRole={setRole}/>}/>
-                <Route path='/register/rider' render={() => <RegisterRider role={role} input={input}/>}/>
-                <Route path='/register/driver' render={() => <RegisterDriver role={role} input={input}/>}/>
+                <Route path='/register/rider' render={() => <RegisterRider role={role} input={input} errorHandling={errorHandling}/>}/>
+                <Route path='/register/driver' render={() => <RegisterDriver role={role} input={input} errorHandling={errorHandling}/>}/>
             </form>
-        </div>
+        </OuterDiv>
     );
 }
 

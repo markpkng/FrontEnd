@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Input, Form, FormGroup, Button} from 'reactstrap';
 import {useDispatch} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import styled from 'styled-components';
@@ -31,15 +32,17 @@ const ReviewForm = ({match, edit}) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <FlexColumn>
                     <h2>Write A Review:</h2>
-                    <ReactStars half={false} count={5} value={stars} onChange={value => setStars(value)} size={50} color2={'#ffd700'}/>
-                    <input type='text' value={comment} onChange={e => handleComment(e.target.value)} placeholder='Comment'/>
+                    <ReactStars half={false} count={5} value={stars} onChange={value => setStars(value)} size={50} color2={'#E1BE11'}/>   
+                    <FormGroup>
+                    <Input type='text' value={comment} onChange={e => handleComment(e.target.value)} placeholder='Comment'/>
+                    </FormGroup>
                     <label>Post as anonymous? <input type='checkbox' onChange={() => setAnonymous(!anonymous)} checked={anonymous}/></label>
-                    <button type='submit'>Submit</button>
+                    <Button type='submit'>Submit</Button>
                 </FlexColumn>
-            </form>
+            </Form>
         </div>  
     );
 }

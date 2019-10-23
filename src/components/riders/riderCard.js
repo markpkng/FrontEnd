@@ -1,16 +1,40 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {Card, CardHeader, CardBody} from 'reactstrap';
+import styled from 'styled-components';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faGlobeAfrica} from "@fortawesome/free-solid-svg-icons";
+
+const StyledCard = styled(Card) `
+    box-shadow: 10px 10px 10px darkgreen;
+    text-align: left;
+
+    && {
+        background: #E6E8E5;
+    }
+
+    &:hover {
+            opacity: 0.8;
+    }
+
+    .link {
+        color: #46351D;
+        text-decoration: none;
+    }
+`
 
 const RiderCard = ({rider}) => {
     const {username, name, location, rider_id} = rider;
     return (
-        <div style={{border: '1px solid black', padding: '1rem', width: '300px'}}>
-            <Link to={`/riders/${rider_id}`}>
-                <p>Username: {username}</p>
-                <p>Name: {name}</p>
-                {location && <p>Location: {location}</p>}
+        <StyledCard style={{border: '1px solid white', padding: '1rem', margin: '10px', width: '300px'}}>
+            <Link className='link' to={`/riders/${rider_id}`}>
+                <CardHeader>{name}</CardHeader>
+                <CardBody>
+                    <p>Username: {username}</p>
+                    {location && <p><FontAwesomeIcon icon={faGlobeAfrica}/> {location}</p>}
+                </CardBody>
             </Link>
-        </div>
+        </StyledCard>
     );
 }
 

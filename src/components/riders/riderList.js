@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import Header from '../header';
 import RiderCard from './riderCard';
 import SearchForm from '../searchForm';
 import {useInput} from '../../hooks/useInput';
 import {useDispatch} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
+import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTimesCircle} from '@fortawesome/free-regular-svg-icons';
 import {
@@ -12,6 +12,14 @@ import {
     GET_RIDERS_SUCCESS,
     GET_RIDERS_FAIL
 } from '../../actions/types';
+
+const OuterDiv = styled.div `
+    .riders {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+`
 
 const RiderList = () => {
     const dispatch = useDispatch();
@@ -28,7 +36,7 @@ const RiderList = () => {
             setRiders(res.data);
         })
         .catch(err => {
-            dispatch({type: GET_RIDERS_FAIL});
+            dispatch({type: GET_RIDERS_FAIL, payload: err.response.data.message});
             console.log(err);
         })
 
@@ -41,13 +49,16 @@ const RiderList = () => {
     }
 
     return(
-        <div>
-            <Header/>
+        <OuterDiv>
             <h1>Riders currently in need:</h1>
             {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
             <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
-            {riders.filter(rider => rider.searching && rider.location.toLowerCase().includes(search.toLowerCase())).map(rider => <RiderCard key={rider.username} rider={rider}/>)}
-        </div>
+            <div className='center'>
+                <div className='riders'>
+                    {riders.filter(rider => rider.searching && rider.location.toLowerCase().includes(search.toLowerCase())).map(rider => <RiderCard key={rider.username} rider={rider}/>)}
+                </div>
+            </div>
+        </OuterDiv>
     );
 }
 
