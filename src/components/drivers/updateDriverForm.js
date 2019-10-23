@@ -19,10 +19,6 @@ const FlexColumn = styled.div `
         font-size: 4rem;
     }
 
-    h4 {
-        font-size: 3rem;
-    }
-
     .bio {
         min-width: 80%;
         min-height: 100px;
@@ -70,6 +66,7 @@ const Available = styled.div `
     font-size: 1.5rem;
     margin: 2rem;
     input {
+        margin-left: 2rem;
         transform: scale(2)
     }
 
@@ -89,6 +86,14 @@ const ProfileImg = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+`
+
+const StyledButton = styled.button `
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    margin: 2rem;
+    border-radius: 5px;
+    border: 1px solid green;
 `
 
 const Submit = {
@@ -155,7 +160,7 @@ const UpdateDriverForm = ({driver}) => {
                 
                     <Input type='password' placeholder='New Password?' onChange={e => handleNewPassword(e.target.value)}/>
                    
-                    <button style={Submit} type='submit'>Submit</button></>}
+                    <StyledButton style={Submit} type='submit'>Submit</StyledButton></>}
                 </FlexColumn>
             </form>
         </div>

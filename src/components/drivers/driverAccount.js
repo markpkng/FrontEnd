@@ -60,7 +60,7 @@ const DriverAccount = ({history}) => {
             <div>
                 {user && <UpdateDriverForm driver={user}/>}
                 <div>
-                    <Button style={Mybutton} color="danger" onClick={toggle}>Delete Account</Button>
+                    <Button style={Mybutton} size='md' color="danger" onClick={toggle}>Delete Account</Button>
                     <Modal isOpen={modal} toggle={toggle}>
                         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                         <ModalBody style={Mybutton}>Are you sure you want to delete your account?</ModalBody>

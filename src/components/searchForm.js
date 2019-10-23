@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, FormGroup, Input, Button, Alert} from 'reactstrap';
+import {Alert} from 'reactstrap';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
 
@@ -9,35 +9,41 @@ const FlexColumn = styled.div `
     align-items: center;
     margin: 0 auto;
     max-width: 500px;
-    font-size: 40px;
+
+    .loc {
+        font-family: 'Roboto', sans-serif;
+        font-size: 3rem;
+    }
 `
-const Submit = {
-    margin: '2%',
-    fontSize: '20px',
-}
 
-const Warning = {
-    fontSize: '20px',
-}
+const Button = styled.button `
+    font-size: 2rem;
+`
 
-const Searchbox = {
-    fontSize: '20px',
-}
+const Input = styled.input `
+    width: 70%;
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid green;
+`
 
 const SearchForm = ({input, handleInput, handleSubmit}) => {
     const error = useSelector(state => state.error);
     return (
         <div>
-            <Form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <FlexColumn>
-                {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
-                <span>Search by location: </span>
-                <FormGroup>
-                <Input type='text' value={input} placeholder='Location' style={Searchbox} onChange={e => handleInput(e.target.value)}/>
-                </FormGroup>
-                <Button style={Submit} type='submit'>Submit</Button>
+                {error && <Alert color="warning"><h2>{error}</h2></Alert>}
+                <span className='loc'>Search by location: </span>
+                
+                <Input type='text' value={input} placeholder='Location' onChange={e => handleInput(e.target.value)}/>
+                
+                <Button type='submit'>Submit</Button>
                 </FlexColumn>
-            </Form>
+            </form>
         </div>
     );
 }

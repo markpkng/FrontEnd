@@ -13,6 +13,19 @@ import {START_REQUEST,
         GET_REVIEWS_FAIL} from '../../actions/types';
 import { axiosWithAuth } from '../axiosWithAuth';
 
+const Div = styled.div `
+    margin-bottom: 10rem;
+`
+const Available = styled.div `
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    margin: 2rem;
+    input {
+        margin-left: 2rem;
+        transform: scale(2)
+    }
+`
+
 const layout = {
     display: 'flex',
     flexFlow: 'row wrap',
@@ -61,10 +74,10 @@ const DriverList = () => {
     }
 
     return (
-        <div>
+        <Div>
             {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
             <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
-            <label style={Size}>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></label>
+            <Available style={Size}>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></Available>
             <span style={layout}>{drivers.filter(driver => driver.location.toLowerCase().includes(search.toLowerCase()) && (nonAvailable || driver.available))
                     .map(driver => <DriverCard
                                         key={driver.username}
@@ -74,7 +87,7 @@ const DriverList = () => {
                                                        .map(review => review.stars)
                                         }                            
             />)}</span>
-        </div>
+        </Div>
     );
 }
 

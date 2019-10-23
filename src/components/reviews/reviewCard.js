@@ -24,16 +24,27 @@ const ReviewDiv = styled.div `
             margin: 0.5rem;
         }
     }
+
+    .reviewer {
+        font-size: 2rem;
+    }
 `
 const FlexColumn = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
+`
+
+const StyledButton = styled.button `
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    margin: 2rem;
+    border-radius: 5px;
+    border: 1px solid green;
 `
 
 const Comment = styled.p `
-    padding: 10%;
+    font-size: 2rem;
 `
 
 const ReviewCard = ({review, match, history}) => {
@@ -87,17 +98,17 @@ const ReviewCard = ({review, match, history}) => {
 
     return (
         <ReviewDiv>
-            <p>Posted by: {anonymous ? 'Anonymous' : reviewerName}</p>
+            <ReactStars style={{marginTop: 0}}count={5} value={stars} edit={false} size={50} color2={'#E1BE11'}/>
+            <p className='reviewer'>By: {anonymous ? 'Anonymous' : reviewerName}</p>
             <p>on {new Date(date).toISOString().substring(0, 10)}</p>
-            <ReactStars count={5} value={stars} edit={false} size={50} color2={'#E1BE11'}/>
             {comment && <Comment>{comment}</Comment>}
             
             <div className={!deleteModal && !editModal && 'modalButtons'}>
             {/* Delete Review Modal */}
             {rider_id === parseInt(decode(localStorage.getItem('bfl-token')).subject) &&
             <div>
-                <Button color="danger" className='modalButton' onClick={toggleDeleteModal}>Delete Review</Button>
-                <Modal isOpen={deleteModal} toggle={toggleDeleteModal}>
+                <StyledButton color="danger" className='modalButton' onClick={toggleDeleteModal}>Delete Review</StyledButton>
+                <Modal size='lg' isOpen={deleteModal} toggle={toggleDeleteModal}>
                     <ModalHeader toggle={toggleDeleteModal}>Modal title</ModalHeader>
                     <ModalBody>Are you sure you want to delete this review?</ModalBody>
                     <ModalFooter>
@@ -110,8 +121,8 @@ const ReviewCard = ({review, match, history}) => {
             {/* Edit Review Modal */}
             {rider_id === parseInt(decode(localStorage.getItem('bfl-token')).subject) &&
             <div>
-                <Button color="warning" className='modalButton' onClick={toggleEditModal}>Edit Review</Button>
-                    <Modal isOpen={editModal} toggle={toggleEditModal}>
+                <StyledButton color="warning" className='modalButton' onClick={toggleEditModal}>Edit Review</StyledButton>
+                    <Modal size='lg' isOpen={editModal} toggle={toggleEditModal}>
                         <ModalHeader toggle={toggleEditModal}>Modal title</ModalHeader>
                         <ModalBody>
                             <FlexColumn>
@@ -122,8 +133,8 @@ const ReviewCard = ({review, match, history}) => {
                             </FlexColumn>
                         </ModalBody>
                         <ModalFooter>
-                        <Button color="primary" onClick={handleEdit}>Submit</Button>{' '}
-                        <Button color="secondary" onClick={toggleEditModal}>Cancel</Button>
+                        <StyledButton color="primary" onClick={handleEdit}>Submit</StyledButton>{' '}
+                        <StyledButton color="secondary" onClick={toggleEditModal}>Cancel</StyledButton>
                         </ModalFooter>
                     </Modal>
             </div>}

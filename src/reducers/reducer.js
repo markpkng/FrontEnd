@@ -3,7 +3,7 @@ import * as t from '../actions/types';
 export const initialState = {
     loading: false,
     loggedIn: false,
-    registerModal: false,
+    registerModal: true,
     error: ''
 };
 

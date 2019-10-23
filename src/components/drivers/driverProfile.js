@@ -20,7 +20,7 @@ const OuterDiv = styled.div `
     width: 100%;
     border-radius: 5px;
     max-width: 700px;
-    padding: 4rem 0;
+    padding: 4rem;
     box-shadow: 10px 10px 10px darkgreen;
 
     .area {
@@ -33,6 +33,10 @@ const OuterDiv = styled.div `
         align-items: center;
     }
 `
+const P = styled.p `
+    font-size: 2rem;
+`
+
 const ProfileImg = styled.div`
     border-radius: 50%;
     width: 200px;
@@ -82,13 +86,13 @@ const DriverProfile = (props) => {
             <div className='innerContent'>
                 <h1>{name}</h1>
                 <ProfileImg style={{backgroundImage: `url('${driver.url}')`}}/>
-                <p><Attribute>Username:</Attribute> {username}</p>
-                <p><Attribute>Location:</Attribute> {location}</p>
-                <p><Attribute>Price:</Attribute> {price}</p>
-                <p><Attribute>Bio:</Attribute> {bio}</p>
-                <p><Attribute>Available:</Attribute> {available ? 'Yes!' : 'No'}</p>
+                <P><Attribute>Username:</Attribute> {username}</P>
+                <P><Attribute>Location:</Attribute> {location}</P>
+                <P><Attribute>Price:</Attribute> {price}</P>
+                <P><Attribute>Bio:</Attribute> {bio}</P>
+                <P><Attribute>Available:</Attribute> {available ? 'Yes!' : 'No'}</P>
                 <ReviewForm {...props}/>
-                {reviews.length > 0 && <h3>Reviews:</h3>}
+                {reviews.length > 0 && <h1>Reviews:</h1>}
                 {reviews.map(review => <ReviewCard {...props} key={review.review_id} review={review}/>)}
             </div>
         </OuterDiv>

@@ -7,7 +7,7 @@ const ModalComponent = ({open, className, message, title, action}) => {
   return (
     <div>
       <Modal isOpen={open} toggle={action} className={className}>
-        <ModalHeader toggle={action}>{title}</ModalHeader>
+        <h1 toggle={action}>{title}</h1>
         <ModalBody>
           {message}
         </ModalBody>

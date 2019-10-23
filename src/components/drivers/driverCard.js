@@ -9,6 +9,7 @@ import ReactStars from 'react-rating-stars-component';
 const StyledCard = styled(Card) `
     box-shadow: 10px 10px 10px darkgreen;
     text-align: left;
+    display:
     
     && {
         background: #E6E8E5;
@@ -26,6 +27,10 @@ const StyledCard = styled(Card) `
     .header {
         font-size: 2rem;
     }
+`
+
+const Attribute = styled.span `
+    font-weight: bold;
 `
 
 const ProfileImg = styled.div`
@@ -49,10 +54,10 @@ const DriverCard = ({driver, ratings}) => {
                     {ratings.length > 0 &&
                     <ReactStars count={5} value={ratings.reduce((acc, cur) => acc + cur)/ratings.length} edit={false} size={50} color2={'#E1BE11'}/>}
                     <p><FontAwesomeIcon icon={faGlobeAfrica}/> {location}</p>
-                    <p>Price: {price}</p>
-                    <p>Username: {username}</p>
-                    <p>Bio: {bio}</p>
-                    <p>Available: {available ? 'Yes!' : 'No'}</p>
+                    <p><Attribute>Price:</Attribute> {price}</p>
+                    <p><Attribute>Username:</Attribute> {username}</p>
+                    <p><Attribute>Bio:</Attribute> {bio}</p>
+                    <p><Attribute>Available:</Attribute> {available ? 'Yes!' : 'No'}</p>
                 </CardBody>
             </Link>
         </StyledCard>
