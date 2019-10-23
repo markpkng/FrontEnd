@@ -16,6 +16,7 @@ import styled from 'styled-components';
 import {useDispatch, useSelector} from 'react-redux';
 import {LOGIN_SUCCESS} from './actions/types';
 import {decode} from './components/decode';
+import {storeRider} from './actions/actions';
 import './App.css';
 import Footer from './components/footer';
 
@@ -35,11 +36,17 @@ const OuterDiv = styled.div `
 function App() {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.loading);
+  const user = useSelector(state => state.user);
 
   useEffect(() => {
     if(localStorage.getItem('bfl-token')){
       console.log('decoded:', decode(localStorage.getItem('bfl-token')));
-      dispatch({type: LOGIN_SUCCESS, payload: decode(localStorage.getItem('bfl-token')).role});
+      const {subject, role} = decode(localStorage.getItem('bfl-token'));
+      dispatch({type: LOGIN_SUCCESS, payload: role});
+      if(role === 'rider'){
+        dispatch(storeRider(subject));
+      }
+      
     }
   }, [dispatch])
   

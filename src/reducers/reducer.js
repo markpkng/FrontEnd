@@ -4,6 +4,7 @@ export const initialState = {
     loading: false,
     loggedIn: false,
     registerModal: false,
+    user: {},
     error: ''
 };
 
@@ -23,6 +24,8 @@ export const reducer = (state = initialState, action) => {
             loggedIn: false,
             role: ''
         }
+        case t.STORE_RIDER_SUCCESS: return {...state, loading: false, error: '', user: action.payload}
+        case t.STORE_RIDER_FAIL: return {...state, loading: false}
         case t.REGISTER_SUCCESS: return {...state, loading: false, error: '', registerModal: true}
         case t.REGISTER_FAIL: return {...state, loading: false, error: action.payload}
         case t.GET_DRIVERS_SUCCESS: return {...state, loading: false, error: ''}
@@ -52,6 +55,8 @@ export const reducer = (state = initialState, action) => {
         case t.TOGGLE_REGISTER_MODAL: return {...state, registerModal: false}
         case t.UPDATE_PROFILE_IMAGE_SUCCESS: return {...state, loading: false}
         case t.UPDATE_PROFILE_IMAGE_FAIL: return {...state, loading: false}
+        case t.NOTIFY_DRIVER_SUCCESS: return {...state, loading: false}
+        case t.NOTIFY_DRIVER_FAIL: return {...state, loading: false}
         default: return {
             ...state
         }

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as v from '../styles/variables';
 import {
   faInstagram,
   faTwitter,
@@ -11,7 +12,8 @@ const OuterDiv = styled.div `
     display: flex;
     align-items: center;
     width: 100%;
-    background: rgba(230, 232, 229, 0.6);
+    // background: rgba(230, 232, 229, 0.6);
+    background-color: white;
     height: 6vh;
 
     .copy {
@@ -19,7 +21,7 @@ const OuterDiv = styled.div `
         text-align: center;
         font-family: Roboto;
         font-size: 1.5rem;
-        color: white;
+        color: ${v.BROWN_COLOR};
         @media (max-width: 700px) {
             font-size: 1.5rem;
         }
@@ -32,7 +34,7 @@ const OuterDiv = styled.div `
         justify-content: space-evenly;
 
         .icon {
-            color: white;
+            color: #70D378;
 
             &:hover {
                 color: #46351D;

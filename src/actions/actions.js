@@ -161,3 +161,29 @@ export const updateProfileImage = (id, image) => dispatch => {
         console.log(err);
     })
 }
+
+export const storeRider = id => dispatch => {
+    dispatch({type: t.START_REQUEST});
+    axiosWithAuth()
+    .get(`/riders/${id}`)
+    .then(res => {
+        dispatch({type: t.STORE_RIDER_SUCCESS, payload: res.data});
+    })
+    .catch(err => {
+        dispatch({type: t.STORE_RIDER_FAIL});
+        console.log(err);
+    })
+}
+
+export const notifyRider = (id, riderData) => dispatch => {
+    dispatch({type: t.START_REQUEST});
+    axiosWithAuth()
+    .post(`/drivers/${id}/message`, riderData)
+    .then(res => {
+        dispatch({type: t.NOTIFY_DRIVER_SUCCESS});
+    })
+    .catch(err => {
+        dispatch({type: t.NOTIFY_DRIVER_FAIL});
+        console.log(err);
+    })
+}

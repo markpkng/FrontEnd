@@ -11,20 +11,27 @@ const Image = styled.img `
 `
 const Div = styled.div `
     font-family: 'Passion One';
-    font-size: 5rem;
+    font-size: 6rem;
+    color: white;
+    text-shadow: 1px 1px 1px grey;
 `
 const WelcomeWrap = styled.div `
     width: 100%;
     min-height: 88vh;
     background-position: 0 50%;
-    /* // background-image: url(../images/motorcycleride.jpg); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 `
 
 const Message = styled.div `
-    margin-top: 2rem;
+    margin-top: 3rem;
     font-family: 'Patua One', sans-serif;
     font-size: 3rem;
+    color: white;
+    text-shadow: 1px 1px 1px grey;
 `
 
 const Welcome = () => {
