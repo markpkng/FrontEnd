@@ -21,9 +21,20 @@ const FlexColumn = styled.div `
             text-decoration: none;
         }
     }
+
+    button {
+        font-size: 1.5rem;
+        width: 100px;
+    }
 `
 const Input = styled.input `
     width: 100%;
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid green;
 `
 
 const Submit = {
@@ -55,7 +66,7 @@ const LoginForm = (props) => {
                         {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
                         <Input type='text' value={username} placeholder='Username' onChange={e => handleUsername(e.target.value)} required/>
                         <Input type='password' value={password} placeholder='Password' onChange={e => handlePassword(e.target.value)} required/>
-                        <button style={Submit} type='submit'>Login</button>
+                        <Button style={Submit} type='submit'>Submit</Button>
                         <p>Need to create an account? Click <Link className='here' to='/register/role'>here</Link> to register.</p>
                     </FlexColumn>
                 </form>

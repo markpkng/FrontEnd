@@ -8,6 +8,10 @@ const OuterDiv = styled.div `
     padding: 1rem;
     border-radius: 5px;
     max-width: 500px;
+
+    h1 {
+        font-size: 4rem;
+    }
 `
 
 const Login = (props) => {

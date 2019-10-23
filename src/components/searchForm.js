@@ -8,13 +8,19 @@ const FlexColumn = styled.div `
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    max-width: 300px;
+    max-width: 500px;
+    font-size: 40px;
 `
 const Submit = {
     margin: '2%',
+    fontSize: '20px',
 }
 
 const Warning = {
+    fontSize: '20px',
+}
+
+const Searchbox = {
     fontSize: '20px',
 }
 
@@ -22,14 +28,16 @@ const SearchForm = ({input, handleInput, handleSubmit}) => {
     const error = useSelector(state => state.error);
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <FlexColumn>
                 {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
                 <span>Search by location: </span>
-                <input type='text' value={input} placeholder='Location' onChange={e => handleInput(e.target.value)}/>
+                <FormGroup>
+                <Input type='text' value={input} placeholder='Location' style={Searchbox} onChange={e => handleInput(e.target.value)}/>
+                </FormGroup>
                 <Button style={Submit} type='submit'>Submit</Button>
                 </FlexColumn>
-            </form>
+            </Form>
         </div>
     );
 }

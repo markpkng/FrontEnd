@@ -145,3 +145,17 @@ export const updateRider = (id, rider) => dispatch => {
 }
 
 export const toggleRegisterModal = () => ({type: t.TOGGLE_REGISTER_MODAL});
+
+export const uploadImage = (id, image) => dispatch => {
+    dispatch({type: t.START_REQUEST});
+    axiosWithAuth()
+    .post(`/drivers/${id}/image`, image)
+    .then(res => {
+        dispatch({type: t.UPLOAD_IMAGE_SUCCESS});
+        console.log(res);
+    })
+    .catch(err => {
+        dispatch({type: t.UPLOAD_IMAGE_FAIL});
+        console.log(err);
+    })
+}

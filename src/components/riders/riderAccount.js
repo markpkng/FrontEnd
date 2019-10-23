@@ -22,8 +22,9 @@ const OuterDiv = styled.div `
     max-width: 400px;
     padding: 4rem 0;
 `
-
-
+const Mybutton = {
+    fontSize: '20px',
+}
 
 const RiderAccount = (props) => {
     const dispatch = useDispatch();
@@ -58,13 +59,13 @@ const RiderAccount = (props) => {
         <div>
             {user && <UpdateRiderForm {...props} rider={user}/>}
             <div>
-                <Button color="danger" onClick={toggle}>Delete Account</Button>
+                <Button style={Mybutton} color="danger" onClick={toggle}>Delete Account</Button>
                 <Modal isOpen={modal} toggle={toggle}>
                     <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                    <ModalBody>Are you sure you want to delete your account?</ModalBody>
+                    <ModalBody style={Mybutton}>Are you sure you want to delete your account?</ModalBody>
                     <ModalFooter>
-                    <Button color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
-                    <Button color="secondary" onClick={toggle}>Cancel</Button>
+                    <Button style={Mybutton} color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
+                    <Button style={Mybutton} color="secondary" onClick={toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

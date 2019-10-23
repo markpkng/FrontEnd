@@ -10,8 +10,38 @@ const HeaderContainer = styled.div `
     justify-content: space-between;
     align-items: center;
     height: 6vh;
-    padding: 2rem;
+    padding: 4rem;
     background: #46351D;
+
+    .rfl {
+        font-family: 'Passion One', sans-serif;
+        font-size: 4rem;
+        @media (max-width: 730px) {
+            font-size: 3rem;
+        }
+        @media (max-width: 476px) {
+            font-size: 2rem;
+        }
+    }
+
+    .safe {
+        font-size: 4rem;
+        font-family: 'Audiowide', sans-serif;
+        margin-left: 2rem;
+        @media (max-width: 730px) {
+            display: none;
+        }
+    }
+
+    .for {
+        font-family: 'Roboto', sans-serif;
+        margin-left: 2rem;
+        font-size: 3rem;
+        @media (max-width: 730px) {
+            display: none;
+        }
+    }
+
 `
 
 const StyledLink = styled(Link) `
@@ -24,13 +54,13 @@ const StyledLink = styled(Link) `
         color: grey;
         text-decoration: none;
     }
+    @media (max-width: 440px) {
+        font-size: 1.5rem;
+    }
 `
 
 const Logo = styled(Link) `
-    font-size: 3rem; 
-    font-family: Passion One;
     color: white;
-
     &:hover {
         color: grey;
         text-decoration: none;
@@ -44,7 +74,7 @@ const Header = () => {
         <HeaderContainer>
             <div>
                 <Logo to='/'>
-                    <div>Ride For Life</div>
+                    <div><span className='rfl'>Ride For Life</span><span className='for'>for</span> <span className='safe'>SAFE</span></div>
                 </Logo>
             </div>
             <div>

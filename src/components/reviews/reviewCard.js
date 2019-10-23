@@ -17,7 +17,6 @@ const ReviewDiv = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
-
     .modalButtons {
         display: flex;
 
@@ -31,6 +30,10 @@ const FlexColumn = styled.div `
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+`
+
+const Comment = styled.p `
+    padding: 10%;
 `
 
 const ReviewCard = ({review, match, history}) => {
@@ -86,8 +89,8 @@ const ReviewCard = ({review, match, history}) => {
         <ReviewDiv>
             <p>Posted by: {anonymous ? 'Anonymous' : reviewerName}</p>
             <p>on {new Date(date).toISOString().substring(0, 10)}</p>
-            <ReactStars count={5} value={stars} edit={false} size={50} color2={'#ffd700'}/>
-            {comment && <p>{comment}</p>}
+            <ReactStars count={5} value={stars} edit={false} size={50} color2={'#E1BE11'}/>
+            {comment && <Comment>{comment}</Comment>}
             
             <div className={!deleteModal && !editModal && 'modalButtons'}>
             {/* Delete Review Modal */}

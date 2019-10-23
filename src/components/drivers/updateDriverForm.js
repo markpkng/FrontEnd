@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Form, FormGroup, Input, Button, Alert} from 'reactstrap';
+import {Alert} from 'reactstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import { updateDriver } from '../../actions/actions';
@@ -14,17 +14,62 @@ const FlexColumn = styled.div `
     align-items: center;
     margin: 0 auto;
 
+    h1 {
+        font-size: 4rem;
+    }
+
+    h4 {
+        font-size: 3rem;
+    }
+
     .bio {
         min-width: 80%;
         min-height: 100px;
     }
 
     .edit {
+        font-family: 'Roboto', sans-serif;
+        font-size: 2rem;
         &:hover {
             opacity: 0.5;
         }
     }
 `
+
+const Input = styled.input `
+    width: 90%;
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid green;
+    font-family: 'Roboto', sans-serif;
+`
+
+const Textarea = styled.textarea `
+    width: 90%;
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid green;
+    font-family: 'Roboto', sans-serif;
+`
+
+const Available = styled.div `
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    margin: 2rem;
+    input {
+        transform: scale(2)
+    }
+
+`
+
+
+
 const Submit = {
     margin: '2%',
 }
@@ -32,6 +77,7 @@ const Submit = {
 const Warning = {
     fontSize: '20px',
 }
+
 
 const UpdateDriverForm = ({driver}) => {
     const error = useSelector(state => state.error);
@@ -57,27 +103,27 @@ const UpdateDriverForm = ({driver}) => {
             <form onSubmit={handleSubmit}>
                 <FlexColumn>
                     {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
-                    <h2>Your Account Details</h2>
-                    {!edit && <h4 className='edit' onClick={() => setEdit(true)}>Edit <FontAwesomeIcon icon={faPencilAlt} className='fa-1x'/></h4>}
+                    <h1>Your Account Details</h1>
+                    {!edit && <div className='edit' onClick={() => setEdit(true)}>Edit <FontAwesomeIcon icon={faPencilAlt} className='fa-1x'/></div>}
                     
-                    <input disabled={!edit} type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>
+                    <Input disabled={!edit} type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>
                     
                     
-                    <input disabled={!edit} type='text' value={location} placeholder='Location' onChange={e => handleLocation(e.target.value)} required/>
+                    <Input disabled={!edit} type='text' value={location} placeholder='Location' onChange={e => handleLocation(e.target.value)} required/>
                   
                     
-                    <input disabled={!edit} className='bio' type='textarea' value={bio} placeholder='Bio' onChange={e => handleBio(e.target.value)} required/>
+                    <Textarea disabled={!edit} className='bio' wrap='soft' value={bio} placeholder='Bio' onChange={e => handleBio(e.target.value)} required/>
                  
-                    <input disabled={!edit} type='text' value={price} placeholder='Price' onChange={e => handlePrice(e.target.value)} required/>
+                    <Input disabled={!edit} type='text' value={price} placeholder='Price' onChange={e => handlePrice(e.target.value)} required/>
                
-                    <label>Available: <input disabled={!edit} type='checkbox' checked={available} onChange={() => setAvailable(!available)}/></label>
+                    <Available>Available: <input disabled={!edit} type='checkbox' checked={available} onChange={() => setAvailable(!available)}/></Available>
               
                     {edit && <>
-                    <input type='password' placeholder='Current Password' onChange={e => handlePassword(e.target.value)} required/>
+                    <Input type='password' placeholder='Current Password' onChange={e => handlePassword(e.target.value)} required/>
                 
-                    <input type='password' placeholder='New Password?' onChange={e => handleNewPassword(e.target.value)}/>
+                    <Input type='password' placeholder='New Password?' onChange={e => handleNewPassword(e.target.value)}/>
                    
-                    <Button style={Submit} type='submit'>Submit</Button></>}
+                    <button style={Submit} type='submit'>Submit</button></>}
                 </FlexColumn>
             </form>
         </div>

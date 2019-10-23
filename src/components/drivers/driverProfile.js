@@ -26,6 +26,7 @@ const OuterDiv = styled.div `
         width: 80%;
     }
 `
+const Attribute = styled.span `font-weight: bold`;
 
 const DriverProfile = (props) => {
     const {id} = props.match.params;
@@ -64,12 +65,12 @@ const DriverProfile = (props) => {
         <OuterDiv>
             <div>
                 <h1>Driver Profile</h1>
-                <p>Username: {username}</p>
-                <p>Name: {name}</p>
-                <p>Location: {location}</p>
-                <p>Price: {price}</p>
-                <p>Bio: {bio}</p>
-                <p>Available: {available ? 'Yes!' : 'No'}</p>
+                <p><Attribute>Username:</Attribute> {username}</p>
+                <p><Attribute>Name:</Attribute> {name}</p>
+                <p><Attribute>Location:</Attribute> {location}</p>
+                <p><Attribute>Price:</Attribute> {price}</p>
+                <p><Attribute>Bio:</Attribute> {bio}</p>
+                <p><Attribute>Available:</Attribute> {available ? 'Yes!' : 'No'}</p>
                 <ReviewForm {...props}/>
                 {reviews.length > 0 && <h3>Reviews:</h3>}
                 {reviews.map(review => <ReviewCard {...props} key={review.review_id} review={review}/>)}

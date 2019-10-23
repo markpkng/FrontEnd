@@ -19,6 +19,10 @@ const layout = {
     justifyContent: 'center'
 }
 
+const Size = {
+    fontSize: '20px',
+}
+
 const DriverList = () => {
     const dispatch = useDispatch();
     const [input, setInput, handleInput] = useInput('');
@@ -60,7 +64,7 @@ const DriverList = () => {
         <div>
             {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
             <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
-            <label>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></label>
+            <label style={Size}>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></label>
             <span style={layout}>{drivers.filter(driver => driver.location.toLowerCase().includes(search.toLowerCase()) && (nonAvailable || driver.available))
                     .map(driver => <DriverCard
                                         key={driver.username}

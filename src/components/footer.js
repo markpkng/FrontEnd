@@ -12,18 +12,21 @@ const OuterDiv = styled.div `
     align-items: center;
     width: 100%;
     background: #E6E8E5;
-    height: 6vh;
+    height: 4vh;
 
     .copy {
         width: 50%;
         text-align: center;
         font-family: Roboto;
         font-size: 2rem;
-        color: #46351D;
+        color: #66bf6d;
 
         &:hover {
             color: #3CDBD3;
             text-decoration: none;
+        }
+        @media (max-width: 700px) {
+            font-size: 1rem;
         }
     }
 
@@ -34,7 +37,7 @@ const OuterDiv = styled.div `
         justify-content: space-evenly;
 
         .icon {
-            color: #46351D;
+            color: #66bf6d;
 
             &:hover {
                 color: #3CDBD3;
@@ -49,7 +52,7 @@ const Footer = () => {
     return (
         <OuterDiv>
             <div className='copy'>
-                <span>© Ride For Life</span>
+                <span>© Ride For Life Build Week Team 2019</span>
             </div>
             <div className='social'>
                 <a href="#" target="blank">
