@@ -19,16 +19,32 @@ const FlexColumn = styled.div `
         width: 200px;
     }
 
+    .reg-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        @media screen and (max-width: 400px) {
+            flex-direction: column;
+        }
+    }
+
     h1 {
         font-size: 4rem;
-    }
-    .back {
         width: 100%;
     }
 
+    .back {
+        // width: 100%;
+    }
+
     .backArrow {
-        left: 0;
-        position: absolute;
+        // left: 0;
+        // position: absolute;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.5;
+        }
     }
 `
 const Input = styled.input `
@@ -60,10 +76,13 @@ const RegisterDriver = ({role, input, errorHandling, history}) => {
             <FlexColumn>
                 {!role && <Redirect to='/register/role'/>}
                 {role && role === 'rider' && <Redirect to='/register/driver'/>}
+
+                <div className='reg-header'>
                 <div className='back'>
                     <FontAwesomeIcon onClick={() => history.push('/register/role')} icon={faArrowAltCircleLeft} className='fa-3x backArrow'/>
                 </div>
                 <h1>Driver Registration</h1>
+                </div>
             
                 <Input type='text' placeholder='Username *' value={username} onChange={e => handleUsername(e.target.value)} required/>
              

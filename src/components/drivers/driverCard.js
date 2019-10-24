@@ -29,6 +29,12 @@ const StyledCard = styled(Card) `
     .header {
         font-size: 2rem;
     }
+
+    .btn-center {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
 `
 
 const Attribute = styled.span `
@@ -83,7 +89,7 @@ const DriverCard = ({driver, ratings}) => {
                     <p><Attribute>Bio:</Attribute> {bio}</p>
                     <p><Attribute>Available:</Attribute> {available ? 'Yes!' : 'No'}</p>
                     {driver.phonenumber && <div onClick={e => e.preventDefault()}>
-                        <Button className='mButton' onClick={toggleNotifyModal}>Request Ride <FontAwesomeIcon icon={faMotorcycle} className='fa-1x'/></Button>
+                        <div className='btn-center'><Button className='mButton' onClick={toggleNotifyModal}>Request Ride <FontAwesomeIcon icon={faMotorcycle} className='fa-1x'/></Button></div>
                         <Modal className='mStyles' isOpen={notifyModal} toggle={toggleNotifyModal}>
                             <ModalHeader className='mHeader'>
                                 <div className='title' toggle={toggleNotifyModal}>Send text to {name}</div>

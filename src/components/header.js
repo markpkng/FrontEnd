@@ -56,11 +56,12 @@ const HeaderContainer = styled.div `
         }
     }
 
-    .for {
+    .with {
         font-family: 'Roboto', sans-serif;
         font-style: italic;
         margin-left: 1.5rem;
         font-size: 2rem;
+        vertical-align: 20%;
     }
 
     .link {
@@ -118,7 +119,7 @@ const Header = () => {
         <HeaderContainer>
             <div>
                 <Logo to='/'>
-                    <div><span className='rfl'>Ride For Life</span><span className='for'>for</span> <span className='safe'>SAFE</span></div>
+                    <div><span className='rfl'>Ride For Life</span><span className='with'>with</span><span className='safe'>SAFE</span></div>
                 </Logo>
             </div>
             <LinksWrap>

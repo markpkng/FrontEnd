@@ -12,7 +12,7 @@ const OuterDiv = styled.div `
     background-color: rgba(70, 53, 29, 0.6);
     height: 10vh;
     @media screen and (max-width: 600px){height: 10vh;}
-    @media screen and (max-width: 450px){height: 12vh;}
+    @media screen and (max-width: 450px){height: 18vh;}
 
     .copy {
         width: 50%;

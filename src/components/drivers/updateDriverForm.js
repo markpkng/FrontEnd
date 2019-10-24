@@ -26,6 +26,12 @@ const FlexColumn = styled.div `
         justify-content: flex-end;
     }
 
+    .account-details {
+        p {
+            text-align: left;
+        }
+    }
+
     .bio {
         min-width: 80%;
         min-height: 100px;
@@ -38,6 +44,7 @@ const FlexColumn = styled.div `
         &:hover {
             opacity: 0.5;
         }
+        margin-bottom: 1rem;
     }
 
     .profileIcon {
@@ -137,12 +144,13 @@ const Attribute = styled.span `font-weight: bold`;
 
 const FA = styled(FontAwesomeIcon) `
     position: relative;
-    margin-right: 3rem;
+    // margin-right: 3rem;
     bottom: 20px;
     &:hover {
         opacity: 0.5;
     }
-    
+    cursor: pointer;
+    font-size: 2rem;
 `
 
 const UpdateDriverForm = ({driver}) => {
@@ -196,6 +204,8 @@ const UpdateDriverForm = ({driver}) => {
                             </ProfileFilter>) : (
                             <FontAwesomeIcon className='profileIcon' icon={faUserCircle} className='fa-10x'/>)}</label>
                         </ProfileWrapper>
+
+                        <div className='account-details' >
                     {!edit && <div className='edit' onClick={() => setEdit(true)}>Edit <FontAwesomeIcon icon={faPencilAlt} className='fa-1x'/></div>}
                     {!edit && <p><Attribute>Name: </Attribute>{name}</p>}
                     {edit && <Input disabled={!edit} type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>}
@@ -207,6 +217,7 @@ const UpdateDriverForm = ({driver}) => {
                     {edit && <Textarea disabled={!edit} className='bio' wrap='soft' value={bio} placeholder='Bio' onChange={e => handleBio(e.target.value)} required/>}
                     {!edit && <p><Attribute>Price: </Attribute>{price}</p>}
                     {edit && <Input disabled={!edit} type='text' value={price} placeholder='Price' onChange={e => handlePrice(e.target.value)} required/>}
+                    </div>
                
                     <Available><Attribute>Available:</Attribute> <input disabled={!edit} type='checkbox' checked={available} onChange={() => setAvailable(!available)}/></Available>
               

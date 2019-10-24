@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import UpdateDriverForm from './updateDriverForm';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
 import {deleteDriver} from '../../actions/actions';
 import {decode} from '../decode';
@@ -21,14 +21,16 @@ const OuterDiv = styled.div `
     width: 100%;
     border-radius: 5px;
     max-width: 400px;
-    padding: 4rem 0;
+    padding: 4rem 3%;
     box-shadow: 10px 10px 10px darkgreen;
+    margin: 3rem 0;
 `
 
 const DriverAccount = ({history}) => {
     const dispatch = useDispatch();
     const [user, setUser] = useState(null);
     const [modal, setModal] = useState(false);
+    const reload = useSelector(state => state.reload);
 
     const toggle = () => setModal(!modal);
 
@@ -51,7 +53,7 @@ const DriverAccount = ({history}) => {
             console.log(err);
             dispatch({type: GET_DRIVER_FAIL, payload: err.response.data.message && err.response.data.message});
         })
-    },[]);
+    },[reload]);
 
     return (
         <OuterDiv>

@@ -7,10 +7,12 @@ import {Button} from 'reactstrap';
 const FlexColumn = styled.div `
     display: flex;
     // flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin: 0 auto;
     padding-top: 10px;
-    max-width: 600px;
+    padding: 3%;
+    width: 100%;
 
     .loc {
         font-family: 'Roboto', sans-serif;
@@ -21,7 +23,7 @@ const FlexColumn = styled.div `
 const Input = styled.input `
     width: 50%;
     font-size: 1.5rem;
-    margin: 0.5rem;
+    // margin: 0.5rem;
     border-radius: 5px;
     text-align: center;
     border: 1px solid green;
@@ -32,9 +34,10 @@ const SearchForm = ({input, handleInput, handleSubmit}) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <h4>Search by location:</h4>
                 <FlexColumn>
                 {error && <Alert color="warning"><h2>{error}</h2></Alert>}
-                <span className='loc'>Search by location: </span>
+                {/* <span className='loc'>Search by location: </span> */}
                 
                 <Input type='text' value={input} placeholder='Location' onChange={e => handleInput(e.target.value)}/>
                 

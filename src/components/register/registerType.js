@@ -13,17 +13,20 @@ const Type = styled.div `
     border-radius: 5px;
     width: 200px;
     font-family: 'Patua One', serif;
-    color: #9FE09F;
+    // color: #9FE09F;
+    color: white;
     padding: 0.5rem;
     margin: 1rem;
     font-size: 2.5rem;
+    cursor: pointer;
 
     .role {
         margin: 1rem;
     }
 
     &:hover{
-        color: #3CDBD3;
+        // color: #3CDBD3;
+        color: #9FE09F;
     }
 `
 

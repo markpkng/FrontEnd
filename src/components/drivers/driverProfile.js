@@ -26,6 +26,7 @@ const OuterDiv = styled.div`
     max-width: 700px;
     padding: 4rem;
     box-shadow: 10px 10px 10px darkgreen;
+    margin: 3rem 0;
 
     .area {
         width: 80%;
@@ -83,6 +84,7 @@ const DriverProfile = props => {
     const { username, name, location, price, bio, available } = driver;
     const [notifyModal, setNotifyModal] = useState(false);
     const rider = useSelector(state => state.user);
+    const reload = useSelector(state => state.reload);
 
     const toggleNotifyModal = () => {
         setNotifyModal(!notifyModal);
@@ -124,7 +126,7 @@ const DriverProfile = props => {
                 console.log(err);
                 dispatch({ type: GET_REVIEWS_FAIL, payload: err.response.data.message && err.response.data.message});
             });
-    }, [dispatch, id]);
+    }, [dispatch, id, reload]);
 
     return (
         <OuterDiv>

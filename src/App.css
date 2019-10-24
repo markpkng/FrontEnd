@@ -102,3 +102,9 @@ p {
     color: white;
     font-size: 4rem;
   }
+
+  .cta {
+    border: 1px solid white;
+    background: rgba(9, 199, 51, 0.7);
+    font-size: 2rem;
+  }

@@ -25,7 +25,7 @@ const NavBar = props => {
         <div>
             <Navbar className='navbar' color="faded" light>
                 <NavbarBrand href="/">
-                    <span className='rflNav'>Ride For Life</span><span className='forNav'> for </span><span className='safeNav'>SAFE</span>
+                    <span className='rflNav'>Ride For Life</span><span className='forNav'> with </span><span className='safeNav'>SAFE</span>
                 </NavbarBrand>
                 <FontAwesomeIcon onClick={toggleNavbar} className={collapsed ? 'closedNav' : 'openNav'} icon={faBars}/>
                 <Collapse isOpen={!collapsed} navbar>

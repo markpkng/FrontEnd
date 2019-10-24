@@ -30,12 +30,12 @@ const Available = styled.div `
     }
 `
 const SearchDiv = styled.div `
-    width: 100%;
+    width: 90%;
     background: #E6E8e5;
-    padding: 1rem;
+    padding: 2rem 1rem 1rem;
     margin-bottom: 3rem;
     border-radius: 5px;
-    max-width: 500px;
+    max-width: 400px;
     box-shadow: 10px 10px 10px darkgreen;
 
     h1 {

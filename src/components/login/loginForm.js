@@ -17,7 +17,8 @@ const FlexColumn = styled.div `
         color: brown;
 
         &:hover {
-            color: #3CDBD3;
+            // color: #3CDBD3;
+            color: gray;
             text-decoration: none;
         }
     }
