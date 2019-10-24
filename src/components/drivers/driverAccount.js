@@ -49,7 +49,7 @@ const DriverAccount = ({history}) => {
         })
         .catch(err => {
             console.log(err);
-            dispatch({type: GET_DRIVER_FAIL, payload: err.response.data.message});
+            dispatch({type: GET_DRIVER_FAIL, payload: err.response.data.message && err.response.data.message});
         })
     },[]);
 

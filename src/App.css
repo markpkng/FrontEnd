@@ -39,6 +39,7 @@ p {
 
 .App {
     text-align: center;
+    height: 100%;
   }
   
   /* Reactstrap Modals */
@@ -52,6 +53,7 @@ p {
   }
 
   .mButton {
+    margin: 0.5rem;
     font-size: 1.5rem;
   }
 

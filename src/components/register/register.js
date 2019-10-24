@@ -18,7 +18,8 @@ const OuterDiv = styled.div `
     
 
     .form {
-        width: 30%;
+        width: 90%;
+        max-width: 500px;
         background: #E6E8e5;
         padding: 3rem;
         border-radius: 5px;
@@ -94,8 +95,8 @@ const Register = ({history}) => {
             <Modal open={modal} message={'You have been registered.'} className='registerModal' title={'Regiser Message'} action={modalAction}/>
             <form className='form' onSubmit={handleSubmit}>
                 <Route path='/register/role' render={props => <RegisterType {...props} setRole={setRole}/>}/>
-                <Route path='/register/rider' render={() => <RegisterRider role={role} input={input} errorHandling={errorHandling}/>}/>
-                <Route path='/register/driver' render={() => <RegisterDriver role={role} input={input} errorHandling={errorHandling}/>}/>
+                <Route path='/register/rider' render={props => <RegisterRider {...props} role={role} input={input} errorHandling={errorHandling}/>}/>
+                <Route path='/register/driver' render={props => <RegisterDriver {...props} role={role} input={input} errorHandling={errorHandling}/>}/>
             </form>
         </OuterDiv>
     );

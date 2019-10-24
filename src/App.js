@@ -30,13 +30,13 @@ const OuterDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 10rem;
-    padding-top: 5rem;
-    min-height: 86vh;
+    // padding-bottom: 10rem;
+    // padding-top: 5rem;
+    min-height: 84vh;
     width: 100%;
 
-    @media screen and (max-width: 600px) {
-        min-height: 70vh;
+    @media screen and (max-width: 500px){
+        min-height: 86vh;
     }
 `;
 

@@ -42,6 +42,10 @@ const OuterDiv = styled.div`
     .types {
         display: flex;
         flex-direction: row;
+
+        @media screen and (max-width: 540px) {
+            flex-direction: column;
+        }
     }
 `
 

@@ -13,8 +13,7 @@ export const login = (credentials, history) => dispatch => {
         history.push('/');
     })
     .catch(err => {
-        dispatch({type: t.LOGIN_FAIL, payload: err.response.data.message})
-        console.log(err.response.data.message);
+        dispatch({type: t.LOGIN_FAIL, payload: err.response.data.message && err.response.data.message})
     });
 };
 
@@ -35,8 +34,7 @@ export const register = user => dispatch => {
         console.log(res);
     })
     .catch(err => {
-        dispatch({type: t.REGISTER_FAIL, payload: err.response.data.message});
-        console.log(err);
+        dispatch({type: t.REGISTER_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 }
 
@@ -49,8 +47,7 @@ export const addReview = review => dispatch => {
         console.log(res);
     })
     .catch(err => {
-        dispatch({type: t.ADD_REVIEW_FAIL, payload: err.response.data.message});
-        console.log(err);
+        dispatch({type: t.ADD_REVIEW_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 
     console.log(review);
@@ -65,8 +62,7 @@ export const editReview = (id, review) => dispatch => {
         console.log(res);
     })
     .catch(err => {
-        dispatch({type: t.EDIT_REVIEW_FAIL, payload: err.response.data.message});
-        console.log(err);
+        dispatch({type: t.EDIT_REVIEW_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 
     console.log(review);
@@ -82,7 +78,7 @@ export const deleteReview = id => dispatch => {
         dispatch({type: t.DELETE_REVIEW_SUCCESS});
     })
     .catch(err => {
-        dispatch({type: t.DELETE_REVIEW_FAIL, payload: err.response.data.message});
+        dispatch({type: t.DELETE_REVIEW_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 }
 
@@ -97,8 +93,7 @@ export const deleteRider = (id, history) => dispatch => {
         history.push('/');
     })
     .catch(err => {
-        dispatch({type: t.DELETE_RIDER_FAIL, payload: err});
-        console.log(err);
+        dispatch({type: t.DELETE_RIDER_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 }
 
@@ -112,8 +107,7 @@ export const deleteDriver = (id, history) => dispatch => {
         history.push('/');
     })
     .catch(err => {
-        dispatch({type: t.DELETE_DRIVER_FAIL, payload: err.response.data.message});
-        console.log(err);
+        dispatch({type: t.DELETE_DRIVER_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 }
 
@@ -127,8 +121,7 @@ export const updateDriver = (id, driver) => dispatch => {
         dispatch({type: t.UPDATE_DRIVER_SUCCESS});
     })
     .catch(err => {
-        console.log(err);
-        dispatch({type: t.UPDATE_DRIVER_FAIL, payload: err.response.data.message});
+        dispatch({type: t.UPDATE_DRIVER_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 }
 
@@ -141,8 +134,7 @@ export const updateRider = (id, rider) => dispatch => {
         dispatch({type: t.UPDATE_RIDER_SUCCESS});
     })
     .catch(err => {
-        console.log(err);
-        dispatch({type: t.UPDATE_RIDER_FAIL, payload: err.response.data.message});
+        dispatch({type: t.UPDATE_RIDER_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 }
 
@@ -159,8 +151,7 @@ export const updateProfileImage = (id, image) => dispatch => {
         console.log(res);
     })
     .catch(err => {
-        dispatch({type: t.UPDATE_PROFILE_IMAGE_FAIL});
-        console.log(err);
+        dispatch({type: t.UPDATE_PROFILE_IMAGE_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 }
 
@@ -172,8 +163,7 @@ export const storeRider = id => dispatch => {
         dispatch({type: t.STORE_RIDER_SUCCESS, payload: res.data});
     })
     .catch(err => {
-        dispatch({type: t.STORE_RIDER_FAIL});
-        console.log(err);
+        dispatch({type: t.STORE_RIDER_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 }
 
@@ -185,7 +175,6 @@ export const notifyRider = (id, riderData) => dispatch => {
         dispatch({type: t.NOTIFY_DRIVER_SUCCESS});
     })
     .catch(err => {
-        dispatch({type: t.NOTIFY_DRIVER_FAIL});
-        console.log(err);
+        dispatch({type: t.NOTIFY_DRIVER_FAIL, payload: err.response.data.message && err.response.data.message});
     })
 }

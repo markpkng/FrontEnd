@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {Card, CardHeader, CardBody, Modal, Button, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faGlobeAfrica} from "@fortawesome/free-solid-svg-icons";
+import {faGlobeAfrica, faMotorcycle} from "@fortawesome/free-solid-svg-icons";
 import ReactStars from 'react-rating-stars-component';
 import {notifyRider} from '../../actions/actions';
 import {useSelector, useDispatch} from 'react-redux';
@@ -44,13 +44,6 @@ const ProfileImg = styled.div`
     background-position: 50% 50%;
     margin: 0 auto;
 `
-const StyledButton = styled.button `
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.5rem;
-    margin: 2rem;
-    border-radius: 5px;
-    border: 1px solid green;
-`
 
 const ModalButton = styled(Button) `
   && {
@@ -90,7 +83,7 @@ const DriverCard = ({driver, ratings}) => {
                     <p><Attribute>Bio:</Attribute> {bio}</p>
                     <p><Attribute>Available:</Attribute> {available ? 'Yes!' : 'No'}</p>
                     {driver.phonenumber && <div onClick={e => e.preventDefault()}>
-                        <StyledButton color="danger" className='modalButton' onClick={toggleNotifyModal}>Request Ride</StyledButton>
+                        <Button className='mButton' onClick={toggleNotifyModal}>Request Ride <FontAwesomeIcon icon={faMotorcycle} className='fa-1x'/></Button>
                         <Modal className='mStyles' isOpen={notifyModal} toggle={toggleNotifyModal}>
                             <ModalHeader className='mHeader'>
                                 <div className='title' toggle={toggleNotifyModal}>Send text to {name}</div>

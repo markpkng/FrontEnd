@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {addReview} from '../../actions/actions';
 import {decode} from '../decode';
 import ReactStars from 'react-rating-stars-component';
+import {Alert, Button} from 'reactstrap';
 
 const FlexColumn = styled.div `
     width: 100%;
@@ -38,13 +39,6 @@ const Anonymous = styled.div `
         transform: scale(2)
     }
 `
-const StyledButton = styled.button `
-    font-family: 'Roboto', sans-serif;
-    font-size: 2rem;
-    margin: 2rem;
-    border-radius: 5px;
-    border: 1px solid green;
-`
 
 const ReviewForm = ({match, edit}) => {
     const dispatch = useDispatch();
@@ -70,7 +64,7 @@ const ReviewForm = ({match, edit}) => {
                     <ReactStars half={false} count={5} value={stars} onChange={value => setStars(value)} size={50} color2={'#E1BE11'}/>   
                     <Textarea type='textarea' value={comment} onChange={e => handleComment(e.target.value)} placeholder='Comment'/>
                     <Anonymous>Post as anonymous? <input type='checkbox' onChange={() => setAnonymous(!anonymous)} checked={anonymous}/></Anonymous>
-                    <StyledButton type='submit'>Submit</StyledButton>
+                    <Button className='mButton' type='submit'>Submit</Button>
                 </FlexColumn>
             </form>
         </Div>  

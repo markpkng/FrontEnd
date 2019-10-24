@@ -1,7 +1,9 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import styled from 'styled-components';
-import {Alert} from 'reactstrap';
+import {Alert, Button} from 'reactstrap';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
 
 
 const FlexColumn = styled.div `
@@ -10,6 +12,7 @@ const FlexColumn = styled.div `
     align-items: center;
     width: 90%;
     margin: 0 auto;
+    position: relative;
 
     button {
         font-size: 1.5rem;
@@ -18,6 +21,14 @@ const FlexColumn = styled.div `
 
     h1 {
         font-size: 4rem;
+    }
+    .back {
+        width: 100%;
+    }
+
+    .backArrow {
+        left: 0;
+        position: absolute;
     }
 `
 const Input = styled.input `
@@ -30,7 +41,7 @@ const Input = styled.input `
     border: 1px solid green;
 `
 
-const RegisterDriver = ({role, input, errorHandling}) => {
+const RegisterDriver = ({role, input, errorHandling, history}) => {
     const {
         username, handleUsername,
         password, handlePassword,
@@ -49,6 +60,9 @@ const RegisterDriver = ({role, input, errorHandling}) => {
             <FlexColumn>
                 {!role && <Redirect to='/register/role'/>}
                 {role && role === 'rider' && <Redirect to='/register/driver'/>}
+                <div className='back'>
+                    <FontAwesomeIcon onClick={() => history.push('/register/role')} icon={faArrowAltCircleLeft} className='fa-3x backArrow'/>
+                </div>
                 <h1>Driver Registration</h1>
             
                 <Input type='text' placeholder='Username *' value={username} onChange={e => handleUsername(e.target.value)} required/>
@@ -67,8 +81,7 @@ const RegisterDriver = ({role, input, errorHandling}) => {
                 <Input type='text' placeholder='Price *' value={price} onChange={e => handlePrice(e.target.value)} required/>
             
                 <Input type='text' placeholder='Bio *' value={bio} onChange={e => handleBio(e.target.value)} required/>
-            
-                <button type='submit'>Sign Up</button>
+                <Button type='submit'>Sign Up</Button>
             </FlexColumn>
     );
 }

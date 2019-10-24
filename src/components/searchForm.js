@@ -2,6 +2,7 @@ import React from 'react';
 import {Alert} from 'reactstrap';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux';
+import {Button} from 'reactstrap';
 
 const FlexColumn = styled.div `
     display: flex;
@@ -17,19 +18,9 @@ const FlexColumn = styled.div `
         font-weight: bold;
     }
 `
-const StyledButton = styled.button `
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.5rem;
-    width: 80px;
-    margin: 1rem;
-    border-radius: 5px;
-    border: 1px solid green;
-`
-
 const Input = styled.input `
     width: 50%;
     font-size: 1.5rem;
-    padding: 0.75rem;
     margin: 0.5rem;
     border-radius: 5px;
     text-align: center;
@@ -47,7 +38,7 @@ const SearchForm = ({input, handleInput, handleSubmit}) => {
                 
                 <Input type='text' value={input} placeholder='Location' onChange={e => handleInput(e.target.value)}/>
                 
-                <StyledButton type='submit'>Submit</StyledButton>
+                <Button className='mButton' type='submit'>Submit</Button>
                 </FlexColumn>
             </form>
         </div>

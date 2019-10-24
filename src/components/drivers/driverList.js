@@ -18,6 +18,7 @@ const Div = styled.div `
     flex-direction: column;
     align-items: center;
     margin: 5rem;
+    padding-bottom: 5rem;
 `
 const Available = styled.div `
     font-family: 'Roboto', sans-serif;
@@ -39,6 +40,10 @@ const SearchDiv = styled.div `
 
     h1 {
         font-size: 4rem;
+    }
+
+    .filter {
+        font-size: 1.5rem;
     }
 `
 const layout = {
@@ -65,7 +70,7 @@ const DriverList = () => {
         })
         .catch(err => {
             console.log('error', err);
-            dispatch({type: GET_DRIVERS_FAIL, payload: err});
+            dispatch({type: GET_DRIVERS_FAIL, payload: err.response.data.message && err.response.data.message});
         });
 
         dispatch({type: START_REQUEST});
@@ -75,7 +80,7 @@ const DriverList = () => {
             dispatch({type: GET_REVIEWS_SUCCESS});
             setReviews(res.data);
         })
-        .catch(err => {dispatch({type: GET_REVIEWS_FAIL, payload: err});}) 
+        .catch(err => {dispatch({type: GET_REVIEWS_FAIL, payload: err.response.data.message && err.response.data.message});}) 
     },[dispatch])
 
     const handleSubmit = e => {
@@ -87,7 +92,7 @@ const DriverList = () => {
     return (
         <Div>
             <SearchDiv>
-                {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
+                {search && <span className='filter' onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
                 <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
                 <Available>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></Available>
             </SearchDiv>

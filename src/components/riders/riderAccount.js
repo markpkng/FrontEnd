@@ -50,7 +50,7 @@ const RiderAccount = (props) => {
         })
         .catch(err => {
             console.log(err);
-            dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message});
+            dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message && err.response.data.message});
         })
     },[updateRider]);
 

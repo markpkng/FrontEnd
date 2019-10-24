@@ -5,6 +5,8 @@ import ReviewCard from "../reviews/reviewCard";
 import ReviewForm from "../reviews/reviewForm";
 import styled from "styled-components";
 import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMotorcycle} from "@fortawesome/free-solid-svg-icons";
 import { notifyRider } from "../../actions/actions";
 import {
     START_REQUEST,
@@ -106,7 +108,7 @@ const DriverProfile = props => {
                 setDriver(res.data);
             })
             .catch(err => {
-                console.log(err);
+                dispatch({type: GET_DRIVER_FAIL, payload: err.response.data.message && err.response.data.message})
             });
 
         //get driver reviews
@@ -120,7 +122,7 @@ const DriverProfile = props => {
             })
             .catch(err => {
                 console.log(err);
-                dispatch({ type: GET_REVIEWS_FAIL });
+                dispatch({ type: GET_REVIEWS_FAIL, payload: err.response.data.message && err.response.data.message});
             });
     }, [dispatch, id]);
 
@@ -147,16 +149,15 @@ const DriverProfile = props => {
                     <Attribute>Available:</Attribute>{" "}
                     {available ? "Yes!" : "No"}
                 </P>
-                <HR/>
+                
                 {driver.phonenumber && (
                     <div onClick={e => e.preventDefault()}>
-                        <StyledButton
-                            color="danger"
-                            className="modalButton"
+                        <Button
+                            className="mButton"
                             onClick={toggleNotifyModal}
                         >
-                            Request Ride
-                        </StyledButton>
+                            Request Ride <FontAwesomeIcon icon={faMotorcycle} className='fa-1x'/>
+                        </Button>
                         <Modal
                             className="mStyles"
                             isOpen={notifyModal}
@@ -193,6 +194,7 @@ const DriverProfile = props => {
                         </Modal>
                     </div>
                 )}
+                <HR/>
                 <ReviewForm {...props} />
                 <HR/>
                 {reviews.length > 0 && <h3>Reviews:</h3>}

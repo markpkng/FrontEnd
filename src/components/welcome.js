@@ -4,25 +4,20 @@ import styled from 'styled-components';
 import {useDispatch} from 'react-redux';
 import {uploadImage} from '../actions/actions';
 
-const Image = styled.img `
-    width: 50%;
-    // border-radius: 10px;
-    // box-shadow: 10px 10px 10px darkgreen;
+const WelcomeWrap = styled.div `
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 const Div = styled.div `
     font-family: 'Passion One';
     font-size: 6rem;
     color: white;
     text-shadow: 1px 1px 1px grey;
-`
-const WelcomeWrap = styled.div `
-    width: 100%;
-    min-height: 88vh;
-    background-position: 0 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 `
 
 const Message = styled.div `
@@ -32,6 +27,13 @@ const Message = styled.div `
     color: white;
     text-shadow: 1px 1px 1px grey;
 `
+const InnerDiv = styled.div `
+    height: 100%;
+    width: 100%;
+    padding: 2%;
+`
+
+
 
 const Welcome = () => {
     const dispatch = useDispatch();
@@ -40,10 +42,11 @@ const Welcome = () => {
     
     return(
         <WelcomeWrap style={{backgroundImage: 'url('+require('../images/motorcycleride.jpg')+')'}}>
-            {username ? <Div>Welcome {username}!</Div> : <Div>Welcome!</Div>}
-            {/* <Image src={require('../images/motorcycleride.jpg')}/> */}
-            {role && role === 'driver' ? <Message>Thank you for being a Ride For Life driver!</Message> : (
+            <InnerDiv>
+                {username ? <Div>Welcome {username}!</Div> : <Div>Welcome!</Div>}
+                {role && role === 'driver' ? <Message>Thank you for being a Ride For Life driver!</Message> : (
                 <Message>If you're offered a seat on on a rocket ship, don't ask what seat! Just get on.</Message>)}
+            </InnerDiv>
         </WelcomeWrap>
     );
 }

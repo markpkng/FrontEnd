@@ -2,11 +2,14 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import styled from 'styled-components';
 import {Alert, Button} from 'reactstrap';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
 
 const FlexColumn = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     width: 90%;
     margin: 0 auto;
 
@@ -17,6 +20,15 @@ const FlexColumn = styled.div `
 
     h1 {
         font-size: 4rem;
+    }
+
+    .back {
+        width: 100%;
+    }
+
+    .backArrow {
+        left: 0;
+        position: absolute;
     }
 `
 const Input = styled.input `
@@ -29,7 +41,7 @@ const Input = styled.input `
     border: 1px solid green;
 `
 
-const RegisterRider = ({role, input, errorHandling}) => {
+const RegisterRider = ({role, input, errorHandling, history}) => {
     const {
         username, handleUsername,
         password, handlePassword,
@@ -45,6 +57,9 @@ const RegisterRider = ({role, input, errorHandling}) => {
         <FlexColumn>
             {!role && <Redirect to='/register/role'/>}
             {role && role === 'driver' && <Redirect to='/register/driver'/>}
+            <div className='back'>
+                <FontAwesomeIcon onClick={() => history.push('/register/role')} icon={faArrowAltCircleLeft} className='fa-3x backArrow'/>
+            </div>
             <h1>Rider Registration</h1>
           
             <Input type='text' placeholder='Username *' value={username} onChange={e => handleUsername(e.target.value)} required/>
