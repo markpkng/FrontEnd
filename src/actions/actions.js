@@ -89,6 +89,7 @@ export const deleteRider = (id, history) => dispatch => {
     axiosWithAuth()
     .delete(`/riders/${id}`)
     .then(res => {
+        localStorage.removeItem('bfl-token');
         dispatch({type: t.DELETE_RIDER_SUCCESS});
         logout(history);
     })
@@ -105,7 +106,7 @@ export const deleteDriver = (id, history) => dispatch => {
     .then(res => {
         localStorage.removeItem('bfl-token');
         dispatch({type: t.DELETE_DRIVER_SUCCESS});
-        history.push('/');
+        logout(history);
     })
     .catch(err => {
         dispatch({type: t.DELETE_DRIVER_FAIL, payload: err.response ? err.response.data.message : ''});

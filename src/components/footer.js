@@ -10,7 +10,7 @@ const OuterDiv = styled.div `
     bottom: 0;
     width: 100%;
     background-color: rgba(70, 53, 29, 0.6);
-    height: 10vh;
+    height: 6vh;
     @media screen and (max-width: 600px){height: 10vh;}
     @media screen and (max-width: 450px){height: 18vh;}
 

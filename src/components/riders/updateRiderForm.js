@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Alert} from 'reactstrap';
+import {Alert, Button} from 'reactstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import {decode} from '../decode';
@@ -43,14 +43,14 @@ const Input = styled.input `
     text-align: center;
     border: 1px solid green;
 `
-const Button = styled.button `
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.5rem;
-    margin: 2rem;
-    width: 100px;
-    border-radius: 5px;
-    border: 1px solid green;
-`
+// const Button = styled.button `
+//     font-family: 'Roboto', sans-serif;
+//     font-size: 1.5rem;
+//     margin: 2rem;
+//     width: 100px;
+//     border-radius: 5px;
+//     border: 1px solid green;
+// `
 
 const Available = styled.div `
     font-family: 'Roboto', sans-serif;
@@ -70,6 +70,7 @@ const FA = styled(FontAwesomeIcon) `
     &:hover {
         opacity: 0.5;
     }
+    cursor: pointer;
     
 `
 
@@ -94,6 +95,7 @@ const UpdateRiderForm = ({rider, updateRider}) => {
         const id = decode(localStorage.getItem('bfl-token')).subject;
         const rider = {password, name, location, searching: searching.toString()};
         dispatch(updateRider(id, newPassword ? {...rider, newPassword} : rider));
+        setEdit(false);
     }
 
     return (
@@ -102,7 +104,7 @@ const UpdateRiderForm = ({rider, updateRider}) => {
                 <FlexColumn>
                     {error && <Alert color="warning"><h2>{error}</h2></Alert>}
                     <div className='cancel'>
-                        {edit && <FA icon={faTimesCircle} onClick={() => setEdit(false)} className='fa-3x'/>}
+                        {edit && <FA icon={faTimesCircle} onClick={() => setEdit(false)} className='fa-2x'/>}
                     </div>
                     <h1>Your Account Details:</h1>
                     {!edit && <div className='edit' onClick={() => setEdit(true)}><FontAwesomeIcon icon={faPencilAlt} className='fa-1x'/> Edit Account</div>}
@@ -117,7 +119,7 @@ const UpdateRiderForm = ({rider, updateRider}) => {
                     <Input type='password' placeholder='Current Password' onChange={e => handlePassword(e.target.value)} required/>
                     
                     <Input type='password' placeholder='New Password?' onChange={e => handleNewPassword(e.target.value)}/>
-                    <Button type='submit'>Submit</Button></>}
+                    <Button className='mButton' type='submit'>Submit</Button></>}
                 </FlexColumn>
             </form>
         </div>

@@ -15,6 +15,8 @@ const WelcomeWrap = styled.div `
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-size: cover;
+    background-position: 0 50%;
 `
 const Div = styled.div `
     font-family: 'Passion One';
@@ -40,24 +42,35 @@ const CTA = styled.div `
     margin: 5rem;
 `;
 
+const WelcomeBox = styled.div`
+    background: rgba(89, 114, 67, 0.5);
+    border-radius: 1rem;
+    padding: 3rem;
+`;
+
 const Welcome = () => {
     const dispatch = useDispatch();
     const registerModal = useSelector(state => state.registerModal);
     const username = localStorage.getItem('bfl-token') ? decode(localStorage.getItem('bfl-token')).username : '';
     const role = localStorage.getItem('bfl-token') ? decode(localStorage.getItem('bfl-token')).role : '';
     console.log((role === 'driver').toString());
+    const riderImage = 'url('+require('../images/rider_main.webp')+')';
+    const driverImage = 'url('+require('../images/driver_main.jpg')+')';
+    const welcomeImage = 'url('+require('../images/motorcycleride.jpg')+')';
 
     const turnOffModal = () => {
         dispatch(toggleRegisterModal());
     }
     
     return(
-        <WelcomeWrap style={{backgroundImage: 'url('+require('../images/motorcycleride.jpg')+')'}}>
+        <WelcomeWrap style={{backgroundImage: role === 'driver' ? driverImage : role === 'rider' ? riderImage : welcomeImage}}>
             <InnerDiv>
                 <Modal open={registerModal} message='Your account was successfully registered and you are now logged in!' title='Register Success' action={turnOffModal}/>}
+                <WelcomeBox>
                 {username ? <Div>Welcome {username}!</Div> : <Div>Welcome!</Div>}
                 {role && role === 'driver' ? <Message>Thank you for being a Ride For Life driver!</Message> : (
                 <Message>If you're offered a seat on on a rocket ship, don't ask what seat! Just get on.</Message>)}
+                </WelcomeBox>
                 <CTA>
                     {role && (role === 'driver' ? <Link to='/riders'><Button className='cta'>Find A Rider In Need</Button></Link> : (
                         <Link to='/drivers'><Button className='cta'>Find An Available Driver</Button></Link>))}

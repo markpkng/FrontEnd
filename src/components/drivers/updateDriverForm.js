@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Alert} from 'reactstrap';
+import {Alert, Button} from 'reactstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import { updateDriver } from '../../actions/actions';
@@ -150,7 +150,7 @@ const FA = styled(FontAwesomeIcon) `
         opacity: 0.5;
     }
     cursor: pointer;
-    font-size: 2rem;
+    // font-size: 2rem;
 `
 
 const UpdateDriverForm = ({driver}) => {
@@ -172,6 +172,7 @@ const UpdateDriverForm = ({driver}) => {
         const id = decode(localStorage.getItem('bfl-token')).subject;
         const driver = {password, name, location, available: available.toString(), price, bio};
         dispatch(updateDriver(id, newPassword ? {...driver, newPassword} : driver));
+        setEdit(false);
     }
 
     useEffect(() => {
@@ -189,7 +190,7 @@ const UpdateDriverForm = ({driver}) => {
                 <FlexColumn>
                     {error && <Alert color="warning"><h2>{error}</h2></Alert>}
                     <div className='cancel'>
-                        {edit && <FA icon={faTimesCircle} onClick={() => setEdit(false)} className='fa-53'/>}
+                        {edit && <FA icon={faTimesCircle} onClick={() => setEdit(false)} className='fa-2x'/>}
                     </div>
                     <h1>Your Account Details</h1>
                     <ImageInput type='file' onChange={e => setProfilePicture(e.target.files[0])} id='imageInput'/>
@@ -226,7 +227,7 @@ const UpdateDriverForm = ({driver}) => {
                 
                     <Input type='password' placeholder='New Password?' onChange={e => handleNewPassword(e.target.value)}/>
                    
-                    <StyledButton type='submit'>Submit</StyledButton></>}
+                    <Button className='mButton' type='submit'>Submit</Button></>}
                 </FlexColumn>
             </form>
         </div>

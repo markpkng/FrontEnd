@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 import {useSelector, useDispatch} from 'react-redux';
 import {logout} from '../actions/actions';
@@ -17,6 +17,10 @@ const HeaderContainer = styled.div `
 	overflow: hidden;
 	top: 0;
     z-index: 4;
+
+    .active {
+        color: blue;
+    }
 
     @media screen and (max-width: 800px) {
         flex-direction: column;
@@ -84,6 +88,13 @@ const HeaderContainer = styled.div `
             }
         }
 
+        .active {
+            color: ${v.LIGHT_GREEN};
+            &:hover {
+                color: white;
+            }
+        }
+
 `
 
 const LinksWrap = styled.div `
@@ -125,14 +136,11 @@ const Header = () => {
             <LinksWrap>
               
                 <a className='link' href='https://saferidefl.netlify.com/'>About</a>
-                {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <Link className='link' to='/drivers'>Drivers</Link> : <Link className='link' to='/riders'>Riders</Link>)}
-         
-                
-                {loggedIn && <Link className='link' to='/account'>My Account</Link>}
-                {loggedIn && <Link className='link' onClick={() => dispatch(logout())} to='/'>Log Out</Link>}
-                {!loggedIn && <Link className='link' to='/register/role'>Register</Link>}
-                {!loggedIn && <Link className='link' to='/login'>Log In</Link>}
-              
+                {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <NavLink activeClassName='active' className='link' to='/drivers'>Drivers</NavLink> : <NavLink activeClassName='active' className='link' to='/riders'>Riders</NavLink>)}
+                {loggedIn && <NavLink className='link' activeClassName='active' to='/account'>My Account</NavLink>}
+                {loggedIn && <NavLink activeClassName='active' className='link' onClick={() => dispatch(logout())} exact to='/'>Log Out</NavLink>}
+                {!loggedIn && <NavLink activeClassName='active' className='link' to='/register/role'>Register</NavLink>}
+                {!loggedIn && <NavLink activeClassName='active' className='link' to='/login'>Log In</NavLink>}
             </LinksWrap>
         </HeaderContainer>
 

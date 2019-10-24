@@ -36,15 +36,15 @@ export const reducer = (state = initialState, action) => {
         case t.GET_DRIVER_FAIL: return {...state, loading: false, error: action.payload, reload: false}
         case t.DELETE_DRIVER_SUCCESS: return {...state, loading: false, error: '', loggedIn: false, reload: false}
         case t.DELETE_DRIVER_FAIL: return {...state, loading: false, error: action.payload, reload: false}
-        case t.UPDATE_DRIVER_SUCCESS: return {...state, loading: false, error: '', reload: false}
+        case t.UPDATE_DRIVER_SUCCESS: return {...state, loading: false, error: '', reload: true}
         case t.UPDATE_DRIVER_FAIL: return {...state, loading: false, error: action.payload, reload: false}
         case t.GET_REVIEWS_SUCCESS: return {...state, loading: false, error: '', reload: false}
         case t.GET_REVIEWS_FAIL: return {...state, loading: false, error: action.payload, reload: false}
         case t.ADD_REVIEW_SUCCESS: return {...state, loading: false, error: '', reload: true}
         case t.ADD_REVIEW_FAIL: return {...state, loading: false, error: action.payload, reload: false}
-        case t.DELETE_REVIEW_SUCCESS: return {...state, loading: false, error: '', reload: false}
+        case t.DELETE_REVIEW_SUCCESS: return {...state, loading: false, error: '', reload: true}
         case t.DELETE_REVIEW_FAIL: return {...state, loading: false, error: action.payload, reload: false}
-        case t.EDIT_REVIEW_SUCCESS: return {...state, loading: false, error: '', reload: false}
+        case t.EDIT_REVIEW_SUCCESS: return {...state, loading: false, error: '', reload: true}
         case t.EDIT_REVIEW_FAIL: return {...state, loading: false, error: action.payload, reload: false}
         case t.GET_RIDERS_SUCCESS: return {...state, loading: false, error: '', reload: false}
         case t.GET_RIDERS_FAIL: return {...state, loading: false, error: action.payload, reload: false}
@@ -52,7 +52,7 @@ export const reducer = (state = initialState, action) => {
         case t.GET_RIDER_FAIL: return {...state, loading: false, error: action.payload, reload: false}
         case t.DELETE_RIDER_SUCCESS: return {...state, loading: false, error: '', loggedIn: false, reload: false}
         case t.DELETE_RIDER_FAIL: return {...state, loading: false, error: action.payload, reload: false}
-        case t.UPDATE_RIDER_SUCCESS: return {...state, loading: false, error: '', reload: false}
+        case t.UPDATE_RIDER_SUCCESS: return {...state, loading: false, error: '', reload: true}
         case t.UPDATE_RIDER_FAIL: return {...state, loading: false, error: action.payload, reload: false}
         case t.TOGGLE_REGISTER_MODAL: return {...state, registerModal: false, reload: false}
         case t.UPDATE_PROFILE_IMAGE_SUCCESS: return {...state, loading: false, reload: false}

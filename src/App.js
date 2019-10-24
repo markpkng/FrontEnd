@@ -32,7 +32,7 @@ const OuterDiv = styled.div`
     align-items: center;
     // padding-bottom: 10rem;
     // padding-top: 5rem;
-    min-height: 84vh;
+    min-height: 88vh;
     width: 100%;
 
     @media screen and (max-width: 500px){

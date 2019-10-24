@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
 import {deleteRider} from '../../actions/actions';
 import {decode} from '../decode';
@@ -30,6 +30,7 @@ const RiderAccount = (props) => {
     const dispatch = useDispatch();
     const [user, setUser] = useState(null);
     const [modal, setModal] = useState(false);
+    const reload = useSelector(state => state.reload);
 
     const toggle = () => setModal(!modal);
 
@@ -52,7 +53,7 @@ const RiderAccount = (props) => {
             console.log(err);
             dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message && err.response.data.message});
         })
-    },[updateRider]);
+    },[updateRider, reload]);
 
     return (
         <OuterDiv>

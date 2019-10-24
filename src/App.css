@@ -104,7 +104,16 @@ p {
   }
 
   .cta {
-    border: 1px solid white;
-    background: rgba(9, 199, 51, 0.7);
+    border: 1px solid #597243;
+    /* background: rgba(9, 199, 51, 0.7); */
+    background-color: #597243;
+    border-radius: 0.8rem;
+    padding: 2rem;
     font-size: 2rem;
+  }
+
+  .cta:hover {
+    background-color: #70D378;
+    border: 1px solid #70D378;
+    color: #597243;
   }
