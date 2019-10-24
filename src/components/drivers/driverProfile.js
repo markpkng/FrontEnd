@@ -60,6 +60,13 @@ const StyledButton = styled.button`
     border: 1px solid green;
 `;
 
+const HR = styled.hr `
+    width: 100%;
+    padding: 0;
+    border: 2px solid darkgray;
+    border-radius: 5px;
+`
+
 const ModalButton = styled(Button)`
     && {
         font-size: 2rem;
@@ -140,6 +147,7 @@ const DriverProfile = props => {
                     <Attribute>Available:</Attribute>{" "}
                     {available ? "Yes!" : "No"}
                 </P>
+                <HR/>
                 {driver.phonenumber && (
                     <div onClick={e => e.preventDefault()}>
                         <StyledButton
@@ -186,7 +194,8 @@ const DriverProfile = props => {
                     </div>
                 )}
                 <ReviewForm {...props} />
-                {reviews.length > 0 && <h1>Reviews:</h1>}
+                <HR/>
+                {reviews.length > 0 && <h3>Reviews:</h3>}
                 {reviews.map(review => (
                     <ReviewCard
                         {...props}

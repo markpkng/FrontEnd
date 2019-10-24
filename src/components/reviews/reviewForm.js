@@ -66,7 +66,7 @@ const ReviewForm = ({match, edit}) => {
         <Div>
             <form onSubmit={handleSubmit}>
                 <FlexColumn>
-                    <h2>Write A Review:</h2>
+                    <h3>Write A Review:</h3>
                     <ReactStars half={false} count={5} value={stars} onChange={value => setStars(value)} size={50} color2={'#E1BE11'}/>   
                     <Textarea type='textarea' value={comment} onChange={e => handleComment(e.target.value)} placeholder='Comment'/>
                     <Anonymous>Post as anonymous? <input type='checkbox' onChange={() => setAnonymous(!anonymous)} checked={anonymous}/></Anonymous>

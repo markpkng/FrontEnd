@@ -31,6 +31,7 @@ const OuterDiv = styled.div`
     justify-content: center;
     align-items: center;
     padding-bottom: 10rem;
+    padding-top: 5rem;
     min-height: 86vh;
     width: 100%;
 
