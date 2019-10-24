@@ -14,10 +14,32 @@ import {
 } from '../../actions/types';
 
 const OuterDiv = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20rem;
     .riders {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+    }
+
+    > h1 {
+        font-size: 3rem;
+    }
+`
+
+const SearchDiv = styled.div `
+    width: 100%;
+    background: #E6E8e5;
+    padding: 1rem;
+    margin: 3rem;
+    border-radius: 5px;
+    max-width: 500px;
+    box-shadow: 10px 10px 10px darkgreen;
+
+    h1 {
+        font-size: 4rem;
     }
 `
 
@@ -50,9 +72,11 @@ const RiderList = () => {
 
     return(
         <OuterDiv>
-            <h1>Riders currently in need:</h1>
             {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
-            <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
+            <SearchDiv>
+                <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
+            </SearchDiv>
+            <h1>Riders currently in need:</h1>
             <div className='center'>
                 <div className='riders'>
                     {riders.filter(rider => rider.searching && rider.location.toLowerCase().includes(search.toLowerCase())).map(rider => <RiderCard key={rider.username} rider={rider}/>)}

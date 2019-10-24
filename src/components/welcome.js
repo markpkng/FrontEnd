@@ -23,7 +23,6 @@ const WelcomeWrap = styled.div `
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 `
 
 const Message = styled.div `

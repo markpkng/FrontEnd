@@ -14,7 +14,10 @@ import {START_REQUEST,
 import { axiosWithAuth } from '../axiosWithAuth';
 
 const Div = styled.div `
-    margin-bottom: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem;
 `
 const Available = styled.div `
     font-family: 'Roboto', sans-serif;
@@ -25,15 +28,23 @@ const Available = styled.div `
         transform: scale(2)
     }
 `
+const SearchDiv = styled.div `
+    width: 100%;
+    background: #E6E8e5;
+    padding: 1rem;
+    margin-bottom: 3rem;
+    border-radius: 5px;
+    max-width: 500px;
+    box-shadow: 10px 10px 10px darkgreen;
 
+    h1 {
+        font-size: 4rem;
+    }
+`
 const layout = {
     display: 'flex',
     flexFlow: 'row wrap',
     justifyContent: 'center'
-}
-
-const Size = {
-    fontSize: '20px',
 }
 
 const DriverList = () => {
@@ -75,9 +86,11 @@ const DriverList = () => {
 
     return (
         <Div>
-            {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
-            <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
-            <Available style={Size}>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></Available>
+            <SearchDiv>
+                {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
+                <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
+                <Available>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></Available>
+            </SearchDiv>
             <span style={layout}>{drivers.filter(driver => driver.location.toLowerCase().includes(search.toLowerCase()) && (nonAvailable || driver.available))
                     .map(driver => <DriverCard
                                         key={driver.username}

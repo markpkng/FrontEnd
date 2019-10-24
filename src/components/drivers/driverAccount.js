@@ -16,6 +16,7 @@ const OuterDiv = styled.div `
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     background: #E6E8e5;
     width: 100%;
     border-radius: 5px;
@@ -23,9 +24,6 @@ const OuterDiv = styled.div `
     padding: 4rem 0;
     box-shadow: 10px 10px 10px darkgreen;
 `
-const Mybutton = {
-    fontSize: '20px',
-}
 
 const DriverAccount = ({history}) => {
     const dispatch = useDispatch();
@@ -35,7 +33,7 @@ const DriverAccount = ({history}) => {
     const toggle = () => setModal(!modal);
 
     const deleteAction = () => {
-        dispatch(deleteDriver(decode(localStorage.getItem('bfl-token')).subject));
+        dispatch(deleteDriver(decode(localStorage.getItem('bfl-token')).subject), history);
         setModal(!modal);
         history.push('/');
     }
@@ -57,20 +55,18 @@ const DriverAccount = ({history}) => {
 
     return (
         <OuterDiv>
-            <div>
                 {user && <UpdateDriverForm driver={user}/>}
                 <div>
-                    <Button style={Mybutton} size='md' color="danger" onClick={toggle}>Delete Account</Button>
-                    <Modal isOpen={modal} toggle={toggle}>
-                        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                        <ModalBody style={Mybutton}>Are you sure you want to delete your account?</ModalBody>
+                    <Button className='mButton' color="danger" onClick={toggle}>Delete Account</Button>
+                    <Modal className='mStyles' isOpen={modal} toggle={toggle}>
+                        <ModalHeader toggle={toggle}>Delete Account</ModalHeader>
+                        <ModalBody>Are you sure you want to delete your account?</ModalBody>
                         <ModalFooter>
-                        <Button style={Mybutton} color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
-                        <Button style={Mybutton} color="secondary" onClick={toggle}>Cancel</Button>
+                        <Button className='mButton' color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
+                        <Button className='mButton' color="secondary" onClick={toggle}>Cancel</Button>
                         </ModalFooter>
                     </Modal>
                 </div>
-            </div>
         </OuterDiv>
     );
 }

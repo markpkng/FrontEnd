@@ -42,10 +42,11 @@ const ProfileImg = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    margin: 0 auto;
 `
 const StyledButton = styled.button `
     font-family: 'Roboto', sans-serif;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 2rem;
     border-radius: 5px;
     border: 1px solid green;
@@ -76,7 +77,7 @@ const DriverCard = ({driver, ratings}) => {
     }
 
     return (
-        <StyledCard style={{border: '1px solid white', padding: '1rem', margin: '10px', width: '300px'}}>
+        <StyledCard className='driverCard' style={{border: '1px solid white', padding: '1rem', margin: '10px', width: '300px'}}>
             <Link className='link' to={`drivers/${driver_id}`}>
                 <CardHeader><span className='header'>{name}</span></CardHeader>
                 <CardBody>

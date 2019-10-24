@@ -11,7 +11,7 @@ const FlexColumn = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
+    font-size: 1.5rem;
     h1 {
         font-size: 4rem;
     }
@@ -26,25 +26,13 @@ const FlexColumn = styled.div `
         font-family: 'Roboto', sans-serif;
         font-size: 1.5rem;
         margin-top: 0rem;
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
         cursor: pointer;
         &:hover {
             opacity: 0.5;
         }
     }
 `
-const Submit = {
-    margin: '2%',
-    fontSize: '20px',
-}
-
-const Warning = {
-    fontSize: '20px',
-}
-
-const Searchbox = {
-    fontSize: '20px',
-}
 
 const Input = styled.input `
     width: 90%;
@@ -55,10 +43,19 @@ const Input = styled.input `
     text-align: center;
     border: 1px solid green;
 `
+const Button = styled.button `
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    margin: 2rem;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid green;
+`
 
 const Available = styled.div `
     font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
+    font-weight: bold;
+    font-size: 1.5rem; 
     margin: 2rem;
     input {
         margin-left: 2rem;
@@ -68,7 +65,7 @@ const Available = styled.div `
 
 const FA = styled(FontAwesomeIcon) `
     position: relative;
-    margin-right: 3rem;
+    margin-right: 1rem;
     bottom: 20px;
     &:hover {
         opacity: 0.5;
@@ -78,7 +75,7 @@ const FA = styled(FontAwesomeIcon) `
 
 const Attribute = styled.span `
     font-weight: bold;
-    font-size: 2rem;    
+    font-size: 1.5rem;    
 `;
 
 const UpdateRiderForm = ({rider, updateRider}) => {
@@ -103,24 +100,24 @@ const UpdateRiderForm = ({rider, updateRider}) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <FlexColumn>
-                    {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
+                    {error && <Alert color="warning"><h2>{error}</h2></Alert>}
                     <div className='cancel'>
-                        {edit && <FA icon={faTimesCircle} onClick={() => setEdit(false)} className='fa-5x'/>}
+                        {edit && <FA icon={faTimesCircle} onClick={() => setEdit(false)} className='fa-3x'/>}
                     </div>
                     <h1>Your Account Details:</h1>
                     {!edit && <div className='edit' onClick={() => setEdit(true)}><FontAwesomeIcon icon={faPencilAlt} className='fa-1x'/> Edit Account</div>}
                     {!edit && <p><Attribute>Name: </Attribute>{name}</p>}
-                    {edit && <Input style={Searchbox} type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>}
+                    {edit && <Input type='text' value={name} placeholder='Name' onChange={e => handleName(e.target.value)} required/>}
                  
                     {!edit && <p><Attribute>Location: </Attribute>{location ? location : <span style={{fontStyle: 'italic'}}>Not set yet</span>}</p>}
-                    {edit && <Input style={Searchbox} type='text' value={location} placeholder='Location' onChange={e => handleLocation(e.target.value)}/>}
-                    <Available style={Searchbox}>Searching: <input disabled={!edit} type='checkbox' checked={searching} onChange={() => setSearching(!searching)}/></Available>
+                    {edit && <Input type='text' value={location} placeholder='Location' onChange={e => handleLocation(e.target.value)}/>}
+                    <Available>Searching: <input disabled={!edit} type='checkbox' checked={searching} onChange={() => setSearching(!searching)}/></Available>
                     {edit && <>
                   
-                    <Input type='password' style={Searchbox} placeholder='Current Password' onChange={e => handlePassword(e.target.value)} required/>
+                    <Input type='password' placeholder='Current Password' onChange={e => handlePassword(e.target.value)} required/>
                     
-                    <Input type='password' style={Searchbox} placeholder='New Password?' onChange={e => handleNewPassword(e.target.value)}/>
-                    <button style={Submit} type='submit'>Submit</button></>}
+                    <Input type='password' placeholder='New Password?' onChange={e => handleNewPassword(e.target.value)}/>
+                    <Button type='submit'>Submit</Button></>}
                 </FlexColumn>
             </form>
         </div>

@@ -22,7 +22,8 @@ export const reducer = (state = initialState, action) => {
             ...state,
             loading: false,
             loggedIn: false,
-            role: ''
+            role: '',
+            user: {}
         }
         case t.STORE_RIDER_SUCCESS: return {...state, loading: false, error: '', user: action.payload}
         case t.STORE_RIDER_FAIL: return {...state, loading: false}
@@ -32,7 +33,7 @@ export const reducer = (state = initialState, action) => {
         case t.GET_DRIVERS_FAIL: return {...state, loading: false, error: action.payload}
         case t.GET_DRIVER_SUCCESS: return {...state, loading: false, error: ''}
         case t.GET_DRIVER_FAIL: return {...state, loading: false, error: action.payload}
-        case t.DELETE_DRIVER_SUCCESS: return {...state, loading: false, error: ''}
+        case t.DELETE_DRIVER_SUCCESS: return {...state, loading: false, error: '', loggedIn: false}
         case t.DELETE_DRIVER_FAIL: return {...state, loading: false, error: action.payload}
         case t.UPDATE_DRIVER_SUCCESS: return {...state, loading: false, error: ''}
         case t.UPDATE_DRIVER_FAIL: return {...state, loading: false, error: action.payload}
@@ -48,7 +49,7 @@ export const reducer = (state = initialState, action) => {
         case t.GET_RIDERS_FAIL: return {...state, loading: false, error: action.payload}
         case t.GET_RIDER_SUCCESS: return {...state, loading: false, error: ''}
         case t.GET_RIDER_FAIL: return {...state, loading: false, error: action.payload}
-        case t.DELETE_RIDER_SUCCESS: return {...state, loading: false, error: ''}
+        case t.DELETE_RIDER_SUCCESS: return {...state, loading: false, error: '', loggedIn: false}
         case t.DELETE_RIDER_FAIL: return {...state, loading: false, error: action.payload}
         case t.UPDATE_RIDER_SUCCESS: return {...state, loading: false, error: ''}
         case t.UPDATE_RIDER_FAIL: return {...state, loading: false, error: action.payload}

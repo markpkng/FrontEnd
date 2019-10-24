@@ -6,14 +6,15 @@ import { updateDriver } from '../../actions/actions';
 import {decode} from '../decode';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPencilAlt, faUserCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
+import {faPencilAlt, faUserCircle, faTimesCircle, faCamera} from "@fortawesome/free-solid-svg-icons";
 import {updateProfileImage} from '../../actions/actions';
 
 const FlexColumn = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
+    font-size: 1.5rem;
+    text-align: center;
 
     h1 {
         font-size: 4rem;
@@ -31,7 +32,7 @@ const FlexColumn = styled.div `
     }
 
     .edit {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Passion One', sans-serif;
         font-size: 2rem;
         cursor: pointer;
         &:hover {
@@ -96,7 +97,8 @@ const ProfileImg = styled.div`
     background-position: 50% 50%;
     
     &:hover {
-        opacity: 0.5;
+        border: 3px solid green;
+        opacity: 0.2;
     }
 `
 
@@ -110,11 +112,12 @@ const StyledButton = styled.button `
 const ProfileWrapper = styled.div `
     width: 200px;
     height: 200px;
+    margin: 2rem;
 `
 
 const ProfileFilter = styled.div `
     cursor: pointer;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Patua One', sans-serif;
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -122,16 +125,13 @@ const ProfileFilter = styled.div `
     font-size: 3.5rem;
     align-items: center;
     justify-content: center;
+    .editPicture {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
 `
-
-const Submit = {
-    margin: '2%',
-}
-
-const Warning = {
-    fontSize: '20px',
-}
 
 const Attribute = styled.span `font-weight: bold`;
 
@@ -179,16 +179,20 @@ const UpdateDriverForm = ({driver}) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <FlexColumn>
-                    {error && <Alert color="warning"><h2 style={Warning}>{error}</h2></Alert>}
+                    {error && <Alert color="warning"><h2>{error}</h2></Alert>}
                     <div className='cancel'>
-                        {edit && <FA icon={faTimesCircle} onClick={() => setEdit(false)} className='fa-5x'/>}
+                        {edit && <FA icon={faTimesCircle} onClick={() => setEdit(false)} className='fa-53'/>}
                     </div>
                     <h1>Your Account Details</h1>
                     <ImageInput type='file' onChange={e => setProfilePicture(e.target.files[0])} id='imageInput'/>
                         <ProfileWrapper>
                             <label htmlFor='imageInput'>{driver.url ? (
                             <ProfileFilter>
-                                Edit<ProfileImg style={{backgroundImage: `url('${driver.url}')`}}/>
+                                <div className='editPicture'>
+                                    Edit
+                                    <FontAwesomeIcon icon={faCamera} className='fa-1x'/>
+                                </div>
+                                <ProfileImg style={{backgroundImage: `url('${driver.url}')`}}/>
                             </ProfileFilter>) : (
                             <FontAwesomeIcon className='profileIcon' icon={faUserCircle} className='fa-10x'/>)}</label>
                         </ProfileWrapper>
@@ -204,14 +208,14 @@ const UpdateDriverForm = ({driver}) => {
                     {!edit && <p><Attribute>Price: </Attribute>{price}</p>}
                     {edit && <Input disabled={!edit} type='text' value={price} placeholder='Price' onChange={e => handlePrice(e.target.value)} required/>}
                
-                    <Available>Available: <input disabled={!edit} type='checkbox' checked={available} onChange={() => setAvailable(!available)}/></Available>
+                    <Available><Attribute>Available:</Attribute> <input disabled={!edit} type='checkbox' checked={available} onChange={() => setAvailable(!available)}/></Available>
               
                     {edit && <>
                     <Input type='password' placeholder='Current Password' onChange={e => handlePassword(e.target.value)} required/>
                 
                     <Input type='password' placeholder='New Password?' onChange={e => handleNewPassword(e.target.value)}/>
                    
-                    <StyledButton style={Submit} type='submit'>Submit</StyledButton></>}
+                    <StyledButton type='submit'>Submit</StyledButton></>}
                 </FlexColumn>
             </form>
         </div>

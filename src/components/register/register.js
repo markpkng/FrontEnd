@@ -15,12 +15,14 @@ const OuterDiv = styled.div `
     flex-direction: column;
     align-items: center;
     width: 100%;
+    
 
     .form {
-        width: 50%;
+        width: 30%;
         background: #E6E8e5;
         padding: 3rem;
         border-radius: 5px;
+        box-shadow: 10px 10px 10px darkgreen;
     }
 `
 

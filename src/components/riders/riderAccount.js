@@ -22,11 +22,9 @@ const OuterDiv = styled.div `
     border-radius: 5px;
     max-width: 400px;
     padding: 4rem 0;
+    align-items: center;
     box-shadow: 10px 10px 10px darkgreen;
 `
-const Mybutton = {
-    fontSize: '20px',
-}
 
 const RiderAccount = (props) => {
     const dispatch = useDispatch();
@@ -36,7 +34,7 @@ const RiderAccount = (props) => {
     const toggle = () => setModal(!modal);
 
     const deleteAction = () => {
-        dispatch(deleteRider(decode(localStorage.getItem('bfl-token')).subject));
+        dispatch(deleteRider(decode(localStorage.getItem('bfl-token')).subject), props.history);
         setModal(!modal);
         props.history.push('/');
     }
@@ -58,20 +56,18 @@ const RiderAccount = (props) => {
 
     return (
         <OuterDiv>
-        <div>
             {user && <UpdateRiderForm {...props} updateRider={updateRider} rider={user}/>}
             <div>
-                <Button style={Mybutton} color="danger" onClick={toggle}>Delete Account</Button>
-                <Modal isOpen={modal} toggle={toggle}>
-                    <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                    <ModalBody style={Mybutton}>Are you sure you want to delete your account?</ModalBody>
+                <Button className='mButton' color="danger" onClick={toggle}>Delete Account</Button>
+                <Modal className='mStyles' isOpen={modal} toggle={toggle}>
+                    <ModalHeader toggle={toggle}>Delete Account</ModalHeader>
+                    <ModalBody>Are you sure you want to delete your account?</ModalBody>
                     <ModalFooter>
-                    <Button style={Mybutton} color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
-                    <Button style={Mybutton} color="secondary" onClick={toggle}>Cancel</Button>
+                    <Button className='mButton' color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
+                    <Button className='mButton' color="secondary" onClick={toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>
-        </div>
         </OuterDiv>
     );
 }

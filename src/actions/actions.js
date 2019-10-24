@@ -18,11 +18,12 @@ export const login = (credentials, history) => dispatch => {
     });
 };
 
-export const logout = () => {
+export const logout = (history) => {
     localStorage.removeItem('bfl-token');
     return {
         type: t.LOGOUT
     };
+    //history.push('/');
 };
 
 export const register = user => dispatch => {
@@ -85,7 +86,7 @@ export const deleteReview = id => dispatch => {
     })
 }
 
-export const deleteRider = id => dispatch => {
+export const deleteRider = (id, history) => dispatch => {
     dispatch({type: t.START_REQUEST});
     axiosWithAuth()
     .delete(`/riders/${id}`)
@@ -93,21 +94,22 @@ export const deleteRider = id => dispatch => {
         dispatch({type: t.DELETE_RIDER_SUCCESS});
         console.log(res);
         logout();
+        history.push('/');
     })
     .catch(err => {
-        dispatch({type: t.DELETE_RIDER_FAIL, payload: err.response.data.message});
+        dispatch({type: t.DELETE_RIDER_FAIL, payload: err});
         console.log(err);
     })
 }
 
-export const deleteDriver = id => dispatch => {
+export const deleteDriver = (id, history) => dispatch => {
     dispatch({type: t.START_REQUEST});
     axiosWithAuth()
     .delete(`/drivers/${id}`)
     .then(res => {
+        localStorage.removeItem('bfl-token');
         dispatch({type: t.DELETE_DRIVER_SUCCESS});
-        console.log(res);
-        logout();
+        history.push('/');
     })
     .catch(err => {
         dispatch({type: t.DELETE_DRIVER_FAIL, payload: err.response.data.message});

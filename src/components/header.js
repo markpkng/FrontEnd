@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {useSelector, useDispatch} from 'react-redux';
 import {logout} from '../actions/actions';
 import {decode} from './decode';
+import * as v from '../styles/variables';
 
 const HeaderContainer = styled.div `
     display: flex;
@@ -11,20 +12,34 @@ const HeaderContainer = styled.div `
     align-items: center;
     height: 6vh;
     padding: 4rem;
-    background-color: rgba(70, 53, 29, 0.7);
+    background-color: rgba(70, 53, 29, 0.6);
     position: sticky;
 	overflow: hidden;
 	top: 0;
-    z-index: 1;
+    z-index: 4;
+
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+        justify-content: center;
+        min-height: 8vh;
+    }
+
+    @media (max-width: 500px) {
+            min-height: 18vh;
+    }
+    @media (max-width: 385px) {
+        padding: 0.5rem;
+    }
 
     .rfl {
         font-family: 'Passion One', sans-serif;
         font-size: 4rem;
-        @media (max-width: 730px) {
+        @media (max-width: 850px) {
             font-size: 3rem;
+            padding: 0rem;
         }
-        @media (max-width: 476px) {
-            font-size: 2rem;
+        @media (max-width: 500px) {
+            font-size: 3rem;
         }
     }
 
@@ -32,8 +47,12 @@ const HeaderContainer = styled.div `
         font-size: 3.5rem;
         font-family: 'Audiowide', sans-serif;
         margin-left: 2rem;
-        @media (max-width: 730px) {
-            display: none;
+        @media (max-width: 850px) {
+            font-size: 3.2rem;
+            padding: 0rem;
+        }
+        @media (max-width: 476px) {
+            font-size: 3rem;
         }
     }
 
@@ -42,9 +61,6 @@ const HeaderContainer = styled.div `
         font-style: italic;
         margin-left: 1.5rem;
         font-size: 2rem;
-        @media (max-width: 730px) {
-            display: none;
-        }
     }
 
     .link {
@@ -53,22 +69,44 @@ const HeaderContainer = styled.div `
         margin: 0.5rem;
         padding: 0 10px;
         color: white;
-
+        text-align: center;
+        align-items: center;
+        height: 2rem;
         &:hover {
-            color: grey;
+            color: ${v.LIGHT_GREEN};
             text-decoration: none;
         }
-            @media (max-width: 440px) {
-                font-size: 1.5rem;
+            @media (max-width: 500px) {
+                font-size: 2rem;
+                margin: .2rem;
+                width: 100%;
             }
         }
 
 `
 
+const LinksWrap = styled.div `
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        @media screen and (max-width: 750px) {
+        width: 100%;
+        }
+
+        @media (max-width: 500px) {
+            flex-direction: column;
+        }
+
+        @media (max-width: 385px) {
+            width: 100%;
+        }
+`
+
 const Logo = styled(Link) `
     color: white;
     &:hover {
-        color: grey;
+        color: ${v.LIGHT_GREEN};
         text-decoration: none;
     }
 `
@@ -83,14 +121,18 @@ const Header = () => {
                     <div><span className='rfl'>Ride For Life</span><span className='for'>for</span> <span className='safe'>SAFE</span></div>
                 </Logo>
             </div>
-            <div>
+            <LinksWrap>
+              
                 <a className='link' href='https://saferidefl.netlify.com/'>About</a>
                 {loggedIn && (localStorage.getItem('bfl-token') && decode(localStorage.getItem('bfl-token')).role === 'rider' ? <Link className='link' to='/drivers'>Drivers</Link> : <Link className='link' to='/riders'>Riders</Link>)}
+         
+                
                 {loggedIn && <Link className='link' to='/account'>My Account</Link>}
-                {loggedIn && <Link className='link' onClick={() => dispatch(logout())} to='/'>Logout</Link>}
+                {loggedIn && <Link className='link' onClick={() => dispatch(logout())} to='/'>Log Out</Link>}
                 {!loggedIn && <Link className='link' to='/register/role'>Register</Link>}
                 {!loggedIn && <Link className='link' to='/login'>Log In</Link>}
-            </div>
+              
+            </LinksWrap>
         </HeaderContainer>
 
     );
