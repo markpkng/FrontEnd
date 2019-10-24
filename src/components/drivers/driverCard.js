@@ -58,10 +58,9 @@ const ModalButton = styled(Button) `
 `
 
 const DriverCard = ({driver, ratings}) => {
-    console.log(driver);
     const dispatch = useDispatch();
     const rider = useSelector(state => state.user);
-    const {username, name, location, price, bio, available, driver_id, url, phonenumber} = driver;
+    const {username, name, location, price, bio, available, driver_id, url} = driver;
     const [notifyModal, setNotifyModal] = useState(false);
 
     const toggleNotifyModal = () => {
@@ -71,7 +70,8 @@ const DriverCard = ({driver, ratings}) => {
     const notifyAction = () => {
         setNotifyModal(!notifyModal);
         if(rider){
-            dispatch(notifyRider(driver.driver_id, {rider: rider.name, location: rider.location}));
+            console.log(rider);
+            dispatch(notifyRider(driver.driver_id, {rider: rider.name, location: rider.location || '???'}));
         }
     }
 

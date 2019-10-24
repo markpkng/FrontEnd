@@ -169,6 +169,7 @@ export const storeRider = id => dispatch => {
 }
 
 export const notifyRider = (id, riderData) => dispatch => {
+    console.log(riderData);
     dispatch({type: t.START_REQUEST});
     axiosWithAuth()
     .post(`/drivers/${id}/message`, riderData)
