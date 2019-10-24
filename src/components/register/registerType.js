@@ -61,7 +61,7 @@ const RegisterType = ({setRole, history}) => {
 
     return (
         <OuterDiv>
-            {error && <Alert color="warning"><h2>{error}</h2></Alert>}
+            {error && <Alert color="warning"><h3>{error}</h3></Alert>}
             <span>Are you a:</span>
             <div className='types'>
                 <Type onClick={() => handleClick('driver')}>
