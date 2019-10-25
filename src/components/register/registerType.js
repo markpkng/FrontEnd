@@ -13,17 +13,20 @@ const Type = styled.div `
     border-radius: 5px;
     width: 200px;
     font-family: 'Patua One', serif;
-    color: #9FE09F;
+    // color: #9FE09F;
+    color: white;
     padding: 0.5rem;
     margin: 1rem;
     font-size: 2.5rem;
+    cursor: pointer;
 
     .role {
         margin: 1rem;
     }
 
     &:hover{
-        color: #3CDBD3;
+        // color: #3CDBD3;
+        color: #9FE09F;
     }
 `
 
@@ -42,6 +45,10 @@ const OuterDiv = styled.div`
     .types {
         display: flex;
         flex-direction: row;
+
+        @media screen and (max-width: 540px) {
+            flex-direction: column;
+        }
     }
 `
 
@@ -54,7 +61,7 @@ const RegisterType = ({setRole, history}) => {
 
     return (
         <OuterDiv>
-            {error && <Alert color="warning"><h2>{error}</h2></Alert>}
+            {error && <Alert color="warning"><h3>{error}</h3></Alert>}
             <span>Are you a:</span>
             <div className='types'>
                 <Type onClick={() => handleClick('driver')}>

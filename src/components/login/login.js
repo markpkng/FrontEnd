@@ -3,9 +3,11 @@ import LoginForm from './loginForm';
 import styled from 'styled-components';
 
 const OuterDiv = styled.div `
-    width: 100%;
+    // width: 100%;
+    width: 90%;
+    max-width: 500px;
     background: #E6E8e5;
-    padding: 1rem;
+    padding: 3rem;
     border-radius: 5px;
     max-width: 500px;
     box-shadow: 10px 10px 10px darkgreen;

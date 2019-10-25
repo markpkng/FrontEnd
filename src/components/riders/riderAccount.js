@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
 import {deleteRider} from '../../actions/actions';
 import {decode} from '../decode';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import UpdateRiderForm from './updateRiderForm';
+import {updateRider} from '../../actions/actions';
 import styled from 'styled-components';
 import {
     START_REQUEST,
@@ -21,21 +22,20 @@ const OuterDiv = styled.div `
     border-radius: 5px;
     max-width: 400px;
     padding: 4rem 0;
+    align-items: center;
     box-shadow: 10px 10px 10px darkgreen;
 `
-const Mybutton = {
-    fontSize: '20px',
-}
 
 const RiderAccount = (props) => {
     const dispatch = useDispatch();
     const [user, setUser] = useState(null);
     const [modal, setModal] = useState(false);
+    const reload = useSelector(state => state.reload);
 
     const toggle = () => setModal(!modal);
 
     const deleteAction = () => {
-        dispatch(deleteRider(decode(localStorage.getItem('bfl-token')).subject));
+        dispatch(deleteRider(decode(localStorage.getItem('bfl-token')).subject), props.history);
         setModal(!modal);
         props.history.push('/');
     }
@@ -51,26 +51,24 @@ const RiderAccount = (props) => {
         })
         .catch(err => {
             console.log(err);
-            dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message});
+            dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message && err.response.data.message});
         })
-    },[]);
+    },[updateRider, reload]);
 
     return (
         <OuterDiv>
-        <div>
-            {user && <UpdateRiderForm {...props} rider={user}/>}
+            {user && <UpdateRiderForm {...props} updateRider={updateRider} rider={user}/>}
             <div>
-                <Button style={Mybutton} color="danger" onClick={toggle}>Delete Account</Button>
-                <Modal isOpen={modal} toggle={toggle}>
-                    <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                    <ModalBody style={Mybutton}>Are you sure you want to delete your account?</ModalBody>
+                <Button className='mButton' color="danger" onClick={toggle}>Delete Account</Button>
+                <Modal className='mStyles' isOpen={modal} toggle={toggle}>
+                    <ModalHeader toggle={toggle}>Delete Account</ModalHeader>
+                    <ModalBody>Are you sure you want to delete your account?</ModalBody>
                     <ModalFooter>
-                    <Button style={Mybutton} color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
-                    <Button style={Mybutton} color="secondary" onClick={toggle}>Cancel</Button>
+                    <Button className='mButton' color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
+                    <Button className='mButton' color="secondary" onClick={toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>
-        </div>
         </OuterDiv>
     );
 }

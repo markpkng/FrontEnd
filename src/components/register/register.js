@@ -6,8 +6,6 @@ import RegisterDriver from './registerDriver';
 import {useInput} from '../../hooks/useInput';
 import {useDispatch, useSelector} from 'react-redux';
 import {register} from '../../actions/actions';
-import {toggleRegisterModal} from '../../actions/actions';
-import Modal from '../modals/modal';
 import styled from 'styled-components';
 
 const OuterDiv = styled.div `
@@ -15,12 +13,16 @@ const OuterDiv = styled.div `
     flex-direction: column;
     align-items: center;
     width: 100%;
+    
 
     .form {
-        width: 50%;
+        width: 90%;
+        max-width: 500px;
         background: #E6E8e5;
         padding: 3rem;
         border-radius: 5px;
+        box-shadow: 10px 10px 10px darkgreen;
+        margin: 3rem 0;
     }
 `
 
@@ -35,7 +37,6 @@ const Register = ({history}) => {
     const [price, setPrice, handlePrice] = useInput('');
     const [bio, setBio, handleBio] = useInput('');
     const [matchPass, setMatchPass] = useState(true);
-    const modal = useSelector(state => state.registerModal);
 
     const input = {
         username, handleUsername,
@@ -51,11 +52,6 @@ const Register = ({history}) => {
         matchPass, setMatchPass
     }
     
-    const modalAction = () => {
-        dispatch(toggleRegisterModal());
-        console.log('bam');
-    }
-    
     const handleSubmit = e => {
         e.preventDefault();
 
@@ -66,7 +62,7 @@ const Register = ({history}) => {
         });
 
         if(password === confirmPassword){
-            dispatch(register(user));
+            dispatch(register(user, history));
             setUsername('');
             setPassword('');
             setConfirmPassword('');
@@ -89,11 +85,10 @@ const Register = ({history}) => {
     return (
         <OuterDiv>
             <Redirect from='/register' to='/register/role'/>
-            <Modal open={modal} message={'You have been registered.'} title={'Success'} action={modalAction}/>
             <form className='form' onSubmit={handleSubmit}>
                 <Route path='/register/role' render={props => <RegisterType {...props} setRole={setRole}/>}/>
-                <Route path='/register/rider' render={() => <RegisterRider role={role} input={input} errorHandling={errorHandling}/>}/>
-                <Route path='/register/driver' render={() => <RegisterDriver role={role} input={input} errorHandling={errorHandling}/>}/>
+                <Route path='/register/rider' render={props => <RegisterRider {...props} role={role} input={input} errorHandling={errorHandling}/>}/>
+                <Route path='/register/driver' render={props => <RegisterDriver {...props} role={role} input={input} errorHandling={errorHandling}/>}/>
             </form>
         </OuterDiv>
     );

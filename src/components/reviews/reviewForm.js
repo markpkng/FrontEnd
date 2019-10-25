@@ -1,17 +1,43 @@
 import React, {useState} from 'react';
-import {Input, Form, FormGroup, Button} from 'reactstrap';
 import {useDispatch} from 'react-redux';
 import {useInput} from '../../hooks/useInput';
 import styled from 'styled-components';
 import {addReview} from '../../actions/actions';
 import {decode} from '../decode';
 import ReactStars from 'react-rating-stars-component';
+import {Alert, Button} from 'reactstrap';
 
 const FlexColumn = styled.div `
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+`
+
+const Div = styled.div `
+    width: 100%;
+`
+
+const Textarea = styled.textarea `
+    width: 70%;
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid green;
+    min-height: 100px;
+`
+
+const Anonymous = styled.div `
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    margin: 2rem;
+    input {
+        margin-left: 2rem;
+        transform: scale(2)
+    }
 `
 
 const ReviewForm = ({match, edit}) => {
@@ -31,19 +57,17 @@ const ReviewForm = ({match, edit}) => {
     }
 
     return (
-        <div>
-            <Form onSubmit={handleSubmit}>
+        <Div>
+            <form onSubmit={handleSubmit}>
                 <FlexColumn>
-                    <h2>Write A Review:</h2>
+                    <h3>Write A Review:</h3>
                     <ReactStars half={false} count={5} value={stars} onChange={value => setStars(value)} size={50} color2={'#E1BE11'}/>   
-                    <FormGroup>
-                    <Input type='text' value={comment} onChange={e => handleComment(e.target.value)} placeholder='Comment'/>
-                    </FormGroup>
-                    <label>Post as anonymous? <input type='checkbox' onChange={() => setAnonymous(!anonymous)} checked={anonymous}/></label>
-                    <Button type='submit'>Submit</Button>
+                    <Textarea type='textarea' value={comment} onChange={e => handleComment(e.target.value)} placeholder='Comment'/>
+                    <Anonymous>Post as anonymous? <input type='checkbox' onChange={() => setAnonymous(!anonymous)} checked={anonymous}/></Anonymous>
+                    <Button className='mButton' type='submit'>Submit</Button>
                 </FlexColumn>
-            </Form>
-        </div>  
+            </form>
+        </Div>  
     );
 }
 

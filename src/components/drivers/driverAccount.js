@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import UpdateDriverForm from './updateDriverForm';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {axiosWithAuth} from '../axiosWithAuth';
 import {deleteDriver} from '../../actions/actions';
 import {decode} from '../decode';
@@ -16,26 +16,26 @@ const OuterDiv = styled.div `
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     background: #E6E8e5;
     width: 100%;
     border-radius: 5px;
     max-width: 400px;
-    padding: 4rem 0;
+    padding: 4rem 3%;
     box-shadow: 10px 10px 10px darkgreen;
+    margin: 3rem 0;
 `
-const Mybutton = {
-    fontSize: '20px',
-}
 
 const DriverAccount = ({history}) => {
     const dispatch = useDispatch();
     const [user, setUser] = useState(null);
     const [modal, setModal] = useState(false);
+    const reload = useSelector(state => state.reload);
 
     const toggle = () => setModal(!modal);
 
     const deleteAction = () => {
-        dispatch(deleteDriver(decode(localStorage.getItem('bfl-token')).subject));
+        dispatch(deleteDriver(decode(localStorage.getItem('bfl-token')).subject), history);
         setModal(!modal);
         history.push('/');
     }
@@ -51,26 +51,24 @@ const DriverAccount = ({history}) => {
         })
         .catch(err => {
             console.log(err);
-            dispatch({type: GET_DRIVER_FAIL, payload: err.response.data.message});
+            dispatch({type: GET_DRIVER_FAIL, payload: err.response.data.message && err.response.data.message});
         })
-    },[]);
+    },[reload]);
 
     return (
         <OuterDiv>
-            <div>
                 {user && <UpdateDriverForm driver={user}/>}
                 <div>
-                    <Button style={Mybutton} color="danger" onClick={toggle}>Delete Account</Button>
-                    <Modal isOpen={modal} toggle={toggle}>
-                        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                        <ModalBody style={Mybutton}>Are you sure you want to delete your account?</ModalBody>
+                    <Button className='mButton' color="danger" onClick={toggle}>Delete Account</Button>
+                    <Modal className='mStyles' isOpen={modal} toggle={toggle}>
+                        <ModalHeader toggle={toggle}>Delete Account</ModalHeader>
+                        <ModalBody>Are you sure you want to delete your account?</ModalBody>
                         <ModalFooter>
-                        <Button style={Mybutton} color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
-                        <Button style={Mybutton} color="secondary" onClick={toggle}>Cancel</Button>
+                        <Button className='mButton' color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
+                        <Button className='mButton' color="secondary" onClick={toggle}>Cancel</Button>
                         </ModalFooter>
                     </Modal>
                 </div>
-            </div>
         </OuterDiv>
     );
 }

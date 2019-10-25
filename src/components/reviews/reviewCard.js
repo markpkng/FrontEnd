@@ -24,16 +24,22 @@ const ReviewDiv = styled.div `
             margin: 0.5rem;
         }
     }
+
+    .reviewer {
+        font-size: 2rem;
+    }
 `
 const FlexColumn = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
 `
-
+const Textarea = styled.textarea `
+    width: 90%;
+    min-height: 100px;
+`
 const Comment = styled.p `
-    padding: 10%;
+    font-size: 2rem;
 `
 
 const ReviewCard = ({review, match, history}) => {
@@ -70,7 +76,7 @@ const ReviewCard = ({review, match, history}) => {
                 setReviewerName(res.data.name);
             })
             .catch(err => {
-                dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message});
+                dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message && err.response.data.message});
                 console.log(err);
             })
         }
@@ -87,22 +93,24 @@ const ReviewCard = ({review, match, history}) => {
 
     return (
         <ReviewDiv>
-            <p>Posted by: {anonymous ? 'Anonymous' : reviewerName}</p>
+            <ReactStars style={{marginTop: 0}}count={5} value={stars} edit={false} size={50} color2={'#E1BE11'}/>
+            <p className='reviewer'>By: {anonymous ? 'Anonymous' : reviewerName}</p>
             <p>on {new Date(date).toISOString().substring(0, 10)}</p>
-            <ReactStars count={5} value={stars} edit={false} size={50} color2={'#E1BE11'}/>
             {comment && <Comment>{comment}</Comment>}
             
             <div className={!deleteModal && !editModal && 'modalButtons'}>
             {/* Delete Review Modal */}
             {rider_id === parseInt(decode(localStorage.getItem('bfl-token')).subject) &&
             <div>
-                <Button color="danger" className='modalButton' onClick={toggleDeleteModal}>Delete Review</Button>
-                <Modal isOpen={deleteModal} toggle={toggleDeleteModal}>
-                    <ModalHeader toggle={toggleDeleteModal}>Modal title</ModalHeader>
+                <Button color="danger" className='mButton' onClick={toggleDeleteModal}>Delete Review</Button>
+                <Modal className='mStyles' isOpen={deleteModal} toggle={toggleDeleteModal}>
+                    <ModalHeader className='mHeader'>
+                        <div className='title' toggle={toggleDeleteModal}>Delete Review</div>
+                    </ModalHeader>
                     <ModalBody>Are you sure you want to delete this review?</ModalBody>
                     <ModalFooter>
-                    <Button color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
-                    <Button color="secondary" onClick={toggleDeleteModal}>Cancel</Button>
+                    <Button className='mButton' color="danger" onClick={deleteAction}>Yes I am sure</Button>{' '}
+                    <Button className='mButton' color="secondary" onClick={toggleDeleteModal}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>}
@@ -110,20 +118,19 @@ const ReviewCard = ({review, match, history}) => {
             {/* Edit Review Modal */}
             {rider_id === parseInt(decode(localStorage.getItem('bfl-token')).subject) &&
             <div>
-                <Button color="warning" className='modalButton' onClick={toggleEditModal}>Edit Review</Button>
-                    <Modal isOpen={editModal} toggle={toggleEditModal}>
-                        <ModalHeader toggle={toggleEditModal}>Modal title</ModalHeader>
+                <Button color="warning" className='mButton' onClick={toggleEditModal}>Edit Review</Button>
+                    <Modal className='mStyles' isOpen={editModal} toggle={toggleEditModal}>
+                        <ModalHeader className='mHeader' toggle={toggleEditModal}>Edit Review</ModalHeader>
                         <ModalBody>
-                            <FlexColumn>
-                                <h2>Edit Review:</h2>
+                            <FlexColumn className='mReviewEdit'>
                                 <ReactStars half={false} count={5} value={starsInput} onChange={value => setStarsInput(value)} size={50} color2={'#E1BE11'}/>
-                                <input type='textarea' value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
+                                <Textarea value={commentInput} onChange={e => handleCommentInput(e.target.value)} placeholder='Comment'/>
                                 <label>Post as anonymous? <input type='checkbox' onChange={() => setAnonymousInput(!anonymousInput)} checked={anonymousInput}/></label>
                             </FlexColumn>
                         </ModalBody>
                         <ModalFooter>
-                        <Button color="primary" onClick={handleEdit}>Submit</Button>{' '}
-                        <Button color="secondary" onClick={toggleEditModal}>Cancel</Button>
+                        <Button color="primary" className='mButton' onClick={handleEdit}>Submit</Button>{' '}
+                        <Button color="secondary" className='mButton' onClick={toggleEditModal}>Cancel</Button>
                         </ModalFooter>
                     </Modal>
             </div>}

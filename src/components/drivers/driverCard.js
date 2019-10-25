@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {Card, CardHeader, CardBody} from 'reactstrap';
+import {Card, CardHeader, CardBody, Modal, Button, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faGlobeAfrica} from "@fortawesome/free-solid-svg-icons";
+import {faGlobeAfrica, faMotorcycle} from "@fortawesome/free-solid-svg-icons";
 import ReactStars from 'react-rating-stars-component';
+import {notifyRider} from '../../actions/actions';
+import {useSelector, useDispatch} from 'react-redux';
 
 const StyledCard = styled(Card) `
     box-shadow: 10px 10px 10px darkgreen;
     text-align: left;
+    display:
     
     && {
         background: #E6E8E5;
@@ -26,6 +29,16 @@ const StyledCard = styled(Card) `
     .header {
         font-size: 2rem;
     }
+
+    .btn-center {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+`
+
+const Attribute = styled.span `
+    font-weight: bold;
 `
 
 const ProfileImg = styled.div`
@@ -35,13 +48,35 @@ const ProfileImg = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    margin: 0 auto;
+`
+
+const ModalButton = styled(Button) `
+  && {
+    font-size: 2rem;
+  }
 `
 
 const DriverCard = ({driver, ratings}) => {
+    const dispatch = useDispatch();
+    const rider = useSelector(state => state.user);
     const {username, name, location, price, bio, available, driver_id, url} = driver;
-    console.log(driver);
+    const [notifyModal, setNotifyModal] = useState(false);
+
+    const toggleNotifyModal = () => {
+        setNotifyModal(!notifyModal);
+    }
+
+    const notifyAction = () => {
+        setNotifyModal(!notifyModal);
+        if(rider){
+            console.log(rider);
+            dispatch(notifyRider(driver.driver_id, {rider: rider.name, location: rider.location || '???'}));
+        }
+    }
+
     return (
-        <StyledCard style={{border: '1px solid white', padding: '1rem', margin: '10px', width: '300px'}}>
+        <StyledCard className='driverCard' style={{border: '1px solid white', padding: '1rem', margin: '10px', width: '300px'}}>
             <Link className='link' to={`drivers/${driver_id}`}>
                 <CardHeader><span className='header'>{name}</span></CardHeader>
                 <CardBody>
@@ -49,10 +84,23 @@ const DriverCard = ({driver, ratings}) => {
                     {ratings.length > 0 &&
                     <ReactStars count={5} value={ratings.reduce((acc, cur) => acc + cur)/ratings.length} edit={false} size={50} color2={'#E1BE11'}/>}
                     <p><FontAwesomeIcon icon={faGlobeAfrica}/> {location}</p>
-                    <p>Price: {price}</p>
-                    <p>Username: {username}</p>
-                    <p>Bio: {bio}</p>
-                    <p>Available: {available ? 'Yes!' : 'No'}</p>
+                    <p><Attribute>Price:</Attribute> {price}</p>
+                    <p><Attribute>Username:</Attribute> {username}</p>
+                    <p><Attribute>Bio:</Attribute> {bio}</p>
+                    <p><Attribute>Available:</Attribute> {available ? 'Yes!' : 'No'}</p>
+                    {driver.phonenumber && <div onClick={e => e.preventDefault()}>
+                        <div className='btn-center'><Button className='mButton' onClick={toggleNotifyModal}>Request Ride <FontAwesomeIcon icon={faMotorcycle} className='fa-1x'/></Button></div>
+                        <Modal className='mStyles' isOpen={notifyModal} toggle={toggleNotifyModal}>
+                            <ModalHeader className='mHeader'>
+                                <div className='title'>Send text to {name}</div>
+                            </ModalHeader>
+                            <ModalBody>Are you sure you notify this driver you are in need of a ride?</ModalBody>
+                            <ModalFooter>
+                            <ModalButton className='mButton' color="danger" onClick={notifyAction}>Yes I am sure</ModalButton>{' '}
+                            <ModalButton className='mButton' color="secondary" onClick={toggleNotifyModal}>Cancel</ModalButton>
+                            </ModalFooter>
+                        </Modal>
+                    </div>}
                 </CardBody>
             </Link>
         </StyledCard>

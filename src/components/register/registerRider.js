@@ -2,11 +2,14 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import styled from 'styled-components';
 import {Alert, Button} from 'reactstrap';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowAltCircleLeft} from "@fortawesome/free-solid-svg-icons";
 
 const FlexColumn = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     width: 90%;
     margin: 0 auto;
 
@@ -15,8 +18,32 @@ const FlexColumn = styled.div `
         width: 200px;
     }
 
+    .reg-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        @media screen and (max-width: 400px) {
+            flex-direction: column;
+        }
+    }
+
     h1 {
         font-size: 4rem;
+        width: 100%;
+    }
+
+    .back {
+        // width: 100%;
+    }
+
+    .backArrow {
+        // left: 0;
+        // position: absolute;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.5;
+        }
     }
 `
 const Input = styled.input `
@@ -29,7 +56,7 @@ const Input = styled.input `
     border: 1px solid green;
 `
 
-const RegisterRider = ({role, input, errorHandling}) => {
+const RegisterRider = ({role, input, errorHandling, history}) => {
     const {
         username, handleUsername,
         password, handlePassword,
@@ -45,7 +72,13 @@ const RegisterRider = ({role, input, errorHandling}) => {
         <FlexColumn>
             {!role && <Redirect to='/register/role'/>}
             {role && role === 'driver' && <Redirect to='/register/driver'/>}
+
+            <div className='reg-header'>
+            <div className='back'>
+                <FontAwesomeIcon onClick={() => history.push('/register/role')} icon={faArrowAltCircleLeft} className='fa-3x backArrow'/>
+            </div>
             <h1>Rider Registration</h1>
+            </div>
           
             <Input type='text' placeholder='Username *' value={username} onChange={e => handleUsername(e.target.value)} required/>
        

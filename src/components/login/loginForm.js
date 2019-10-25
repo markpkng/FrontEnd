@@ -14,10 +14,11 @@ const FlexColumn = styled.div `
     max-width: 400px;
 
     .here {
-        color: #9FE09F;
+        color: brown;
 
         &:hover {
-            color: #3CDBD3;
+            // color: #3CDBD3;
+            color: gray;
             text-decoration: none;
         }
     }

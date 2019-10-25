@@ -13,14 +13,43 @@ import {START_REQUEST,
         GET_REVIEWS_FAIL} from '../../actions/types';
 import { axiosWithAuth } from '../axiosWithAuth';
 
+const Div = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem;
+    padding-bottom: 5rem;
+`
+const Available = styled.div `
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    margin: 2rem;
+    input {
+        margin-left: 2rem;
+        transform: scale(2)
+    }
+`
+const SearchDiv = styled.div `
+    width: 90%;
+    background: #E6E8e5;
+    padding: 2rem 1rem 1rem;
+    margin-bottom: 3rem;
+    border-radius: 5px;
+    max-width: 400px;
+    box-shadow: 10px 10px 10px darkgreen;
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    .filter {
+        font-size: 1.5rem;
+    }
+`
 const layout = {
     display: 'flex',
     flexFlow: 'row wrap',
     justifyContent: 'center'
-}
-
-const Size = {
-    fontSize: '20px',
 }
 
 const DriverList = () => {
@@ -41,7 +70,7 @@ const DriverList = () => {
         })
         .catch(err => {
             console.log('error', err);
-            dispatch({type: GET_DRIVERS_FAIL, payload: err});
+            dispatch({type: GET_DRIVERS_FAIL, payload: err.response.data.message && err.response.data.message});
         });
 
         dispatch({type: START_REQUEST});
@@ -51,7 +80,7 @@ const DriverList = () => {
             dispatch({type: GET_REVIEWS_SUCCESS});
             setReviews(res.data);
         })
-        .catch(err => {dispatch({type: GET_REVIEWS_FAIL, payload: err});}) 
+        .catch(err => {dispatch({type: GET_REVIEWS_FAIL, payload: err.response.data.message && err.response.data.message});}) 
     },[dispatch])
 
     const handleSubmit = e => {
@@ -61,10 +90,12 @@ const DriverList = () => {
     }
 
     return (
-        <div>
-            {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
-            <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
-            <label style={Size}>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></label>
+        <Div>
+            <SearchDiv>
+                {search && <span className='filter' onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
+                <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
+                <Available>Show non-available drivers? <input type='checkbox' onChange={e => handleNonAvailable(e.target.checked)} checked={nonAvailable}/></Available>
+            </SearchDiv>
             <span style={layout}>{drivers.filter(driver => driver.location.toLowerCase().includes(search.toLowerCase()) && (nonAvailable || driver.available))
                     .map(driver => <DriverCard
                                         key={driver.username}
@@ -74,7 +105,7 @@ const DriverList = () => {
                                                        .map(review => review.stars)
                                         }                            
             />)}</span>
-        </div>
+        </Div>
     );
 }
 

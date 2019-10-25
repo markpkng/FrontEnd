@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Audiowide|Passion+One|Patua+One|Roboto|Sorts+Mill+Goudy&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Passion+One|Patua+One|Roboto|Sonsie+One&display=swap');
 
 html {
   font-size: 62.5%;
+  height: 100%;
 }
 
 .driversBg {
@@ -38,23 +39,81 @@ p {
 
 .App {
     text-align: center;
+    height: 100%;
   }
   
-  .App-logo {
-    height: 40vmin;
+  /* Reactstrap Modals */
+  .mStyles{
+    z-index: 2;
+    font-size: 1.5rem;
   }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
+
+  h5.modal-title {
+    font-size: 2.5rem;
+  }
+
+  .mButton {
+    margin: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .mReviewEdit {
+    font-size: 1.5rem;
+  }
+
+  .navbar {
+    font-size: 1.5rem;
+    background-color: rgba(70, 53, 29, 0.6);
+    text-align: center;
+  }
+
+  .rflNav {
+    font-family: 'Passion One', sans-serif;
+    font-size: 2.5rem;
     color: white;
   }
-  
-  .App-link {
-    color: #09d3ac;
+
+  .forNav {
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: white;
+    margin-left: 2rem;
+  }
+
+  .safeNav {
+    font-family: Audiowide;
+    font-size: 2rem;
+    color: white;
+    margin-left: 2rem;
+  }
+
+  .openNav {
+    color: white;
+    font-size: 3rem; 
+  }
+
+  .nl {
+    color: white;
+    font-size: 2rem; 
+  }
+
+  .closedNav {
+    color: white;
+    font-size: 4rem;
+  }
+
+  .cta {
+    border: 1px solid #597243;
+    /* background: rgba(9, 199, 51, 0.7); */
+    background-color: #597243;
+    border-radius: 0.8rem;
+    padding: 2rem;
+    font-size: 2rem;
+  }
+
+  .cta:hover {
+    background-color: #70D378;
+    border: 1px solid #70D378;
+    color: #597243;
   }

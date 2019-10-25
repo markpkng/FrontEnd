@@ -35,7 +35,7 @@ const RiderProfile = ({match}) => {
             setRider(res.data);
         })
         .catch(err => {
-            dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message});
+            dispatch({type: GET_RIDER_FAIL, payload: err.response.data.message && err.response.data.message});
         });
     }, [dispatch, id])
 

@@ -14,10 +14,36 @@ import {
 } from '../../actions/types';
 
 const OuterDiv = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20rem;
     .riders {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+    }
+
+    > h1 {
+        font-size: 3rem;
+    }
+
+    .filter {
+        font-size: 1.5rem;
+    }
+`
+
+const SearchDiv = styled.div `
+    width: 90%;
+    background: #E6E8e5;
+    padding: 1rem;
+    margin: 3rem;
+    border-radius: 5px;
+    max-width: 400px;
+    box-shadow: 10px 10px 10px darkgreen;
+
+    h1 {
+        font-size: 4rem;
     }
 `
 
@@ -36,7 +62,7 @@ const RiderList = () => {
             setRiders(res.data);
         })
         .catch(err => {
-            dispatch({type: GET_RIDERS_FAIL, payload: err.response.data.message});
+            dispatch({type: GET_RIDERS_FAIL, payload: err.response.data.message && err.response.data.message});
             console.log(err);
         })
 
@@ -50,9 +76,12 @@ const RiderList = () => {
 
     return(
         <OuterDiv>
+            
+            <SearchDiv>
+                {search && <span className='filter' onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
+                <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
+            </SearchDiv>
             <h1>Riders currently in need:</h1>
-            {search && <span onClick={() => setSearch('')}>Filter: {search} <FontAwesomeIcon icon={faTimesCircle}/></span>}
-            <SearchForm input={input} handleInput={handleInput} handleSubmit={handleSubmit}/>
             <div className='center'>
                 <div className='riders'>
                     {riders.filter(rider => rider.searching && rider.location.toLowerCase().includes(search.toLowerCase())).map(rider => <RiderCard key={rider.username} rider={rider}/>)}
