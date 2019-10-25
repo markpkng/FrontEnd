@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Passion+One|Patua+One|Roboto|Sonsie+One&display=swap');
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+.driversBg {
+  background: url('./images/bggplaypattern.png') repeat;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Passion One', serif;
+}
+
+h1 {
+  font-size: 4.5rem;
+}
+
+h2 {
+  font-size: 4rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  font-size: 3.2rem;
+}
+
+h4 {
+  font-size: 2.5rem;
+  padding-bottom: 10px;
+}
+
+p {
+  line-height: 1.5;
+  font-size: 1.6rem;
+  padding-bottom: 10px;
+}
+
+.App {
+    text-align: center;
+    height: 100%;
+  }
+  
+  /* Reactstrap Modals */
+  .mStyles{
+    z-index: 2;
+    font-size: 1.5rem;
+  }
+
+  h5.modal-title {
+    font-size: 2.5rem;
+  }
+
+  .mButton {
+    margin: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .mReviewEdit {
+    font-size: 1.5rem;
+  }
+
+  .navbar {
+    font-size: 1.5rem;
+    background-color: rgba(70, 53, 29, 0.6);
+    text-align: center;
+  }
+
+  .rflNav {
+    font-family: 'Passion One', sans-serif;
+    font-size: 2.5rem;
+    color: white;
+  }
+
+  .forNav {
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: white;
+    margin-left: 2rem;
+  }
+
+  .safeNav {
+    font-family: Audiowide;
+    font-size: 2rem;
+    color: white;
+    margin-left: 2rem;
+  }
+
+  .openNav {
+    color: white;
+    font-size: 3rem; 
+  }
+
+  .nl {
+    color: white;
+    font-size: 2rem; 
+  }
+
+  .closedNav {
+    color: white;
+    font-size: 4rem;
+  }
+
+  .cta {
+    border: 1px solid #597243;
+    /* background: rgba(9, 199, 51, 0.7); */
+    background-color: #597243;
+    border-radius: 0.8rem;
+    padding: 2rem;
+    font-size: 2rem;
+  }
+
+  .cta:hover {
+    background-color: #70D378;
+    border: 1px solid #70D378;
+    color: #597243;
+  }
