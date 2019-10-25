@@ -92,7 +92,7 @@ const DriverCard = ({driver, ratings}) => {
                         <div className='btn-center'><Button className='mButton' onClick={toggleNotifyModal}>Request Ride <FontAwesomeIcon icon={faMotorcycle} className='fa-1x'/></Button></div>
                         <Modal className='mStyles' isOpen={notifyModal} toggle={toggleNotifyModal}>
                             <ModalHeader className='mHeader'>
-                                <div className='title' toggle={toggleNotifyModal}>Send text to {name}</div>
+                                <div className='title'>Send text to {name}</div>
                             </ModalHeader>
                             <ModalBody>Are you sure you notify this driver you are in need of a ride?</ModalBody>
                             <ModalFooter>

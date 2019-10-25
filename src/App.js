@@ -47,6 +47,7 @@ const Div = styled.div `
 function App() {
     const dispatch = useDispatch();
     const loading = useSelector(state => state.loading);
+    const loggedIn = useSelector(state => state.loggedIn);
     const [width, setWidth] = useState(window.innerWidth);
     window.addEventListener('resize', () => {
       setWidth(window.innerWidth);
@@ -62,7 +63,7 @@ function App() {
         } else {
             dispatch({ type: LOGOUT });
         }
-    }, []);
+    }, [loggedIn]);
 
     return (
         <Div
