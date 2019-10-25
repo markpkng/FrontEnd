@@ -93,6 +93,17 @@ const ImageInput = styled.input `
     width: 1px;
     height: 1px;
 `
+const DefaultProfile = styled(FontAwesomeIcon) `
+    position: absolute;
+    width: 200px !important;
+    height: 200px;
+    border-radius: 50%;
+    background: white;
+    &:hover {
+        border: 3px solid green;
+        opacity: 0.2;
+    }
+`
 
 const ProfileImg = styled.div`
     position: absolute;
@@ -107,14 +118,6 @@ const ProfileImg = styled.div`
         border: 3px solid green;
         opacity: 0.2;
     }
-`
-
-const StyledButton = styled.button `
-    font-family: 'Roboto', sans-serif;
-    font-size: 2rem;
-    margin: 2rem;
-    border-radius: 5px;
-    border: 1px solid green;
 `
 const ProfileWrapper = styled.div `
     width: 200px;
@@ -203,7 +206,13 @@ const UpdateDriverForm = ({driver}) => {
                                 </div>
                                 <ProfileImg style={{backgroundImage: `url('${driver.url}')`}}/>
                             </ProfileFilter>) : (
-                            <FontAwesomeIcon className='profileIcon' icon={faUserCircle} className='fa-10x'/>)}</label>
+                            <ProfileFilter>
+                                <div className='editPicture'>
+                                    Edit
+                                    <FontAwesomeIcon icon={faCamera} className='fa-1x'/>
+                                </div>
+                                <DefaultProfile icon={faUserCircle}/>
+                            </ProfileFilter>)}</label>
                         </ProfileWrapper>
 
                         <div className='account-details' >
