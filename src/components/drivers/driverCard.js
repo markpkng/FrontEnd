@@ -69,10 +69,10 @@ const DriverCard = ({driver, ratings}) => {
 
     const notifyAction = () => {
         setNotifyModal(!notifyModal);
-        if(rider){
-            console.log(rider);
-            dispatch(notifyRider(driver.driver_id, {rider: rider.name, location: rider.location || '???'}));
-        }
+        // if(rider){
+        //     console.log(rider);
+        //     dispatch(notifyRider(driver.driver_id, {rider: rider.name, location: rider.location || '???'}));
+        // }
     }
 
     return (

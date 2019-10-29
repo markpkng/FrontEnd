@@ -92,12 +92,12 @@ const DriverProfile = props => {
 
     const notifyAction = () => {
         setNotifyModal(!notifyModal);
-        if (rider) {
-            console.log(driver);
-            dispatch(
-                notifyRider(id, { rider: rider.name, location: rider.location })
-            );
-        }
+        // if (rider) {
+        //     console.log(driver);
+        //     dispatch(
+        //         notifyRider(id, { rider: rider.name, location: rider.location })
+        //     );
+        // }
     };
 
     useEffect(() => {
