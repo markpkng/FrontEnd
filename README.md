@@ -30,6 +30,6 @@ SAFE serves mothers in Uganda to improve maternal and child survival. One of the
 - react-fontawesome
 
 ## Deployment
-[**Marketing Site**](https://saferidefl.netlify.com/)
-[**React App**](https://rfl.netlify.com/)
-[**API**](https://rideforlife-backend.herokuapp.com/)
+- [**Marketing Site**](https://saferidefl.netlify.com/)
+- [**React App**](https://rfl.netlify.com/)
+- [**API**](https://rideforlife-backend.herokuapp.com/)
